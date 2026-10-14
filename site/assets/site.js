@@ -1,2 +1,2 @@
-// Until the Cognito forms are embedded, enquiry forms go straight to the matching thank-you page.
-document.addEventListener('submit',function(e){var f=e.target.closest('form[data-form]');if(!f)return;e.preventDefault();location.href=f.dataset.form==='training'?'/thank-you-training.html':'/thank-you-quote.html';});
+// After a Cognito form is submitted, send the visitor to the matching thank-you page (quote and training forms only).
+if(window.Cognito&&Cognito.on){Cognito.on('afterSubmit',function(){var w=document.querySelector('.cog-wrap[data-thanks]');if(w)location.href='/'+w.dataset.thanks+'.html';});}

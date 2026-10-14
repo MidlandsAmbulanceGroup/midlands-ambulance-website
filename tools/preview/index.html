@@ -21,6 +21,7 @@ img{display:block}
 .prose{max-width:680px}.prose p{margin:0 0 18px}.prose h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:32px;line-height:1.05;margin:40px 0 12px}
 .prose ul{padding-left:20px;margin:0 0 18px}.prose li{margin-bottom:6px}
 .prose.legal h2{font-size:24px;margin:32px 0 10px}
+.cog-wrap{background:#fff;padding:28px;border-top:4px solid var(--red);min-width:0}.cog-wrap .cog-cognito{font-family:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:2px;border:0;cursor:pointer;transition:background .2s,color .2s}
 .btn-red{background:var(--red);color:#FFFFFF}.btn-red:hover{background:var(--red-dk)}
 .btn-ghost{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75);color:#FFFFFF;background:transparent}.btn-ghost:hover{background:#FFFFFF;color:var(--ink)}
@@ -293,26 +294,12 @@ const vehicles=`<section class="sec"><div class="wrap">
     <article class="veh"><div class="ph" style="background-image:url(${img('dca')})"></div><div class="tag">Dual Crewed Ambulances</div><h3 class="h3" style="font-size:36px">A treatment base on wheels</h3><p>Two-person crews with the equipment to assess and treat patients on site, from minor injuries to serious emergencies.</p></article>
     <article class="veh"><div class="ph" style="background-image:url(${img('frv')})"></div><div class="tag">Fast Response Vehicles</div><h3 class="h3" style="font-size:36px">Speed across large sites</h3><p>A single clinician who reaches patients quickly on spread-out courses, showgrounds and festival sites.</p></article>
   </div></div></section>`;
-const quoteForm=(pre={})=>`<form class="form" data-form="quote">
-  <label>Event type<select id="q-type">${['Festival or concert','Sporting event','Dance or cheer competition','Film or TV production','Corporate event','Venue or conference','Community or charity event','Other'].map(o=>`<option${pre.type===o?' selected':''}>${o}</option>`).join('')}</select></label>
-  <label>Event date<input id="q-date" type="date"></label>
-  <label>Venue or postcode<input id="q-venue" type="text" autocomplete="postal-code"></label>
-  <label>Expected attendance<input id="q-att" type="number" min="0" inputmode="numeric"></label>
-  <label class="full">Anything we should know?<textarea id="q-notes" placeholder="Activities, timings, existing medical provision"></textarea></label>
-  <label>Your name<input id="q-name" type="text" autocomplete="name" required></label>
-  <label>Email or phone<input id="q-contact" type="text" autocomplete="email" required></label>
-  <button type="submit" class="btn btn-red">Send my quote request <span class="arrow">→</span></button>
-  <p class="note">In the live site this form sends straight to your Cognito quote form. In this preview it just shows the thank-you page.</p>
-</form>`;
-const courseForm=course=>`<form class="form" data-form="training">
-  <label class="full">Course<select id="t-course">${COURSES.map(c=>`<option${c.key===course?' selected':''}>${c.name}</option>`).concat(`<option${course==='onsite-training'?' selected':''}>On-site group training</option>`).join('')}</select></label>
-  <label>Number of people<input id="t-num" type="number" min="1" inputmode="numeric"></label>
-  <label>Preferred date<input id="t-date" type="date"></label>
-  <label>Your name<input id="t-name" type="text" autocomplete="name" required></label>
-  <label>Email or phone<input id="t-contact" type="text" autocomplete="email" required></label>
-  <button type="submit" class="btn btn-red">Send booking enquiry <span class="arrow">→</span></button>
-  <p class="note">In the live site this sends to your Cognito training form, with the course already filled in.</p>
-</form>`;
+// Cognito Forms seamless embeds. Form 15 = event quote, 17 = training enquiry, 7 = event team application, 9 = expression of interest.
+const COG_KEY='7-F4jRl2QEy4NFBUvGQBXQ';
+const cog=(id,prefill,thanks)=>`<div class="cog-wrap"${thanks?` data-thanks="${thanks}"`:''}><script src="https://www.cognitoforms.com/f/seamless.js" data-key="${COG_KEY}" data-form="${id}"></`+`script>${prefill?`<script>Cognito.prefill(${JSON.stringify(prefill)});</`+`script>`:''}</div>`;
+const COG_COURSE={'basic-first-aid-cpr':'Basic First Aid and CPR','paediatric-first-aid':'Paediatric First Aid','aed-cpr':'AED and CPR','basic-life-support':'Basic Life Support (BLS)','intermediate-life-support':'Intermediate Life Support (ILS)','onsite-training':'On-site group training for businesses'};
+const quoteForm=()=>cog(15,null,'thank-you-quote');
+const courseForm=course=>cog(17,COG_COURSE[course]?{Course:{CourseYoureInterestedIn:COG_COURSE[course]}}:null,'thank-you-training');
 
 /* ---------- data ---------- */
 const EVENTS=[
@@ -591,12 +578,13 @@ ${plainHero({crumb:[['Contact']],eyebrow:'Contact',title:'Talk to the team',lede
 <div><span class="kicker">Email</span><p style="font-size:22px;font-weight:600;margin:6px 0 0">info@midlandsambulance.co.uk</p></div>
 <div><span class="kicker">Base</span><p style="font-size:22px;font-weight:600;margin:6px 0 0">Swadlincote, Derbyshire DE11 9ED</p><p style="color:var(--mute);margin:4px 0 0">Covering the Midlands and UK-wide</p></div>
 <div><a class="btn btn-red" href="#get-a-quote">Get an event quote <span class="arrow">→</span></a></div></div>
-<form class="form" data-form="contact"><label>Your name<input id="c-name" type="text" autocomplete="name" required></label><label>Email or phone<input id="c-contact" type="text" required></label><label class="full">Message<textarea id="c-msg"></textarea></label><button type="submit" class="btn btn-red">Send message</button></form></div></section>`,'contact');
+<div class="cog-wrap"><h3 class="h3" style="font-size:32px;margin:0 0 12px">Send us a message</h3><p style="margin:0 0 24px">Email us and the team will get back to you. For an event quote, the quote form gets you a price fastest.</p><p><a class="btn btn-red" href="mailto:info@midlandsambulance.co.uk">Email info@midlandsambulance.co.uk <span class="arrow">→</span></a></p></div></div></section>`,'contact');
 
 add('careers','/careers','Company','Careers',()=>`
-${darkHero({image:'nightcrowd',crumb:[['Careers']],eyebrow:'Careers',title:'Join our event medical team',lede:'We are always looking for first aiders, technicians, paramedics, nurses and doctors to join our event team.',ctas:`<a class="btn btn-red" href="#">Apply to join <span class="arrow">→</span></a><a class="btn btn-ghost" href="#">Register your interest</a>`})}
+${darkHero({image:'nightcrowd',crumb:[['Careers']],eyebrow:'Careers',title:'Join our event medical team',lede:'We are always looking for first aiders, technicians, paramedics, nurses and doctors to join our event team.',ctas:`<a class="btn btn-red" href="#apply">Apply to join <span class="arrow">→</span></a><a class="btn btn-ghost" href="#interest">Register your interest</a>`})}
 <section class="sec"><div class="wrap split"><div><p class="eyebrow">Why join us</p><h2 class="hd h2">Varied work, good people</h2></div>${ticks([['Festivals, sport, film and more','No two shifts the same.'],['Flexible work','Pick shifts around your other commitments.'],['Supportive clinical team','Briefings, kit and senior support on every event.'],['Training opportunities',T('[What you offer staff]')]])}</div></section>
-<section class="sec mist tight"><div class="wrap"><p class="lede">In the live site, the two buttons above open your existing Cognito forms: the Event Team Application Form and the Expression of Interest Form.</p></div></section>`,'about');
+<section class="sec mist" id="apply"><div class="wrap split"><div><p class="eyebrow">Apply</p><h2 class="hd h2">Join the event team</h2><p class="lede" style="margin-top:20px">Already registered with the HCPC, NMC or GMC, or a qualified first aider? Apply here and we'll be in touch.</p></div>${cog(7)}</div></section>
+<section class="sec" id="interest"><div class="wrap split"><div><p class="eyebrow">Not ready yet?</p><h2 class="hd h2">Register your interest</h2><p class="lede" style="margin-top:20px">Tell us about yourself and we'll let you know when roles come up.</p></div>${cog(9)}</div></section>`,'about');
 
 add('privacy-policy','/privacy-policy','Company','Privacy policy',()=>`
 ${plainHero({crumb:[['Privacy policy']],eyebrow:'Legal',title:'Privacy policy'})}
