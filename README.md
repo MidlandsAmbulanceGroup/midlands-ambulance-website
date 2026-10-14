@@ -2,7 +2,7 @@
 
 The new www.midlandsambulance.co.uk: a static site hosted on Wix (Wix Headless).
 
-- `site/` is the finished website, one folder per page (for example `site/training/basic-first-aid-cpr/index.html`). This folder is what gets uploaded to Wix.
+- `site/` is the finished website, one `.html` file per page (for example `site/training/basic-first-aid-cpr.html`). Wix Headless only serves files at their exact path and does not open a folder's `index.html`, so pages are not built as folders. This folder is what gets uploaded to Wix.
 - `site/assets/site.css` holds every style; `site/img/` holds the photos and logos.
 - `tools/preview/index.html` is the single-page preview the site was built from. `tools/prerender.mjs` turns it into the pages in `site/`:
 
