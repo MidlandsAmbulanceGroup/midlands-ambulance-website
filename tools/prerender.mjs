@@ -11,8 +11,9 @@ const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium'}).catc
 const p=await b.newPage();
 await p.goto('file://'+SRC+'/index.html');
 const pages=await p.evaluate(()=>[...document.querySelectorAll('#idxList a')].map(a=>({key:a.getAttribute('href').slice(1),label:a.querySelector('span').textContent,path:a.querySelector('code').textContent})));
-const map=Object.fromEntries(pages.map(x=>[x.key,x.path==='/'?'/':x.path+'/']));
-const fix=html=>html.replace(/href="#([\w-]+)"/g,(m,k)=>map[k]?`href="${map[k]}"`:m).replace(/(src=|url\()(["']?)img\//g,'$1$2/img/').replace(/href="#"/g,'href="/contact/"');
+// Wix Headless serves files at their exact path only (no folder index pages), so each page is its own .html file.
+const map=Object.fromEntries(pages.map(x=>[x.key,x.path==='/'?'/':x.path+'.html']));
+const fix=html=>html.replace(/href="#([\w-]+)"/g,(m,k)=>map[k]?`href="${map[k]}"`:m).replace(/(src=|url\()(["']?)img\//g,'$1$2/img/').replace(/href="#"/g,'href="/contact.html"');
 const strip=s=>s.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
 const sitemap=[];
 for(const pg of pages){
@@ -47,13 +48,13 @@ ${fix(footer)}
 </body>
 </html>
 `;
-  const dir=path.join(OUT,map[pg.key]); fs.mkdirSync(dir,{recursive:true}); fs.writeFileSync(path.join(dir,'index.html'),html);
+  const file=path.join(OUT,map[pg.key]==='/'?'index.html':map[pg.key]); fs.mkdirSync(path.dirname(file),{recursive:true}); fs.writeFileSync(file,html);
   if(!pg.key.startsWith('thank-you')) sitemap.push(url);
 }
 fs.mkdirSync(OUT+'/assets',{recursive:true});
 fs.writeFileSync(OUT+'/assets/site.css','/* Midlands Ambulance Group site styles */\n*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}\n'+css.trim()+'\n');
-fs.writeFileSync(OUT+'/assets/site.js',`// Until the Cognito forms are embedded, enquiry forms go straight to the matching thank-you page.
-document.addEventListener('submit',function(e){var f=e.target.closest('form[data-form]');if(!f)return;e.preventDefault();location.href=f.dataset.form==='training'?'/thank-you-training/':'/thank-you-quote/';});
+fs.writeFileSync(OUT+'/assets/site.js',`// After a Cognito form is submitted, send the visitor to the matching thank-you page (quote and training forms only).
+if(window.Cognito&&Cognito.on){Cognito.on('afterSubmit',function(){var w=document.querySelector('.cog-wrap[data-thanks]');if(w)location.href='/'+w.dataset.thanks+'.html';});}
 `);
 fs.writeFileSync(OUT+'/sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemap.map(u=>`  <url><loc>${u}</loc></url>`).join('\n')}\n</urlset>\n`);
 fs.writeFileSync(OUT+'/robots.txt',NOINDEX?'User-agent: *\nDisallow: /\n':'User-agent: *\nAllow: /\nSitemap: https://www.midlandsambulance.co.uk/sitemap.xml\n');

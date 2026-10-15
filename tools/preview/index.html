@@ -20,6 +20,8 @@ img{display:block}
 .lede{font-size:19px;color:var(--mute);max-width:600px;margin:0}
 .prose{max-width:680px}.prose p{margin:0 0 18px}.prose h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:32px;line-height:1.05;margin:40px 0 12px}
 .prose ul{padding-left:20px;margin:0 0 18px}.prose li{margin-bottom:6px}
+.prose.legal h2{font-size:24px;margin:32px 0 10px}
+.cog-wrap{background:#fff;padding:28px;border-top:4px solid var(--red);min-width:0}.cog-wrap .cog-cognito{font-family:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:2px;border:0;cursor:pointer;transition:background .2s,color .2s}
 .btn-red{background:var(--red);color:#FFFFFF}.btn-red:hover{background:var(--red-dk)}
 .btn-ghost{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75);color:#FFFFFF;background:transparent}.btn-ghost:hover{background:#FFFFFF;color:var(--ink)}
@@ -236,7 +238,7 @@ table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
     <div><h4>Training</h4><a href="#training">All courses</a><a href="#basic-first-aid-cpr">First Aid and CPR</a><a href="#paediatric-first-aid">Paediatric First Aid</a><a href="#onsite-training">On-site training</a></div>
     <div><h4>Company</h4><a href="#about">About us</a><a href="#team">Our team</a><a href="#case-studies">Case studies</a><a href="#reviews">Reviews</a><a href="#careers">Careers</a><a href="#contact">Contact</a></div>
   </div>
-  <div class="base"><div class="wrap"><span>© 2026 Midlands Ambulance Group Ltd · Company no. <span class="tbc">[number]</span></span><span><a href="#privacy-policy">Privacy policy</a> &nbsp;·&nbsp; <a href="https://g.page/r/CTwPSa1lclRPEBM/review">Review us on Google</a></span></div></div>
+  <div class="base"><div class="wrap"><span>© 2026 Midlands Ambulance Group Ltd · Company no. 13035386</span><span><a href="#privacy-policy">Privacy policy</a> &nbsp;·&nbsp; <a href="https://g.page/r/CTwPSa1lclRPEBM/review">Review us on Google</a></span></div></div>
 </footer>
 
 <div class="idx" id="idx" hidden role="dialog" aria-modal="true" aria-labelledby="idxh">
@@ -292,26 +294,12 @@ const vehicles=`<section class="sec"><div class="wrap">
     <article class="veh"><div class="ph" style="background-image:url(${img('dca')})"></div><div class="tag">Dual Crewed Ambulances</div><h3 class="h3" style="font-size:36px">A treatment base on wheels</h3><p>Two-person crews with the equipment to assess and treat patients on site, from minor injuries to serious emergencies.</p></article>
     <article class="veh"><div class="ph" style="background-image:url(${img('frv')})"></div><div class="tag">Fast Response Vehicles</div><h3 class="h3" style="font-size:36px">Speed across large sites</h3><p>A single clinician who reaches patients quickly on spread-out courses, showgrounds and festival sites.</p></article>
   </div></div></section>`;
-const quoteForm=(pre={})=>`<form class="form" data-form="quote">
-  <label>Event type<select id="q-type">${['Festival or concert','Sporting event','Dance or cheer competition','Film or TV production','Corporate event','Venue or conference','Community or charity event','Other'].map(o=>`<option${pre.type===o?' selected':''}>${o}</option>`).join('')}</select></label>
-  <label>Event date<input id="q-date" type="date"></label>
-  <label>Venue or postcode<input id="q-venue" type="text" autocomplete="postal-code"></label>
-  <label>Expected attendance<input id="q-att" type="number" min="0" inputmode="numeric"></label>
-  <label class="full">Anything we should know?<textarea id="q-notes" placeholder="Activities, timings, existing medical provision"></textarea></label>
-  <label>Your name<input id="q-name" type="text" autocomplete="name" required></label>
-  <label>Email or phone<input id="q-contact" type="text" autocomplete="email" required></label>
-  <button type="submit" class="btn btn-red">Send my quote request <span class="arrow">→</span></button>
-  <p class="note">In the live site this form sends straight to your Cognito quote form. In this preview it just shows the thank-you page.</p>
-</form>`;
-const courseForm=course=>`<form class="form" data-form="training">
-  <label class="full">Course<select id="t-course">${COURSES.map(c=>`<option${c.key===course?' selected':''}>${c.name}</option>`).concat(`<option${course==='onsite-training'?' selected':''}>On-site group training</option>`).join('')}</select></label>
-  <label>Number of people<input id="t-num" type="number" min="1" inputmode="numeric"></label>
-  <label>Preferred date<input id="t-date" type="date"></label>
-  <label>Your name<input id="t-name" type="text" autocomplete="name" required></label>
-  <label>Email or phone<input id="t-contact" type="text" autocomplete="email" required></label>
-  <button type="submit" class="btn btn-red">Send booking enquiry <span class="arrow">→</span></button>
-  <p class="note">In the live site this sends to your Cognito training form, with the course already filled in.</p>
-</form>`;
+// Cognito Forms seamless embeds. Form 15 = event quote, 17 = training enquiry, 7 = event team application, 9 = expression of interest.
+const COG_KEY='7-F4jRl2QEy4NFBUvGQBXQ';
+const cog=(id,prefill,thanks)=>`<div class="cog-wrap"${thanks?` data-thanks="${thanks}"`:''}><script src="https://www.cognitoforms.com/f/seamless.js" data-key="${COG_KEY}" data-form="${id}"></`+`script>${prefill?`<script>Cognito.prefill(${JSON.stringify(prefill)});</`+`script>`:''}</div>`;
+const COG_COURSE={'basic-first-aid-cpr':'Basic First Aid and CPR','paediatric-first-aid':'Paediatric First Aid','aed-cpr':'AED and CPR','basic-life-support':'Basic Life Support (BLS)','intermediate-life-support':'Intermediate Life Support (ILS)','onsite-training':'On-site group training for businesses'};
+const quoteForm=()=>cog(15,null,'thank-you-quote');
+const courseForm=course=>cog(17,COG_COURSE[course]?{Course:{CourseYoureInterestedIn:COG_COURSE[course]}}:null,'thank-you-training');
 
 /* ---------- data ---------- */
 const EVENTS=[
@@ -542,9 +530,9 @@ ${clients}`,'about');
 add('team','/about/team','About','Our team',()=>`
 ${plainHero({crumb:[['About','about'],['Our team']],eyebrow:'Our team',title:'The people behind the uniform',lede:'Paramedics, technicians, nurses and trainers who cover your events and teach our courses.'})}
 <section class="sec"><div class="wrap people">
-<div class="person"><div class="ph">JB</div><div class="role">Managing Director</div><h3 class="h3">John Blake</h3><p>${T('[Short bio and clinical background]')}</p></div>
-<div class="person"><div class="ph">MD</div><div class="role">Medical Director</div><h3 class="h3">${T('[Name]')}</h3><p>${T('[Bio to follow once the Medical Director section is updated]')}</p></div>
-<div class="person"><div class="ph">+</div><div class="role">${T('[Role]')}</div><h3 class="h3">${T('[Name]')}</h3><p>${T('[Short bio]')}</p></div>
+<div class="person"><div class="ph" role="img" aria-label="John Blake" style="background:url(${img('john-blake')}) center/cover"></div><div class="role">Managing Director</div><h3 class="h3">John Blake</h3><p>Ambulance Technician and Associate Member of the Royal College of Paramedics. Striving for excellence in emergency care: every event, every time.</p></div>
+<div class="person"><div class="ph">MD</div><div class="role">Medical Director</div><h3 class="h3">Mark</h3><p>${T('[Surname, short bio and clinical background]')}</p></div>
+<div class="person"><div class="ph" role="img" aria-label="Karl Stanfield" style="background:url(${img('karl-stanfield')}) center/cover"></div><div class="role">Paramedic Clinical Lead</div><h3 class="h3">Karl Stanfield</h3><p><b>MSc, PGPHCC, BSc, MCPara, ICSm</b><br>HCPC-registered paramedic (PA052742) with an MSc in Critical Care, a PG Cert in Pre-Hospital Critical Care and a BSc in Paramedic Science. Member of the Royal College of Paramedics, the Intensive Care Society and the Faculty of Pre-Hospital Care.</p></div>
 </div></section>
 <section class="ph" style="background-image:url(${img('teamselfie')});aspect-ratio:21/8;min-height:280px"></section>
 ${band('Want to join the team?','See careers','careers')}`,'about');
@@ -590,16 +578,103 @@ ${plainHero({crumb:[['Contact']],eyebrow:'Contact',title:'Talk to the team',lede
 <div><span class="kicker">Email</span><p style="font-size:22px;font-weight:600;margin:6px 0 0">info@midlandsambulance.co.uk</p></div>
 <div><span class="kicker">Base</span><p style="font-size:22px;font-weight:600;margin:6px 0 0">Swadlincote, Derbyshire DE11 9ED</p><p style="color:var(--mute);margin:4px 0 0">Covering the Midlands and UK-wide</p></div>
 <div><a class="btn btn-red" href="#get-a-quote">Get an event quote <span class="arrow">→</span></a></div></div>
-<form class="form" data-form="contact"><label>Your name<input id="c-name" type="text" autocomplete="name" required></label><label>Email or phone<input id="c-contact" type="text" required></label><label class="full">Message<textarea id="c-msg"></textarea></label><button type="submit" class="btn btn-red">Send message</button></form></div></section>`,'contact');
+<div class="cog-wrap"><h3 class="h3" style="font-size:32px;margin:0 0 12px">Send us a message</h3><p style="margin:0 0 24px">Email us and the team will get back to you. For an event quote, the quote form gets you a price fastest.</p><p><a class="btn btn-red" href="mailto:info@midlandsambulance.co.uk">Email info@midlandsambulance.co.uk <span class="arrow">→</span></a></p></div></div></section>`,'contact');
 
 add('careers','/careers','Company','Careers',()=>`
-${darkHero({image:'nightcrowd',crumb:[['Careers']],eyebrow:'Careers',title:'Join our event medical team',lede:'We are always looking for first aiders, technicians, paramedics, nurses and doctors to join our event team.',ctas:`<a class="btn btn-red" href="#">Apply to join <span class="arrow">→</span></a><a class="btn btn-ghost" href="#">Register your interest</a>`})}
+${darkHero({image:'nightcrowd',crumb:[['Careers']],eyebrow:'Careers',title:'Join our event medical team',lede:'We are always looking for first aiders, technicians, paramedics, nurses and doctors to join our event team.',ctas:`<a class="btn btn-red" href="#apply">Apply to join <span class="arrow">→</span></a><a class="btn btn-ghost" href="#interest">Register your interest</a>`})}
 <section class="sec"><div class="wrap split"><div><p class="eyebrow">Why join us</p><h2 class="hd h2">Varied work, good people</h2></div>${ticks([['Festivals, sport, film and more','No two shifts the same.'],['Flexible work','Pick shifts around your other commitments.'],['Supportive clinical team','Briefings, kit and senior support on every event.'],['Training opportunities',T('[What you offer staff]')]])}</div></section>
-<section class="sec mist tight"><div class="wrap"><p class="lede">In the live site, the two buttons above open your existing Cognito forms: the Event Team Application Form and the Expression of Interest Form.</p></div></section>`,'about');
+<section class="sec mist" id="apply"><div class="wrap split"><div><p class="eyebrow">Apply</p><h2 class="hd h2">Join the event team</h2><p class="lede" style="margin-top:20px">Already registered with the HCPC, NMC or GMC, or a qualified first aider? Apply here and we'll be in touch.</p></div>${cog(7)}</div></section>
+<section class="sec" id="interest"><div class="wrap split"><div><p class="eyebrow">Not ready yet?</p><h2 class="hd h2">Register your interest</h2><p class="lede" style="margin-top:20px">Tell us about yourself and we'll let you know when roles come up.</p></div>${cog(9)}</div></section>`,'about');
 
 add('privacy-policy','/privacy-policy','Company','Privacy policy',()=>`
 ${plainHero({crumb:[['Privacy policy']],eyebrow:'Legal',title:'Privacy policy'})}
-<section class="sec"><div class="wrap"><div class="prose"><p>${T('[Your existing privacy policy text moves here from the current site. Sections usually cover: who we are, what data we collect, how we use it, patient records, how long we keep it, your rights and how to contact us.]')}</p></div></div></section>`,'about');
+<section class="sec"><div class="wrap"><div class="prose legal">
+<p><b>Last updated:</b> October 2026</p>
+<p>This policy explains what personal information Midlands Ambulance Group Ltd collects, why we collect it, how we look after it and what your rights are. It covers our website, enquiries and quotes, the patients we treat at events, people who attend our training courses, and people who apply to work with us. It is written to meet the UK General Data Protection Regulation (UK GDPR), the Data Protection Act 2018, the Data (Use and Access) Act 2025 and the Privacy and Electronic Communications Regulations (PECR).</p>
+
+<h2>Who we are</h2>
+<p>Midlands Ambulance Group Ltd is the "controller" of your personal information. That means we decide how and why it is used and we are responsible for protecting it.</p>
+<ul>
+<li>Company number: 13035386, registered in England and Wales</li>
+<li>Registered office: 19 Chiltern Road, Swadlincote, Derbyshire DE11 9ED</li>
+<li>Operating base: Swadlincote, Derbyshire DE11 9ED</li>
+<li>ICO registration number: ZB254961</li>
+<li>Email: <a href="mailto:info@midlandsambulance.co.uk">info@midlandsambulance.co.uk</a> · Phone: <a href="tel:03333358999">0333 335 8999</a></li>
+</ul>
+<p>Our data protection lead is John Blake, Managing Director. You can contact them at the email address above, marked "Data protection".</p>
+
+<h2>What we collect and why</h2>
+<p><b>Enquiries and quotes.</b> When you ask for a quote or contact us, we collect your name, organisation, email, phone number and the event details you give us, such as dates, venue, expected attendance and any risk assessment you upload. We use this to reply, plan your medical cover and prepare a quote. Our lawful basis is taking steps at your request before entering into a contract, and then performing that contract.</p>
+<p><b>Patients we treat.</b> If we assess or treat you at an event or on site, we record your name, date of birth, contact details, what happened, your condition, observations, the treatment we gave and who we handed your care to. Some of this is health information, which the law treats as special category data. We record it to give you safe care, to hand over to the NHS or another clinician, and to keep a proper clinical record. Our lawful bases are:</p>
+<ul>
+<li>legitimate interests and, where it applies, protecting your vital interests (UK GDPR Article 6(1)(f) and 6(1)(d));</li>
+<li>for health information, the provision of health care by or under the responsibility of a health professional (Article 9(2)(h) and Schedule 1, Part 1, paragraph 2 of the Data Protection Act 2018), or protecting your vital interests when you cannot consent (Article 9(2)(c)).</li>
+</ul>
+<p><b>Training courses.</b> When you book or attend a course, we collect your name, contact details, employer (if they are paying), attendance, assessment results and certificate details. If you tell us about a health condition or access need so we can support you, we record that too, with your consent. We use this information to run the course, issue certificates and answer later questions about whether a certificate is valid. Our lawful bases are contract and, for any health or access information, your explicit consent.</p>
+<p><b>Job applicants, staff and volunteers.</b> When you apply to join our team, we collect your CV, registration details (for example HCPC or NMC), qualifications, references, right-to-work documents and, where the role needs it, DBS check results. We use this to assess your application and to meet our legal duties as an employer. Our lawful bases are contract, legal obligation and legitimate interests. For criminal record information, we rely on the employment and safeguarding conditions in Schedule 1 of the Data Protection Act 2018.</p>
+<p><b>Clients and suppliers.</b> We keep contact details, contracts and invoices for the organisations we work with. We do this to manage the contract and to meet tax and accounting law.</p>
+<p><b>Marketing.</b> We only send marketing emails if you have opted in, or if you are an existing client and we are telling you about similar services. Every email lets you unsubscribe, and you can opt out at any time.</p>
+<p><b>Website visits.</b> Our web host automatically records technical information when you visit, such as your IP address, browser type and the pages you view. This keeps the site secure and working. Our lawful basis is legitimate interests.</p>
+
+<h2>Cookies</h2>
+<p>Our website only uses cookies and similar technologies that are strictly necessary to deliver the site and the forms you choose to fill in. We do not use advertising or tracking cookies.</p>
+<p>The website loads its fonts from Google Fonts. This means your browser shares your IP address with Google when a page loads.</p>
+<p>If we add website analytics in future, we will update this policy and give you a way to opt out before any analytics run.</p>
+
+<h2>Who we share it with</h2>
+<p>We do not sell your personal information. We only share it when we need to:</p>
+<ul>
+<li><b>NHS services and other clinicians</b> taking over your care, such as an NHS ambulance service, hospital or your GP.</li>
+<li><b>Event organisers</b>, limited to what they need for their safety and incident records. For example, we would tell them that someone was treated and taken to hospital, but not your clinical details unless you agree or the law requires it.</li>
+<li><b>Regulators, the police, coroners, courts and safeguarding teams</b> where the law requires it, or where someone is at risk of harm.</li>
+<li><b>Your employer</b>, if they booked and paid for your training, so they can see your attendance and certificate.</li>
+<li><b>Our insurers and professional advisers</b>, such as accountants and solicitors.</li>
+<li><b>Service providers who handle data for us</b> under contract and only on our instructions. This includes our website host (Wix), our online forms provider (Cognito Forms), our email and file storage provider (Google Workspace) and our accounting software (QuickBooks).</li>
+</ul>
+
+<h2>Transfers outside the UK</h2>
+<p>Some of our service providers store data in the European Economic Area, Israel or the United States. When your information leaves the UK, we make sure it is protected. That protection is either UK adequacy regulations for the destination country, or the UK International Data Transfer Agreement or Addendum, or the UK Extension to the EU-US Data Privacy Framework.</p>
+
+<h2>How long we keep it</h2>
+<ul>
+<li><b>Patient records:</b> adults, 8 years after the treatment. Children, until their 25th birthday, or their 26th if they were 17 when treated. Both periods follow the NHS Records Management Code of Practice.</li>
+<li><b>Training records and certificates:</b> 6 years after the course ends.</li>
+<li><b>Enquiries and quotes that don't go ahead:</b> 2 years.</li>
+<li><b>Client contracts and invoices:</b> 6 years after the end of the financial year they relate to.</li>
+<li><b>Unsuccessful job applications:</b> 6 months after the decision.</li>
+<li><b>Staff records:</b> 6 years after employment ends.</li>
+</ul>
+<p>We may keep records longer if there is a legal claim, an investigation or a safeguarding concern. When we no longer need information, we delete or destroy it securely.</p>
+
+<h2>Your rights</h2>
+<p>You have the right to:</p>
+<ul>
+<li>ask for a copy of the personal information we hold about you;</li>
+<li>ask us to correct anything that is wrong or incomplete;</li>
+<li>ask us to delete your information. Note that we usually have to keep clinical records for the periods above;</li>
+<li>ask us to restrict how we use your information;</li>
+<li>object to us using your information on the basis of legitimate interests, and to all direct marketing;</li>
+<li>ask us to send information you gave us to you or to another organisation (data portability), where this applies;</li>
+<li>withdraw your consent at any time, where we rely on consent. Withdrawing consent does not affect anything we did before you withdrew it.</li>
+</ul>
+<p>We do not make decisions about you by purely automated means.</p>
+<p>To use any of these rights, email us or call us using the details above. We may need to confirm your identity first. We will reply within one month. For complex requests the law allows two further months, and if we need that time we will tell you within the first month. There is normally no charge.</p>
+
+<h2>How we protect it</h2>
+<p>We use encrypted devices and secure, access-controlled storage. Paper patient records are kept secure on scene and transferred to locked storage. Only staff who need information can see it. Everyone on our team is trained in confidentiality and data protection. If a breach is likely to put you at risk, we will tell you and the ICO as the law requires.</p>
+
+<h2>Complaints</h2>
+<p>If you are unhappy with how we have handled your personal information, please tell us first. Email <a href="mailto:info@midlandsambulance.co.uk">info@midlandsambulance.co.uk</a> with "Data protection complaint" in the subject line, call 0333 335 8999, or write to our registered office. We will acknowledge your complaint within 30 days, look into it without undue delay and tell you the outcome.</p>
+<p>You also have the right to complain to the Information Commissioner's Office (ICO) at any time:</p>
+<ul>
+<li>Website: <a href="https://ico.org.uk/make-a-complaint/">ico.org.uk/make-a-complaint</a></li>
+<li>Helpline: 0303 123 1113</li>
+<li>Post: Information Commissioner's Office, Wycliffe House, Water Lane, Wilmslow, Cheshire SK9 5AF</li>
+</ul>
+
+<h2>Changes to this policy</h2>
+<p>We review this policy at least once a year and whenever the law or our services change. The date at the top shows when it was last updated. If we make a significant change, we will tell people affected where we can.</p>
+</div></div></section>`,'about');
 
 /* ---------- router ---------- */
 const order=Object.keys(P);
