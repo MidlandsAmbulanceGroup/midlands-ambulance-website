@@ -388,7 +388,7 @@ const ticket=({type='',title='Get a quote in 60 seconds'}={})=>`<form class="tic
 <div class="field"><label for="q-type">Type of event</label><select id="q-type" name="type">${EVENT_TYPES.map(t=>`<option${t===type?' selected':''}>${t}</option>`).join('')}</select></div>
 <div class="row2"><div class="field"><label for="q-date">Event date</label><input id="q-date" name="date" type="date"></div>
 <div class="field"><label for="q-size">Crowd per day</label><select id="q-size" name="size">${SIZES.map((t,i)=>`<option${i===2?' selected':''}>${t}</option>`).join('')}</select></div></div>
-<div class="field"><label for="q-pc">Venue postcode or town</label><input id="q-pc" name="pc" placeholder="e.g. M1 1AA or Paris" autocomplete="postal-code"></div>
+<div class="field"><label for="q-pc">Venue postcode</label><input id="q-pc" name="pc" placeholder="e.g. M1 1AA" autocomplete="postal-code" required pattern="\s*([A-Za-z]{1,2}[0-9][A-Za-z0-9]?\s*[0-9][A-Za-z]{2}|[0-9]{5})\s*" title="Enter a full UK postcode, e.g. DE11 9ED (or a 5-digit French postcode)"></div>
 <button class="btn btn-red" type="submit">Next: your details <span class="arrow">→</span></button>
 <p class="small"><span class="steps"><i class="on"></i><i></i></span><span>Step 1 of 2 · No obligation</span></p></div></form>`;
 const PROOF=['Medical plan with every booking','Purple Guide ready paperwork','NHS-trained clinicians since 2019'];
@@ -436,7 +436,7 @@ const COG_KEY='7-F4jRl2QEy4NFBUvGQBXQ';
 const cog=(id,prefill,thanks)=>`<div class="cog-wrap"${thanks?` data-thanks="${thanks}"`:''}><script src="https://www.cognitoforms.com/f/seamless.js" data-key="${COG_KEY}" data-form="${id}"></`+`script>${prefill?`<script>Cognito.prefill(${JSON.stringify(prefill)});</`+`script>`:''}</div>`;
 const COG_COURSE={'basic-first-aid-cpr':'Basic First Aid and CPR','paediatric-first-aid':'Paediatric First Aid','aed-cpr':'AED and CPR','basic-life-support':'Basic Life Support (BLS)','intermediate-life-support':'Intermediate Life Support (ILS)','onsite-training':'On-site group training for businesses'};
 // The quote page fills in what the visitor chose in the step-1 ticket (passed in the address as ?type=&date=&size=&pc=).
-const PREFILL_FROM_URL=`<script>(function(){var q=new URLSearchParams(location.search),a={};[['type','EventType'],['date','StartDate'],['size','ExpectedAttendancePerDay'],['pc','VenuePostcode']].forEach(function(m){if(q.get(m[0]))a[m[1]]=q.get(m[0]);});if(Object.keys(a).length&&window.Cognito&&Cognito.prefill)Cognito.prefill({AboutYourEvent:a});})();</`+`script>`;
+const PREFILL_FROM_URL=`<script>(function(){var q=new URLSearchParams(location.search),a={};[['type','EventType'],['date','StartDate'],['size','ExpectedAttendancePerDay'],['pc','VenuePostcode']].forEach(function(m){var v=q.get(m[0]);if(v&&m[0]==='pc'){v=v.trim().toUpperCase().replace(/\s+/g,'');var u=v.match(/^([A-Z]{1,2}[0-9][A-Z0-9]?)([0-9][A-Z]{2})$/);v=u?u[1]+' '+u[2]:(/^[0-9]{5}$/.test(v)?v:'');}if(v)a[m[1]]=v;});if(Object.keys(a).length&&window.Cognito&&Cognito.prefill)Cognito.prefill({AboutYourEvent:a});})();</`+`script>`;
 const quoteForm=()=>cog(15,null,'thank-you-quote').replace(/<\/div>$/,PREFILL_FROM_URL+'</div>');
 const courseForm=course=>cog(17,COG_COURSE[course]?{Course:{CourseYoureInterestedIn:COG_COURSE[course]}}:null,'thank-you-training');
 

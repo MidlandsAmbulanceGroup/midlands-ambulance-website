@@ -35,7 +35,7 @@
 <div class="field"><label for="q-type">Type of event</label><select id="q-type" name="type"><option selected="">Festival / concert</option><option>Sporting event</option><option>Motorsport</option><option>Equestrian</option><option>Film / TV / media production</option><option>Corporate event</option><option>Charity or community event</option><option>School or college event</option><option>Private party / wedding</option></select></div>
 <div class="row2"><div class="field"><label for="q-date">Event date</label><input id="q-date" name="date" type="date"></div>
 <div class="field"><label for="q-size">Crowd per day</label><select id="q-size" name="size"><option>Under 500</option><option>500–1,999</option><option selected="">2,000–4,999</option><option>5,000–9,999</option><option>10,000–24,999</option><option>25,000+</option></select></div></div>
-<div class="field"><label for="q-pc">Venue postcode or town</label><input id="q-pc" name="pc" placeholder="e.g. M1 1AA or Paris" autocomplete="postal-code"></div>
+<div class="field"><label for="q-pc">Venue postcode</label><input id="q-pc" name="pc" placeholder="e.g. M1 1AA" autocomplete="postal-code" required="" pattern="s*([A-Za-z]{1,2}[0-9][A-Za-z0-9]?s*[0-9][A-Za-z]{2}|[0-9]{5})s*" title="Enter a full UK postcode, e.g. DE11 9ED (or a 5-digit French postcode)"></div>
 <button class="btn btn-red" type="submit">Next: your details <span class="arrow">→</span></button>
 <p class="small"><span class="steps"><i class="on"></i><i></i></span><span>Step 1 of 2 · No obligation</span></p></div></form>
 </div><div class="chequer" aria-hidden="true"></div></section>
