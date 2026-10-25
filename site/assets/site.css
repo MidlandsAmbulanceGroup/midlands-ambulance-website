@@ -24,6 +24,8 @@ img{display:block}
 .prose ul{padding-left:20px;margin:0 0 18px}.prose li{margin-bottom:6px}
 .prose .note{background:var(--mist);border-left:3px solid var(--red);padding:16px 18px;font-size:16px}
 .prose.legal h2{font-size:24px;margin:32px 0 10px}
+.qcard{margin:0;border-top:3px solid var(--red);padding-top:18px}.qcard blockquote{margin:0 0 14px;font-size:19px;line-height:1.5}.qcard figcaption{font-size:15px;color:var(--mute)}.qcard figcaption b{display:block;color:var(--ink);font-size:16px}
+.crewlist .card p{color:var(--mute);margin:0;font-size:16px}.crewlist .card small{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600}
 .mdnote{margin:28px 0 0;padding:4px 0 0 24px;border-left:3px solid var(--red)}.mdnote p{font-size:18px}.mdnote footer{display:flex;align-items:center;gap:14px;margin-top:22px}.mdnote .mdph{width:56px;height:56px;border-radius:50%;flex:none}.mdnote strong{display:block;font-family:var(--display);text-transform:uppercase;font-size:20px;color:var(--ink)}.mdnote footer span:last-child{font-size:15px;color:var(--mute)}
 .cog-wrap{background:#FFFFFF;padding:28px;border-top:4px solid var(--red);min-width:0;box-shadow:0 30px 60px -30px rgba(0,0,0,.25)}.cog-wrap .cog-cognito{font-family:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;font-family:var(--body);font-weight:700;font-size:16px;text-decoration:none;border-radius:2px;border:0;cursor:pointer;transition:background .15s,color .15s}
