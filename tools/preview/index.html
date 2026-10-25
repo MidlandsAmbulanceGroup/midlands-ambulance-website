@@ -1,38 +1,45 @@
 <title>Midlands Ambulance Group Preview</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
-/* Layout: brand-led single look. Full-bleed photography, condensed display caps, quiet Barlow body, red only for action */
-:root{--red:#A41919;--red-dk:#7E1313;--ink:#000000;--char:#353535;--paper:#FFFFFF;--mist:#F5F4F3;--line:#E4E2E0;--mute:#625F5D;--soft:#C9C6C4;
---display:'Barlow Condensed','Barlow','Arial Narrow',system-ui,sans-serif;--body:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:light}
+/* Layout: "night operations" (Concept B). Black photo-led bands carry the drama, white working bands carry the selling; heroes end in a dispatch-ticket quote form and a red chequer strip */
+:root{--red:#A41919;--red-dk:#7E1212;--red-lt:#FF8A80;--ink:#000000;--char:#353535;--paper:#FFFFFF;--mist:#F5F2F2;--line:#E4DEDE;--mute:#6A6363;--soft:#B9B4B4;
+--night:#000000;--night-2:#111111;--night-line:#2B2626;
+--display:'Barlow Condensed','Barlow','Arial Narrow',system-ui,sans-serif;--body:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;color-scheme:light}
 html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{background:var(--paper);color:var(--char);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--night)}
 a{color:inherit}
 img{display:block}
+[hidden]{display:none!important}
 .wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 @media (min-width:700px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
-.eyebrow{font-weight:600;font-size:13px;letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:14px;margin:0 0 18px}
-.eyebrow::before{content:"";width:36px;height:2px;background:var(--red);flex:none}
-.hd{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.4px;line-height:.95;margin:0;text-wrap:balance}
-.h2{font-size:clamp(38px,5vw,58px)}
-.h3{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:28px;line-height:1.05;margin:0 0 8px}
-.lede{font-size:19px;color:var(--mute);max-width:600px;margin:0}
-.prose{max-width:680px}.prose p{margin:0 0 18px}.prose h2{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:32px;line-height:1.05;margin:40px 0 12px}
+.eyebrow,.tag{font-family:var(--mono);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:0 0 16px}
+.hero .eyebrow,.black .eyebrow,.dark .eyebrow,.hero .tag,.black .tag,.dark .tag,.clients .lbl{color:var(--red-lt)}
+.hd{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.005em;line-height:.95;margin:0;text-wrap:balance;color:var(--ink)}
+.hero .hd,.black .hd,.dark .hd,.band .hd{color:#FFFFFF}
+.h2{font-size:clamp(36px,4.6vw,60px)}
+.h3{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.05;margin:0 0 8px;color:var(--ink)}
+.black .h3,.dark .h3{color:#FFFFFF}
+.lede{font-size:clamp(18px,1.6vw,20px);line-height:1.5;color:var(--mute);max-width:600px;margin:0}
+.prose{max-width:680px}.prose p{margin:0 0 18px}.prose h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:32px;line-height:1.05;margin:40px 0 12px;color:var(--ink)}
 .prose ul{padding-left:20px;margin:0 0 18px}.prose li{margin-bottom:6px}
+.prose .note{background:var(--mist);border-left:3px solid var(--red);padding:16px 18px;font-size:16px}
 .prose.legal h2{font-size:24px;margin:32px 0 10px}
-.cog-wrap{background:#fff;padding:28px;border-top:4px solid var(--red);min-width:0}.cog-wrap .cog-cognito{font-family:inherit}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:2px;border:0;cursor:pointer;transition:background .2s,color .2s}
+.qcard{margin:0;border-top:3px solid var(--red);padding-top:18px}.qcard blockquote{margin:0 0 14px;font-size:19px;line-height:1.5}.qcard figcaption{font-size:15px;color:var(--mute)}.qcard figcaption b{display:block;color:var(--ink);font-size:16px}
+.crewlist .card p{color:var(--mute);margin:0;font-size:16px}.crewlist .card small{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600}
+.mdnote{margin:28px 0 0;padding:4px 0 0 24px;border-left:3px solid var(--red)}.mdnote p{font-size:18px}.mdnote footer{display:flex;align-items:center;gap:14px;margin-top:22px}.mdnote .mdph{width:56px;height:56px;border-radius:50%;flex:none}.mdnote strong{display:block;font-family:var(--display);text-transform:uppercase;font-size:20px;color:var(--ink)}.mdnote footer span:last-child{font-size:15px;color:var(--mute)}
+.cog-wrap{background:#FFFFFF;padding:28px;border-top:4px solid var(--red);min-width:0;box-shadow:0 30px 60px -30px rgba(0,0,0,.25)}.cog-wrap .cog-cognito{font-family:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;font-family:var(--body);font-weight:700;font-size:16px;text-decoration:none;border-radius:2px;border:0;cursor:pointer;transition:background .15s,color .15s}
 .btn-red{background:var(--red);color:#FFFFFF}.btn-red:hover{background:var(--red-dk)}
-.btn-ghost{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75);color:#FFFFFF;background:transparent}.btn-ghost:hover{background:#FFFFFF;color:var(--ink)}
-.btn-line{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink);background:transparent}.btn-line:hover{background:var(--ink);color:#FFFFFF}
+.btn-ghost{box-shadow:inset 0 0 0 2px #FFFFFF;color:#FFFFFF;background:transparent}.btn-ghost:hover{background:#FFFFFF;color:var(--ink)}
+.btn-line{box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink);background:transparent}.btn-line:hover{background:var(--ink);color:#FFFFFF}
 .ctas{display:flex;flex-wrap:wrap;gap:14px}
 .arrow{display:inline-block;transition:transform .2s}a:hover .arrow,button:hover .arrow{transform:translateX(4px)}
 .ph{background-color:#2B2B2B;background-size:cover;background-position:center;position:relative;overflow:hidden;max-width:100%}
-.ph-tag{position:absolute;right:12px;bottom:10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.7);background:rgba(0,0,0,.45);padding:3px 8px;z-index:2}
-.ph-tag:empty{display:none}
-.tbc{background:#FFF3C4;color:#5A4500;padding:0 4px;border-radius:2px;font-weight:600}
-a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.tbc{background:#FFF3C4;color:#5A4500;padding:0 4px;border-radius:2px;font-weight:600;outline:1.5px dashed #C9A227;outline-offset:-1.5px}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 
 /* preview bar */
 .pbar{background:#1A1A1A;color:#BDBAB8;font-size:13px}
@@ -43,150 +50,233 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .pbar .nav2{display:flex;gap:8px;align-items:center}
 .pbar .ghostb{background:transparent;color:#FFFFFF;box-shadow:inset 0 0 0 1px #555}
 /* header */
-.topbar{background:var(--ink);color:#BDBAB8;font-size:13px;letter-spacing:.4px}
-.topbar .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px;padding-block:9px}
-.topbar b{color:#FFFFFF;font-weight:600}
-.hdr{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px 32px;flex-wrap:wrap;padding-block:14px}
-.logo img{height:54px;width:auto}
-.nav{display:flex;flex-wrap:wrap;gap:4px 28px;font-weight:600;font-size:14px;letter-spacing:1.5px;text-transform:uppercase}
-.nav a{text-decoration:none;padding-block:6px;border-bottom:2px solid transparent}
-.nav a:hover,.nav a.on{border-color:var(--red)}
+.hdr{background:var(--night);color:#FFFFFF;border-bottom:1px solid var(--night-line);position:sticky;top:env(safe-area-inset-top,0px);z-index:50}
+.hdr .wrap{display:flex;align-items:center;gap:12px 28px;min-height:76px;flex-wrap:wrap}
+.logo img{height:48px;width:auto}
+.nav{display:flex;gap:4px 26px;margin-left:auto;font-weight:600;font-size:15px}
+.nav a{text-decoration:none;color:var(--soft);padding-block:6px;border-bottom:2px solid transparent}
+.nav a:hover,.nav a.on{color:#FFFFFF;border-color:var(--red)}
 .hdr-cta{display:flex;align-items:center;gap:22px}
-.hdr-phone{text-decoration:none;font-weight:700;font-size:18px;line-height:1.1}
-.hdr-phone small{display:block;font-size:11px;font-weight:600;letter-spacing:2px;color:var(--mute);text-transform:uppercase}
+.hdr-phone{text-decoration:none;font-family:var(--mono);font-weight:600;font-size:15px;line-height:1.2;color:#FFFFFF;white-space:nowrap}
+.hdr-phone small{display:block;font-size:10px;letter-spacing:.14em;color:var(--soft);text-transform:uppercase}
 /* hero */
-.hero{display:flex;align-items:flex-end;color:#FFFFFF}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.58) 48%,rgba(0,0,0,.08) 100%),linear-gradient(0deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 45%)}
-.hero>.wrap{position:relative;z-index:1;width:100%;box-sizing:border-box}
-.hero h1{font-size:clamp(50px,7.4vw,96px);max-width:860px;margin-bottom:24px}
-.hero h1 em{font-style:normal;box-shadow:inset 0 -.16em 0 var(--red)}
-.hero .lede{color:#E2DFDD;margin-bottom:36px;font-size:20px}
-.hero.big{min-height:720px}.hero.big>.wrap{padding-block:120px 0}
-.hero.sub{min-height:500px}.hero.sub>.wrap{padding-block:90px 72px}
-.hero.sub h1{font-size:clamp(46px,6.2vw,80px)}
-.crumbs{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#BDBAB8;margin:0 0 26px;display:flex;flex-wrap:wrap;gap:6px 10px}
+.hero{position:relative;color:#FFFFFF;background-color:var(--night)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.72) 45%,rgba(0,0,0,.35) 100%),linear-gradient(0deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,0) 40%)}
+.hero>.wrap,.hero>.chequer{position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:56px;align-items:center;padding-block:76px 84px}
+.hero h1{font-size:clamp(46px,7vw,92px);max-width:860px;margin-bottom:22px}
+.hero.sub h1{font-size:clamp(42px,5.6vw,76px)}
+.hero h1 em{font-style:italic;background:linear-gradient(transparent 62%,var(--red) 62%,var(--red) 92%,transparent 92%)}
+.hero .lede{color:#E9E4E4}
+.proof{display:flex;flex-wrap:wrap;gap:10px 22px;margin:28px 0 0;padding:0;list-style:none;font-size:15px;color:#E9E4E4}
+.proof li{display:flex;gap:8px;align-items:center}
+.proof li::before{content:"";width:8px;height:8px;background:var(--red);transform:rotate(45deg);flex:none}
+.alt-cta{margin:24px 0 0;font-size:15px;color:var(--soft)}
+.alt-cta a{color:#FFFFFF;font-family:var(--mono);font-weight:600}
+.crumbs{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--soft);margin:0 0 20px;display:flex;flex-wrap:wrap;gap:6px 10px}
 .crumbs a{text-decoration:none}.crumbs a:hover{color:#FFFFFF}
 .crumbs span{opacity:.5}
-.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.22);margin-top:80px}
-.facts div{padding:24px 24px 28px 0}
-.facts b{display:block;font-family:var(--display);font-weight:700;font-size:32px;text-transform:uppercase;line-height:1;margin-bottom:6px}
-.facts span{font-size:14px;color:var(--soft)}
+.chequer{height:10px;background-image:repeating-linear-gradient(90deg,var(--red) 0 20px,#FFFFFF 20px 40px),repeating-linear-gradient(90deg,#FFFFFF 0 20px,var(--red) 20px 40px);background-size:100% 5px,100% 5px;background-position:0 0,0 5px;background-repeat:no-repeat}
+/* dispatch-ticket quick quote */
+.ticket{background:var(--paper);color:var(--char);border-radius:4px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);overflow:hidden;min-width:0}
+.ticket header{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--red);color:#FFFFFF;padding:12px 20px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.ticket .live{display:flex;align-items:center;gap:8px}
+.ticket .live::before{content:"";width:8px;height:8px;border-radius:50%;background:#FFFFFF;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.ticket .in{padding:22px 22px 24px;display:grid;gap:14px}
+.ticket h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:30px;line-height:1;margin:0;color:var(--ink)}
+.ticket .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:grid;gap:5px;min-width:0}
+.field label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.field input,.field select{font:inherit;font-size:16px;color:var(--ink);background:var(--mist);border:1px solid var(--line);border-radius:2px;padding:12px;width:100%;min-width:0;box-sizing:border-box}
+.field input:focus,.field select:focus{outline:2px solid var(--red);outline-offset:0;border-color:transparent}
+.ticket .btn{width:100%;font-size:17px}
+.ticket .small{font-size:13px;color:var(--mute);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0}
+.ticket .steps{display:flex;gap:6px;align-items:center}
+.ticket .steps i{width:28px;height:4px;background:var(--line);border-radius:2px}
+.ticket .steps i.on{background:var(--red)}
 /* sections */
-.sec>.wrap{padding-block:110px}
+.sec>.wrap{padding-block:100px}
 .sec.tight>.wrap{padding-block:72px}
 .mist{background:var(--mist)}
-.dark{background:var(--char);color:#FFFFFF}.dark .lede{color:var(--soft)}
-.black{background:var(--ink);color:#FFFFFF}.black .lede{color:var(--soft)}
-.split{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.dark{background:var(--night-2);color:var(--soft)}.dark .lede{color:var(--soft)}
+.black{background:var(--night);color:var(--soft)}.black .lede{color:var(--soft)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:start}
 .split.mid{align-items:center}
-.head-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px;margin-bottom:52px}
-.clients .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 36px;padding-block:32px}
-.clients span{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:1.5px;text-transform:uppercase;color:#8F8B89}
-.clients .lbl{font-family:var(--body);font-size:12px;letter-spacing:3px;color:var(--mute);font-weight:600}
+.head-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:24px 48px;margin-bottom:44px}
+.head-row>div{max-width:760px}
+.clients{background:var(--night-2);color:var(--soft);border-top:1px solid var(--night-line)}
+.clients .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 34px;padding-block:20px}
+.clients span{font-family:var(--display);font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:.02em}
+.clients .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;font-weight:600}
 .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
 .tiles.four{grid-template-columns:repeat(4,1fr)}
 .tile{display:block;aspect-ratio:4/5;text-decoration:none;color:#FFFFFF}
 .tiles.four .tile{aspect-ratio:3/4}
 .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.15) 55%,rgba(0,0,0,0) 100%);transition:background .3s}
 .tile:hover::after{background:linear-gradient(0deg,rgba(164,25,25,.92) 0%,rgba(0,0,0,.25) 65%)}
-.tile .in{position:absolute;left:28px;right:28px;bottom:26px;z-index:1}
-.tile h3{font-family:var(--display);font-weight:700;font-size:32px;text-transform:uppercase;line-height:1;margin:0 0 8px}
+.tile .in{position:absolute;left:24px;right:24px;bottom:22px;z-index:1}
+.tile h3{font-family:var(--display);font-weight:800;font-size:30px;text-transform:uppercase;line-height:1;margin:0 0 8px}
 .tiles.four .tile h3{font-size:26px}
-.tile p{margin:0;color:#E2DFDD;font-size:16px}
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-.veh .ph{aspect-ratio:3/2;margin-bottom:26px}
-.tag{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px}
-.dark .tag,.black .tag{color:#FFFFFF}
+.tile p{margin:0;color:#E2DFDD;font-size:15px}
+/* where we've worked */
+.mosaic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:220px;gap:10px}
+.mosaic figure{margin:0;position:relative;overflow:hidden;background:#222}
+.mosaic .ph{position:absolute;inset:0;transition:transform .5s}
+.mosaic figure:hover .ph{transform:scale(1.04)}
+.mosaic figcaption{position:absolute;left:0;bottom:0;right:0;padding:40px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#FFFFFF;font-size:14px;line-height:1.3;z-index:1}
+.mosaic figcaption b{display:block;font-family:var(--display);font-size:24px;text-transform:uppercase;font-weight:800}
+.mosaic .w2{grid-column:span 2}.mosaic .t2{grid-row:span 2}
+/* service cards */
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.svc a{background:var(--paper);text-decoration:none;display:grid;grid-template-rows:auto 1fr;min-width:0}
+.svc .ph{aspect-ratio:16/10}
+.svc .txt{padding:20px 22px 24px;display:grid;gap:8px;align-content:start}
+.svc h3{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin:0}
+.svc h3::after{content:"→";font-family:var(--body);font-size:22px;color:var(--red);transition:transform .2s}
+.svc a:hover h3::after{transform:translateX(4px)}
+.svc p{margin:0;color:var(--mute);font-size:16px}
+/* cover guide (estimator) */
+.est{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1px solid var(--night-line)}
+.est .ctl{padding:34px;display:grid;gap:22px;align-content:start;border-right:1px solid var(--night-line)}
+.est .out{padding:34px;display:grid;gap:16px;align-content:start;background:var(--night-2)}
+.est .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);font-weight:600}
+.est .big{font-family:var(--display);font-weight:800;font-size:64px;line-height:1;color:#FFFFFF;font-variant-numeric:tabular-nums}
+.est input[type=range]{width:100%;accent-color:var(--red)}
+.est .ticks-row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--soft)}
+.est .toggles{display:flex;flex-wrap:wrap;gap:8px}
+.est .toggles label{display:flex;gap:8px;align-items:center;cursor:pointer;border:1px solid var(--night-line);padding:9px 12px;border-radius:2px;font-size:15px;color:#FFFFFF}
+.est .toggles input{accent-color:var(--red)}
+.est .level{display:flex;gap:6px}
+.est .level i{flex:1;height:6px;background:var(--night-line);border-radius:2px}
+.est .level i.on{background:var(--red)}
+.est .lvl-name{font-family:var(--display);font-weight:800;font-size:34px;line-height:1;text-transform:uppercase;color:#FFFFFF;margin:0}
+.est .lvl-sum{margin:0;color:#E9E4E4}
+.est ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.est li{padding-left:22px;position:relative;color:#FFFFFF;font-size:16px}
+.est li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--red)}
+.est .fine{font-size:13px;color:var(--soft);margin:0;border-top:1px solid var(--night-line);padding-top:14px}
+.est .fine b{color:#FFFFFF}
+/* coverage */
+.cover{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.cover svg{width:100%;height:auto;max-width:560px;display:block}
+.cover .ring{fill:none;stroke:var(--line);stroke-width:1.2}
+.cover .ringlbl{fill:var(--mute);font-family:var(--mono);font-size:11px}
+.cover .dot{fill:var(--ink)}
+.cover .dot.far{fill:var(--red)}
+.cover .city{fill:var(--ink);font-family:var(--body);font-weight:600;font-size:14px}
+.cover .time{fill:var(--mute);font-family:var(--mono);font-size:11px}
+.cover .base{fill:var(--red)}
+.cover .baselbl{fill:var(--red);font-family:var(--display);font-weight:800;font-size:17px;text-transform:uppercase}
+.cover figcaption{font-size:13px;color:var(--mute);margin-top:6px}
+.regions{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.regions a{text-decoration:none;border:1px solid var(--line);padding:8px 14px;border-radius:99px;font-weight:600;font-size:15px;background:var(--paper);color:var(--ink)}
+.regions a:hover{border-color:var(--red);color:var(--red)}
+.regions a.home{background:var(--red);color:#FFFFFF;border-color:var(--red)}
+.black .regions a,.dark .regions a{background:transparent;color:#FFFFFF;border-color:var(--night-line)}
+.black .regions a.home,.dark .regions a.home{background:var(--red);border-color:var(--red)}
+.traveltbl{width:100%;border-collapse:collapse;font-size:16px;margin-top:8px}
+.traveltbl td{padding:10px 0;border-bottom:1px solid var(--line)}
+.traveltbl td:last-child{text-align:right;font-family:var(--mono);font-weight:600;color:var(--ink);white-space:nowrap}
+/* vehicles */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.veh .ph{aspect-ratio:3/2;margin-bottom:22px}
 .veh p{margin:0;color:var(--mute);max-width:520px}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:52px}
-.step{border-top:1px solid rgba(255,255,255,.25);padding-top:24px}
-.step .n{font-family:var(--display);font-weight:800;font-size:60px;line-height:1;color:#FFFFFF;margin-bottom:12px}
-.step .n::after{content:"";display:block;width:28px;height:3px;background:var(--red);margin-top:10px}
-.step p{margin:0;color:var(--soft)}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border-top:2px solid var(--ink)}
+.dark .steps,.black .steps{border-color:#FFFFFF}
+.step{padding:26px 26px 0 0}
+.step+.step{padding-left:26px;border-left:1px solid var(--line)}
+.dark .step+.step,.black .step+.step{border-color:var(--night-line)}
+.step .n{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--red);margin-bottom:10px}
+.dark .step .n,.black .step .n{color:var(--red-lt)}
+.step p{margin:0;color:var(--mute)}
+.dark .step p,.black .step p{color:var(--soft)}
+/* training teaser */
 .train{display:grid;grid-template-columns:1fr 1fr}
 .train .ph{min-height:460px}
-.train .body{padding:100px max(24px,5vw);background:var(--mist)}
-.rows{margin:36px 0 32px;border-top:1px solid var(--line)}
-.row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);text-decoration:none}
-.row b{font-family:var(--display);font-weight:700;font-size:24px;text-transform:uppercase;letter-spacing:.3px;line-height:1.1}
+.train .body{padding:96px max(24px,5vw);background:var(--mist)}
+.rows{margin:30px 0;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.row b{font-weight:700;font-size:18px;color:var(--ink)}
 .row span{color:var(--mute);font-size:15px;text-align:right}
 .row:hover b{color:var(--red)}
-.counties{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;margin:32px 0 0;padding:0;list-style:none}
-.counties a{border-bottom:1px solid var(--line);padding:12px 0;display:flex;justify-content:space-between;font-weight:600;text-decoration:none}
-.counties a:hover{color:var(--red)}
-.counties em{font-style:normal;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--red);font-weight:700}
-.quote blockquote{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(34px,4vw,50px);line-height:1.08}
-.quote blockquote::before{content:"“";display:block;font-size:120px;line-height:.6;color:var(--red);margin-bottom:12px}
-.quote cite{display:block;margin-top:26px;font-style:normal;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#BDBAB8}
-.linky{text-decoration:none;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;font-size:14px;border-bottom:2px solid var(--red);padding-bottom:4px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
-.card{text-decoration:none;border-top:2px solid var(--ink);padding-top:22px;display:flex;flex-direction:column;gap:10px}
-.dark .card,.black .card{border-color:#FFFFFF}
-.card small{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--mute);font-weight:600}
-.card b{font-family:var(--display);font-weight:700;font-size:28px;text-transform:uppercase;line-height:1.05}
+/* case + quote */
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);min-height:460px}
+.case .ph{min-height:320px;background-position:center 30%}
+.case .body{padding:64px clamp(24px,5vw,72px);display:grid;gap:20px;align-content:center}
+.case blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.1;color:#FFFFFF}
+.case cite{font-style:normal;font-family:var(--mono);font-size:13px;color:var(--soft);letter-spacing:.06em;text-transform:uppercase}
+.case .more{display:flex;gap:12px;flex-wrap:wrap;border-top:1px solid var(--night-line);padding-top:20px}
+.quote blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(30px,3.6vw,46px);line-height:1.08;color:#FFFFFF}
+.quote cite{display:block;margin-top:22px;font-style:normal;font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.linky{text-decoration:none;font-weight:700;font-size:15px;color:var(--red);border-bottom:2px solid var(--red);padding-bottom:2px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.card{text-decoration:none;border-top:3px solid var(--red);padding-top:18px;display:flex;flex-direction:column;gap:8px}
+.card small{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.card b{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.05;color:var(--ink)}
+.dark .card b,.black .card b{color:#FFFFFF}
 .card p{margin:0;color:var(--mute);font-size:16px}
 .card:hover b{color:var(--red)}
-.ccard{background:var(--paper);padding:30px;display:flex;flex-direction:column;gap:10px;text-decoration:none;border:1px solid var(--line);transition:border-color .2s}
-.ccard:hover{border-color:var(--ink)}
-.ccard b{font-family:var(--display);font-weight:700;font-size:28px;text-transform:uppercase;line-height:1.05}
+.ccard{background:var(--paper);padding:28px;display:flex;flex-direction:column;gap:10px;text-decoration:none;border:1px solid var(--line);transition:border-color .2s}
+.ccard:hover{border-color:var(--red)}
+.ccard b{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.05;color:var(--ink)}
 .ccard p{margin:0;color:var(--mute);font-size:16px}
-.ccard .meta{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;color:var(--ink);margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.ccard .meta{font-family:var(--mono);font-size:12px;letter-spacing:.06em;font-weight:600;color:var(--ink);margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
 .ccgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .ticks{list-style:none;margin:0;padding:0}
-.ticks li{padding:15px 0 15px 40px;border-bottom:1px solid var(--line);position:relative}
+.ticks li{padding:15px 0 15px 34px;border-bottom:1px solid var(--line);position:relative}
 .ticks li:first-child{border-top:1px solid var(--line)}
-.ticks li::before{content:"";position:absolute;left:2px;top:21px;width:16px;height:8px;border-left:2.5px solid var(--red);border-bottom:2.5px solid var(--red);transform:rotate(-45deg)}
-.ticks b{display:block;font-weight:700}
+.ticks li::before{content:"";position:absolute;left:0;top:1.45em;width:14px;height:2px;background:var(--red)}
+.ticks b{display:block;font-weight:700;color:var(--ink)}
 .ticks span{color:var(--mute);font-size:16px}
-.dark .ticks li,.black .ticks li{border-color:rgba(255,255,255,.18)}
+.dark .ticks li,.black .ticks li{border-color:var(--night-line)}
+.dark .ticks b,.black .ticks b{color:#FFFFFF}
 .dark .ticks span,.black .ticks span{color:var(--soft)}
-.tblwrap{overflow-x:auto;margin-top:44px}
+.tblwrap{overflow-x:auto;margin-top:40px}
 table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
-.t th{text-align:left;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--mute);font-weight:600;padding:0 24px 14px 0;border-bottom:2px solid var(--ink)}
+.t th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600;padding:0 24px 14px 0;border-bottom:2px solid var(--ink)}
 .t td{padding:18px 24px 18px 0;border-bottom:1px solid var(--line);vertical-align:middle}
-.t td:first-child{font-family:var(--display);font-weight:700;font-size:23px;text-transform:uppercase;line-height:1.1}
-.faq details{border-bottom:1px solid var(--line);padding:20px 0}
+.t td:first-child{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.1;color:var(--ink)}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
 .faq details:first-child{border-top:1px solid var(--line)}
-.faq summary{cursor:pointer;font-family:var(--display);font-weight:700;font-size:24px;text-transform:uppercase;list-style:none;display:flex;justify-content:space-between;gap:24px;line-height:1.15}
+.faq summary{cursor:pointer;font-weight:700;font-size:19px;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:24px;line-height:1.3}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";color:var(--red);font-size:30px;line-height:.8}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--red);font-size:22px;line-height:1}
 .faq details[open] summary::after{content:"–"}
-.faq p{margin:12px 0 0;color:var(--mute);max-width:720px}
+.faq p{margin:10px 0 0;color:var(--mute);max-width:720px}
 .band{background:var(--red);color:#FFFFFF}
-.band .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;padding-block:60px}
-.band h2{font-size:clamp(34px,4.4vw,52px);max-width:760px}
-.band .btn-ghost:hover{color:var(--red)}
+.band .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px 48px;padding-block:56px}
+.band h2{font-size:clamp(34px,4.4vw,56px);max-width:760px}
+.band .act{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.band .num{font-family:var(--mono);font-weight:600;font-size:clamp(22px,2.6vw,32px);color:#FFFFFF;text-decoration:none;white-space:nowrap}
+.band .btn{background:#000000;color:#FFFFFF;box-shadow:none}.band .btn:hover{background:#222222;color:#FFFFFF}
 .fcard{background:var(--ink);color:#FFFFFF;padding:36px;margin:0}
 .fcard div{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid #2A2A2A}
-.fcard dt{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:#A8A5A3;font-weight:600}
+.fcard dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#A8A5A3;font-weight:600}
 .fcard dd{margin:0;font-weight:700;text-align:right}
 .fcard .btn{margin-top:24px;width:100%}
+.fcard .h3{color:#FFFFFF}
 .people{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
 .person .ph{aspect-ratio:4/5;margin-bottom:18px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:64px;font-weight:800;color:#5A5755;background:#ECEAE8}
-.person .role{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:6px}
+.person .role{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:6px}
 .person p{color:var(--mute);margin:8px 0 0;font-size:16px}
 /* forms */
-.form{background:var(--paper);padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:22px 24px;box-shadow:0 30px 60px -30px rgba(0,0,0,.25)}
-.form label{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--mute)}
-.form .full{grid-column:1/-1}
-.form input,.form select,.form textarea{font:inherit;font-size:17px;letter-spacing:0;text-transform:none;color:var(--ink);border:0;border-bottom:1.5px solid #BDBAB8;padding:10px 0;min-height:44px;background:transparent;border-radius:0;width:100%;box-sizing:border-box}
-.form textarea{min-height:96px;resize:vertical}
-.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--red)}
-.form .btn{grid-column:1/-1;margin-top:10px}
-.form .note{grid-column:1/-1;font-size:14px;color:var(--mute);margin:0}
-.big-phone{font-family:var(--display);font-size:44px;font-weight:700;line-height:1;display:block;text-decoration:none}
-.kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--mute);font-weight:600}
+.big-phone{font-family:var(--mono);font-size:clamp(30px,3.4vw,40px);font-weight:600;line-height:1.1;display:block;text-decoration:none;color:var(--ink)}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600}
 /* footer */
-.ftr{background:var(--ink);color:#A8A5A3;font-size:15px}
-.ftr .wrap.cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-block:76px 52px}
-.ftr h4{margin:0 0 14px;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#FFFFFF;font-weight:600}
+.ftr{background:var(--night);color:var(--soft);font-size:15px}
+.ftr .wrap.cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-block:72px 48px}
+.ftr h4{margin:0 0 14px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#FFFFFF;font-weight:600}
 .ftr a{text-decoration:none;display:block;padding:3px 0}.ftr a:hover{color:#FFFFFF}
-.ftr .base{border-top:1px solid #222;font-size:13px}
+.ftr .nap{color:#FFFFFF;line-height:1.7}
+.ftr .base{border-top:1px solid var(--night-line);font-size:13px}
 .ftr .base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px}
 .ftr .base a{display:inline}
+.mbar{display:none}
+@media (max-width:1100px){.hdr-phone{display:none}}
 /* page index */
-.idx{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;display:flex;justify-content:flex-end}
+.idx{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:70;display:flex;justify-content:flex-end}
 .idx[hidden]{display:none!important}
 .idx .panel{background:var(--paper);width:min(520px,100%);height:100%;overflow-y:auto;box-sizing:border-box;padding:28px max(24px,env(safe-area-inset-right,0px)) calc(40px + env(safe-area-inset-bottom,0px)) 28px;padding-top:calc(28px + env(safe-area-inset-top,0px))}
 .idx h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:34px;margin:0}
@@ -199,13 +289,26 @@ table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
 .idx a code{font-size:12px;color:var(--mute);font-weight:400;text-align:right;overflow-wrap:anywhere}
 .idx .key{font-size:14px;color:var(--mute);margin:6px 0 0}
 @media (max-width:900px){
-.facts{grid-template-columns:1fr 1fr;margin-top:56px}.hero.big{min-height:0}.hero.big>.wrap{padding-block:80px 0}
-.split,.duo,.train,.people{grid-template-columns:1fr;gap:40px}
-.tiles,.steps,.cards,.ccgrid{grid-template-columns:1fr}.tiles.four{grid-template-columns:1fr 1fr}
+.hdr .wrap{padding-block:10px 0;gap:10px 16px}
+.logo img{height:40px}
+.hdr-cta{margin-left:auto}.hdr-cta .btn{min-height:44px;padding:0 16px;font-size:15px}
+.nav{order:3;width:100%;margin:0 -16px;padding:0 16px 8px;overflow-x:auto;white-space:nowrap;flex-wrap:nowrap;gap:22px;font-size:14px;scrollbar-width:none}
+.hero-grid{grid-template-columns:minmax(0,1fr);gap:36px;padding-block:48px 56px}
+.split,.duo,.train,.people,.cover,.case,.est{grid-template-columns:minmax(0,1fr);gap:40px}
+.est{gap:0}.est .ctl{border-right:0;border-bottom:1px solid var(--night-line)}
+.tiles,.steps,.cards,.ccgrid{grid-template-columns:1fr}.tiles.four,.svc{grid-template-columns:1fr 1fr}
+.step+.step{padding-left:0;border-left:0;border-top:1px solid var(--line);margin-top:24px}
+.dark .step+.step,.black .step+.step{border-color:var(--night-line)}
+.mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:170px}
 .train .body{padding:64px max(16px,env(safe-area-inset-left,0px))}
-.form{grid-template-columns:1fr;padding:26px}.ftr .wrap.cols{grid-template-columns:1fr 1fr}.hdr-phone{display:none}
-.sec>.wrap{padding-block:72px}.counties{grid-template-columns:1fr}.logo img{height:44px}.nav{gap:2px 18px;font-size:13px}}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.ftr .wrap.cols{grid-template-columns:1fr 1fr}
+.sec>.wrap{padding-block:64px}
+.mbar{display:grid;grid-template-columns:1fr 1.3fr;position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--night);border-top:1px solid var(--night-line);gap:10px;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.mbar a{display:flex;justify-content:center;align-items:center;text-decoration:none;font-weight:700;min-height:48px;border-radius:2px;color:#FFFFFF}
+.mbar .c{box-shadow:inset 0 0 0 2px #FFFFFF}.mbar .q{background:var(--red)}
+body{padding-bottom:78px}}
+@media (max-width:560px){.svc,.tiles.four{grid-template-columns:1fr}.ticket .row2{grid-template-columns:1fr}.ftr .wrap.cols{grid-template-columns:1fr}.cog-wrap{padding:20px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 
 <div class="pbar"><div class="wrap">
@@ -213,15 +316,10 @@ table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
   <span class="nav2"><button type="button" class="ghostb" id="prev" aria-label="Previous page">←</button><button type="button" class="ghostb" id="next" aria-label="Next page">→</button><button type="button" id="openIdx">All pages <span id="count"></span></button></span>
 </div></div>
 
-<div class="topbar"><div class="wrap">
-  <span>Event medical cover and first aid training · Swadlincote, Derbyshire DE11 9ED</span>
-  <span><b>0333 335 8999</b> &nbsp;·&nbsp; info@midlandsambulance.co.uk</span>
-</div></div>
-
 <header class="hdr"><div class="wrap">
-  <a class="logo" href="#home" aria-label="Midlands Ambulance Group home"><img src="img/logo-dark.png" alt="Midlands Ambulance Group"></a>
+  <a class="logo" href="#home" aria-label="Midlands Ambulance Group home"><img src="img/logo-light.png" alt="Midlands Ambulance Group" width="528" height="180"></a>
   <nav class="nav" aria-label="Main" id="nav">
-    <a href="#event-medical-cover" data-sec="event">Event Cover</a><a href="#training" data-sec="training">Training</a><a href="#areas" data-sec="areas">Areas</a><a href="#about" data-sec="about">About</a><a href="#guides" data-sec="guides">Guides</a><a href="#contact" data-sec="contact">Contact</a>
+    <a href="#event-medical-cover" data-sec="event">Event cover</a><a href="#ambulance-hire" data-sec="hire">Ambulance hire</a><a href="#training" data-sec="training">Training</a><a href="#areas" data-sec="areas">Areas</a><a href="#guides" data-sec="guides">Guides</a><a href="#about" data-sec="about">About</a><a href="#contact" data-sec="contact">Contact</a>
   </nav>
   <div class="hdr-cta">
     <a class="hdr-phone" href="tel:03333358999"><small>Call the team</small>0333 335 8999</a>
@@ -233,12 +331,13 @@ table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
 
 <footer class="ftr">
   <div class="wrap cols">
-    <div><img src="img/logo-light.png" alt="Midlands Ambulance Group" style="height:54px;width:auto;margin-bottom:20px"><div>Midlands Ambulance Group Ltd<br>Swadlincote, Derbyshire DE11 9ED<br>0333 335 8999<br>info@midlandsambulance.co.uk</div></div>
-    <div><h4>Event cover</h4><a href="#event-medical-cover">Event medical cover</a><a href="#festivals">Festivals and concerts</a><a href="#sporting-events">Sporting events</a><a href="#ambulance-hire">Ambulances and response vehicles</a><a href="#medical-planning">Medical plans</a></div>
-    <div><h4>Training</h4><a href="#training">All courses</a><a href="#basic-first-aid-cpr">First Aid and CPR</a><a href="#paediatric-first-aid">Paediatric First Aid</a><a href="#onsite-training">On-site training</a></div>
-    <div><h4>Company</h4><a href="#about">About us</a><a href="#team">Our team</a><a href="#case-studies">Case studies</a><a href="#reviews">Reviews</a><a href="#careers">Careers</a><a href="#contact">Contact</a></div>
+    <div><img src="img/logo-light.png" alt="Midlands Ambulance Group" width="528" height="180" style="height:50px;width:auto;margin-bottom:18px"><div class="nap">Midlands Ambulance Group<br>Swadlincote, Derbyshire DE11 9ED<br><a href="tel:03333358999" style="display:inline;font-family:var(--mono)">0333 335 8999</a><br>info@midlandsambulance.co.uk</div></div>
+    <div><h4>Event cover</h4><a href="#event-medical-cover">Event medical cover</a><a href="#festivals">Festivals and concerts</a><a href="#sporting-events">Sporting events</a><a href="#film-and-tv">Film and TV</a><a href="#ambulance-hire">Ambulance hire</a><a href="#medical-planning">Medical plans</a></div>
+    <div><h4>Areas</h4><a href="#derbyshire">Derbyshire</a><a href="#birmingham">Birmingham</a><a href="#bournemouth">Bournemouth</a><a href="#glasgow">Glasgow</a><a href="#paris">Paris</a><a href="#areas">All areas</a></div>
+    <div><h4>Company</h4><a href="#about">About us</a><a href="#team">Our team</a><a href="#training">Training</a><a href="#case-studies">Case studies</a><a href="#reviews">Reviews</a><a href="#careers">Careers</a><a href="#contact">Contact</a></div>
   </div>
-  <div class="base"><div class="wrap"><span>© 2026 Midlands Ambulance Group Ltd · Company no. 13035386</span><span><a href="#privacy-policy">Privacy policy</a> &nbsp;·&nbsp; <a href="https://g.page/r/CTwPSa1lclRPEBM/review">Review us on Google</a></span></div></div>
+  <div class="base"><div class="wrap"><span>© 2026 Midlands Ambulance Group Ltd · Company no. 13035386 · Registered office 19 Chiltern Road, Swadlincote, Derbyshire DE11 9ED</span><span><a href="#privacy-policy">Privacy policy</a> &nbsp;·&nbsp; <a href="https://g.page/r/CTwPSa1lclRPEBM/review">Review us on Google</a></span></div></div>
+  <nav class="mbar" aria-label="Quick actions"><a class="c" href="tel:03333358999">Call us</a><a class="q" href="#get-a-quote">Get a quote</a></nav>
 </footer>
 
 <div class="idx" id="idx" hidden role="dialog" aria-modal="true" aria-labelledby="idxh">
@@ -249,20 +348,59 @@ table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
   </div>
 </div>
 
+<script id="site-js">
+// After a Cognito form is submitted, send the visitor to the matching thank-you page (quote and training forms only).
+if(window.Cognito&&Cognito.on){Cognito.on('afterSubmit',function(){var w=document.querySelector('.cog-wrap[data-thanks]');if(w)location.href='/'+w.dataset.thanks+'.html';});}
+// Medical cover guide: picks an indicative level from crowd size and risk factors. A guide only; cover is confirmed in the medical plan.
+window.MAGinit=function(){
+  document.querySelectorAll('[data-est]:not([data-ready])').forEach(function(el){
+    el.setAttribute('data-ready','');
+    var L=JSON.parse(el.querySelector('.lvl-data').textContent),r=el.querySelector('[data-crowd]'),out=el.querySelector('[data-crowd-out]'),boxes=el.querySelectorAll('[data-risk]');
+    function crowd(v){var n=Math.exp(Math.log(100)+(Math.log(50000)-Math.log(100))*v/100),st=n<1000?50:n<5000?250:n<20000?500:1000;return Math.round(n/st)*st;}
+    function draw(){
+      var n=crowd(+r.value),f=0,lvl=n<500?1:n<2000?2:n<5000?3:n<10000?4:5;
+      out.textContent=n.toLocaleString('en-GB')+(+r.value>=100?'+':'');
+      boxes.forEach(function(b){if(b.checked)f+=+b.dataset.risk;});
+      if(f>=2)lvl++;if(f>=4)lvl++;lvl=Math.min(5,lvl);
+      var d=L[lvl-1];
+      el.querySelectorAll('.level i').forEach(function(i,k){i.classList.toggle('on',k<lvl);});
+      el.querySelector('[data-lvl-name]').textContent='Level '+lvl+': '+d.name;
+      el.querySelector('[data-lvl-sum]').textContent=d.sum;
+      el.querySelector('[data-lvl-list]').innerHTML=d.items.map(function(x){return '<li>'+x+'</li>';}).join('');
+    }
+    r.addEventListener('input',draw);boxes.forEach(function(b){b.addEventListener('change',draw);});draw();
+  });
+};
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.MAGinit);else window.MAGinit();
+</script>
 <script>
 (function(){
 const PHONE='0333 335 8999', REVIEW='https://g.page/r/CTwPSa1lclRPEBM/review';
 const T=s=>`<span class="tbc">${s}</span>`;
-const img=n=>`img/${n}.jpg`;
+const img=n=>`img/${n}.webp`;
 const esc=s=>s;
 
 /* ---------- shared blocks ---------- */
 const crumbs=list=>`<p class="crumbs"><a href="#home">Home</a>${list.map(([l,h])=>`<span>/</span>${h?`<a href="#${h}">${l}</a>`:l}`).join('')}</p>`;
-const subHero=({image,pos='center',crumb,eyebrow,title,lede,ctas})=>`
-<section class="hero sub ph" style="background-image:url(${img(image)});background-position:${pos}"><div class="wrap">
-  ${crumbs(crumb)}<p class="eyebrow">${eyebrow}</p><h1 class="hd">${title}</h1><p class="lede">${lede}</p>
-  <div class="ctas">${ctas||`<a class="btn btn-red" href="#get-a-quote">Get an event quote <span class="arrow">→</span></a><a class="btn btn-ghost" href="tel:03333358999">Call ${PHONE}</a>`}</div>
-</div></section>`;
+const EVENT_TYPES=['Festival / concert','Sporting event','Motorsport','Equestrian','Film / TV / media production','Corporate event','Charity or community event','School or college event','Private party / wedding'];
+const SIZES=['Under 500','500–1,999','2,000–4,999','5,000–9,999','10,000–24,999','25,000+'];
+// Step 1 of the quote: a short form that opens the quote page with these answers filled into the Cognito form.
+const ticket=({type='',title='Get a quote in 60 seconds'}={})=>`<form class="ticket" action="#get-a-quote" method="get" aria-label="Quick quote">
+<header><span class="live">Quote desk</span><span>Reply within 1 working day</span></header>
+<div class="in"><h2>${title}</h2>
+<div class="field"><label for="q-type">Type of event</label><select id="q-type" name="type">${EVENT_TYPES.map(t=>`<option${t===type?' selected':''}>${t}</option>`).join('')}</select></div>
+<div class="row2"><div class="field"><label for="q-date">Event date</label><input id="q-date" name="date" type="date"></div>
+<div class="field"><label for="q-size">Crowd per day</label><select id="q-size" name="size">${SIZES.map((t,i)=>`<option${i===2?' selected':''}>${t}</option>`).join('')}</select></div></div>
+<div class="field"><label for="q-pc">Venue postcode</label><input id="q-pc" name="pc" placeholder="e.g. M1 1AA" autocomplete="postal-code" required pattern="\s*([A-Za-z]{1,2}[0-9][A-Za-z0-9]?\s*[0-9][A-Za-z]{2}|[0-9]{5})\s*" title="Enter a full UK postcode, e.g. DE11 9ED (or a 5-digit French postcode)"></div>
+<button class="btn btn-red" type="submit">Next: your details <span class="arrow">→</span></button>
+<p class="small"><span class="steps"><i class="on"></i><i></i></span><span>Step 1 of 2 · No obligation</span></p></div></form>`;
+const PROOF=['Medical plan with every booking','Purple Guide ready paperwork','NHS-trained clinicians since 2019'];
+const proof=items=>`<ul class="proof">${items.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+const subHero=({image,pos='center',crumb,eyebrow,title,lede,type,points})=>`
+<section class="hero sub ph" style="background-image:url(${img(image)});background-position:${pos}"><div class="wrap hero-grid">
+  <div>${crumbs(crumb)}<p class="eyebrow">${eyebrow}</p><h1 class="hd">${title}</h1><p class="lede">${lede}</p>${proof(points||PROOF)}<p class="alt-cta">Rather talk it through? Call <a href="tel:03333358999">${PHONE}</a></p></div>
+  ${ticket({type})}
+</div><div class="chequer" aria-hidden="true"></div></section>`;
 const darkHero=({image,crumb,eyebrow,title,lede,ctas})=>`
 <section class="black"><div class="wrap split mid" style="padding-block:88px">
   <div>${crumbs(crumb)}<p class="eyebrow">${eyebrow}</p><h1 class="hd" style="font-size:clamp(46px,6.2vw,80px);margin-bottom:22px">${title}</h1><p class="lede" style="margin-bottom:34px">${lede}</p><div class="ctas">${ctas}</div></div>
@@ -274,34 +412,104 @@ const plainHero=({crumb,eyebrow,title,lede})=>`
 </div></section>`;
 const ticks=items=>`<ul class="ticks">${items.map(([b,s])=>`<li><b>${b}</b>${s?`<span>${s}</span>`:''}</li>`).join('')}</ul>`;
 const faq=items=>`<div class="faq">${items.map(([q,a],i)=>`<details${i?'':' open'}><summary>${q}</summary><p>${a}</p></details>`).join('')}</div>`;
-const band=(title,btn='Get a quote',href='get-a-quote')=>`<section class="band"><div class="wrap"><h2 class="hd">${title}</h2><a class="btn btn-ghost" href="#${href}">${btn} <span class="arrow">→</span></a></div></section>`;
+const band=(title,btn='Get a quote',href='get-a-quote')=>`<section class="band"><div class="wrap"><h2 class="hd">${title}</h2><div class="act"><a class="num" href="tel:03333358999">${PHONE}</a><a class="btn" href="#${href}">${btn} <span class="arrow">→</span></a></div></div></section>`;
 const tile=(href,image,title,sub)=>`<a class="tile ph" href="#${href}" style="background-image:url(${img(image)})"><div class="in"><h3>${title}</h3><p>${sub}</p></div></a>`;
-const clients=`<section class="clients" aria-label="Clients"><div class="wrap"><span class="lbl">Trusted by</span><span>Ministry of Defence</span><span>England Athletics</span><span>Northants Cricket</span><span>Bournemouth International Centre</span><span>Rotary Club</span></div></section>`;
-const testimonial=`<section class="black quote"><div class="wrap split mid" style="padding-block:110px">
-  <figure style="margin:0"><blockquote>The most professional… they have taken time to tailor their service to our needs.</blockquote><cite>Future Cheer UK</cite></figure>
-  <div><p class="eyebrow">Worked with us?</p><p class="lede" style="margin-bottom:26px">Reviews help other organisers choose with confidence. It takes a minute on Google.</p><a class="btn btn-red" href="${REVIEW}">Review us on Google <span class="arrow">→</span></a></div>
-</div></section>`;
+const clients=`<section class="clients" aria-label="Clients"><div class="wrap"><span class="lbl">Trusted by</span><span>Ministry of Defence</span><span>England Athletics</span><span>Northants Cricket</span><span>Bournemouth International Centre</span><span>Harrogate Convention Centre</span><span>Sheffield Institute of Sport</span><span>Braehead Arena</span><span>Banbury Triathlon</span><span>Future Cheer UK</span><span>Miles for Smiles</span><span>Rotary Club</span></div></section>`;
+const testimonial=`<section class="black case">
+  <div class="ph" style="background-image:url(${img('case')})" role="img" aria-label="Midlands Ambulance Group crew at the Banbury Triathlon"></div>
+  <div class="body"><p class="eyebrow">What organisers say</p>
+    <blockquote>“The most professional… they have taken time to tailor their service to our needs.”</blockquote><cite>Future Cheer UK</cite>
+    <div class="more"><a class="btn btn-red" href="${REVIEW}">Review us on Google <span class="arrow">→</span></a><a class="btn btn-ghost" href="#case-studies">Case studies</a></div></div>
+</section>`;
 const stepsBlock=`<section class="sec dark"><div class="wrap">
-  <p class="eyebrow">How it works</p><h2 class="hd h2">From enquiry to event day</h2>
+  <p class="eyebrow">How it works</p><h2 class="hd h2">Enquiry to event day</h2>
   <div class="steps">
-    <div class="step"><div class="n">1</div><h3 class="h3">Tell us about your event</h3><p>Date, venue, expected attendance and activities. A short call or the quote form is enough.</p></div>
-    <div class="step"><div class="n">2</div><h3 class="h3">We write your medical plan</h3><p>A risk and resource assessment that sets the team and vehicles, ready for your Safety Advisory Group.</p></div>
-    <div class="step"><div class="n">3</div><h3 class="h3">Our crew arrives on site</h3><p>Briefed, equipped and in place before gates open, with a report for you after the event.</p></div>
+    <div class="step"><div class="n">01</div><h3 class="h3">Tell us about your event</h3><p>Date, venue, expected attendance and activities. A short call or the quote form is enough.</p></div>
+    <div class="step"><div class="n">02</div><h3 class="h3">We write your medical plan</h3><p>A risk and resource assessment that sets the team and vehicles, ready for your Safety Advisory Group.</p></div>
+    <div class="step"><div class="n">03</div><h3 class="h3">Our crew arrives on site</h3><p>Briefed, equipped and in place before gates open, with a report for you after the event.</p></div>
   </div></div></section>`;
 const vehicles=`<section class="sec"><div class="wrap">
-  <div class="head-row"><div><p class="eyebrow">Our vehicles</p><h2 class="hd h2">Equipped for the whole site</h2></div><a class="btn btn-line" href="#ambulance-hire">About our vehicles</a></div>
+  <div class="head-row"><div><p class="eyebrow">Our vehicles</p><h2 class="hd h2">Two vehicles, one plan</h2></div><a class="btn btn-line" href="#ambulance-hire">Ambulance hire</a></div>
   <div class="duo">
     <article class="veh"><div class="ph" style="background-image:url(${img('dca')})"></div><div class="tag">Dual Crewed Ambulances</div><h3 class="h3" style="font-size:36px">A treatment base on wheels</h3><p>Two-person crews with the equipment to assess and treat patients on site, from minor injuries to serious emergencies.</p></article>
-    <article class="veh"><div class="ph" style="background-image:url(${img('frv')})"></div><div class="tag">Fast Response Vehicles</div><h3 class="h3" style="font-size:36px">Speed across large sites</h3><p>A single clinician who reaches patients quickly on spread-out courses, showgrounds and festival sites.</p></article>
+    <article class="veh"><div class="ph" style="background-image:url(${img('hero')})"></div><div class="tag">Fast Response Vehicles</div><h3 class="h3" style="font-size:36px">Speed across large sites</h3><p>A single clinician who reaches patients quickly on spread-out courses, showgrounds and festival sites.</p></article>
   </div></div></section>`;
+const howWeWork=`<section class="sec dark"><div class="wrap"><p class="eyebrow">How we work</p><h2 class="hd h2">The same standards at every event</h2>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3 class="h3">Planned in writing</h3><p>Every booking has a risk-assessed medical plan, built the way the Purple Guide describes, ready for your Safety Advisory Group, council and insurers.</p></div>
+    <div class="step"><div class="n">02</div><h3 class="h3">Led on the day</h3><p>An experienced event lead briefs the crew before gates open. Our event leads are trained in major incident management (MIMMS), and our clinicians use Ten Second Triage, the national triage standard.</p></div>
+    <div class="step"><div class="n">03</div><h3 class="h3">Recorded and reported</h3><p>Every patient contact goes on a digital patient record, and you receive a post-event report. Clinical governance is led by our Paramedic Clinical Lead and Medical Director.</p></div>
+  </div></div></section>`;
+const quote=(q,who,role)=>`<figure class="qcard"><blockquote>“${q}”</blockquote><figcaption><b>${who}</b>${role}</figcaption></figure>`;
+const REVIEWS=[
+ ['If I could give more than five stars, I would – Midlands Ambulance Group saved my event!','Sarah Shepherd','Triathlon organiser, Oxfordshire'],
+ ['Absolutely excellent service from start to finish.','Di Bell','Village committee organiser, Staffordshire'],
+ ['John was thorough and organised, communication was clear, and the booking process was effortless.','Callum Worker','Charity organiser, Derbyshire'],
+ ['The most professional… they have taken time to tailor their service to our needs.','Ian Crow','Future Cheer UK'],
+];
 // Cognito Forms seamless embeds. Form 15 = event quote, 17 = training enquiry, 7 = event team application, 9 = expression of interest.
 const COG_KEY='7-F4jRl2QEy4NFBUvGQBXQ';
 const cog=(id,prefill,thanks)=>`<div class="cog-wrap"${thanks?` data-thanks="${thanks}"`:''}><script src="https://www.cognitoforms.com/f/seamless.js" data-key="${COG_KEY}" data-form="${id}"></`+`script>${prefill?`<script>Cognito.prefill(${JSON.stringify(prefill)});</`+`script>`:''}</div>`;
 const COG_COURSE={'basic-first-aid-cpr':'Basic First Aid and CPR','paediatric-first-aid':'Paediatric First Aid','aed-cpr':'AED and CPR','basic-life-support':'Basic Life Support (BLS)','intermediate-life-support':'Intermediate Life Support (ILS)','onsite-training':'On-site group training for businesses'};
-const quoteForm=()=>cog(15,null,'thank-you-quote');
+// The quote page fills in what the visitor chose in the step-1 ticket (passed in the address as ?type=&date=&size=&pc=).
+const PREFILL_FROM_URL=`<script>(function(){var q=new URLSearchParams(location.search),a={};[['type','EventType'],['date','StartDate'],['size','ExpectedAttendancePerDay'],['pc','VenuePostcode']].forEach(function(m){var v=q.get(m[0]);if(v&&m[0]==='pc'){v=v.trim().toUpperCase().replace(/\s+/g,'');var u=v.match(/^([A-Z]{1,2}[0-9][A-Z0-9]?)([0-9][A-Z]{2})$/);v=u?u[1]+' '+u[2]:(/^[0-9]{5}$/.test(v)?v:'');}if(v)a[m[1]]=v;});if(Object.keys(a).length&&window.Cognito&&Cognito.prefill)Cognito.prefill({AboutYourEvent:a});})();</`+`script>`;
+const quoteForm=()=>cog(15,null,'thank-you-quote').replace(/<\/div>$/,PREFILL_FROM_URL+'</div>');
 const courseForm=course=>cog(17,COG_COURSE[course]?{Course:{CourseYoureInterestedIn:COG_COURSE[course]}}:null,'thank-you-training');
 
+
+// Medical cover guide. Levels follow the risk-based approach of the Purple Guide and the HSE Event Safety Guide (HSG195); site.js picks the level.
+const COVER_LEVELS=[
+ {name:'Basic first aid',sum:'A small, low-risk event.',items:['Qualified first aiders and a clearly signed first aid point','A clear way to call 999 and guide an ambulance in','Your arrangements recorded in the event risk assessment']},
+ {name:'First aid team with clinical support',sum:'A small team, with a healthcare professional able to step up care.',items:['A first aid team including at least one clinician (technician or paramedic)','A first aid post with privacy for treatment','An ambulance or response vehicle considered, depending on the site and distance to hospital']},
+ {name:'Dedicated medical team',sum:'Clinician-led cover with an ambulance on site.',items:['Technicians and paramedics with a named clinical lead','A treatment area and an ambulance on site','Radio link to event control and a plan for handing patients over to the NHS']},
+ {name:'Multidisciplinary medical team',sum:'A larger team able to treat more patients on site.',items:['Paramedics and nurses, with doctor cover considered','A staffed treatment centre and more than one ambulance or response vehicle','A medical control point and early contact with the local NHS ambulance service']},
+ {name:'Full integrated medical service',sum:'A mass gathering or high-risk event that needs a full medical operation.',items:['A medical manager and senior clinical lead, with doctors on site','One or more treatment centres, several ambulances and response vehicles','Major incident planning and agreed hospital transfer routes']},
+];
+const GUIDE_ONLY='<b>This is a guide only.</b> It follows the risk-based approach of the Purple Guide and the HSE Event Safety Guide (HSG195), and the duty under health and safety law to carry out a suitable and sufficient risk assessment. It is not a medical needs assessment. Your actual medical cover will be discussed and confirmed with you during your event medical plan.';
+const estimator=()=>`<section class="sec black" id="cover-guide"><div class="wrap">
+<div class="head-row"><div><p class="eyebrow">Medical cover guide</p><h2 class="hd h2">What will my event need?</h2></div><p class="lede" style="max-width:48ch">Move the slider and tick anything that applies. You'll see an indicative level of cover, worked out the risk-based way the Purple Guide and Event Safety Guide describe.</p></div>
+<div class="est" data-est>
+ <div class="ctl">
+  <div><label class="lbl" for="crowd">Expected crowd at peak</label><div class="big" data-crowd-out>3,000</div></div>
+  <div><input type="range" id="crowd" min="0" max="100" value="55" data-crowd aria-label="Expected crowd at peak"><div class="ticks-row"><span>100</span><span>1k</span><span>5k</span><span>20k</span><span>50k+</span></div></div>
+  <fieldset style="border:0;padding:0;margin:0"><legend class="lbl" style="margin-bottom:10px">Anything that raises the risk?</legend><div class="toggles">
+   <label><input type="checkbox" data-risk="1"> Alcohol on sale</label>
+   <label><input type="checkbox" data-risk="1"> Overnight or camping</label>
+   <label><input type="checkbox" data-risk="2"> High-risk activity (motorsport, contact sport, stunts)</label>
+   <label><input type="checkbox" data-risk="1"> Hot weather or an exposed site</label>
+   <label><input type="checkbox" data-risk="1"> Young children or vulnerable people</label>
+   <label><input type="checkbox" data-risk="1"> More than 30 minutes from an A&amp;E</label>
+  </div></fieldset>
+ </div>
+ <div class="out" aria-live="polite">
+  <span class="lbl">Indicative level of cover</span>
+  <div class="level"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+  <p class="lvl-name" data-lvl-name>Level 3: ${COVER_LEVELS[2].name}</p><p class="lvl-sum" data-lvl-sum>${COVER_LEVELS[2].sum}</p>
+  <ul data-lvl-list>${COVER_LEVELS[2].items.map(x=>`<li>${x}</li>`).join('')}</ul>
+  <a class="btn btn-red" href="#get-a-quote">Get this planned and priced <span class="arrow">→</span></a>
+  <p class="fine">${GUIDE_ONLY}</p>
+  <script type="application/json" class="lvl-data">${JSON.stringify(COVER_LEVELS)}</`+`script>
+ </div>
+</div></div></section>`;
+
+// Approximate drive times from Swadlincote. [name, compass bearing, hours, label, area page or '']
+const DESTS=[['Leicester',130,.6,'35 min','leicestershire'],['Nottingham',40,.7,'40 min','nottinghamshire'],['Birmingham',225,.75,'45 min','birmingham'],['Manchester',325,1.75,'1 h 45',''],['Leeds',5,1.85,'1 h 50',''],['Bristol',220,2.35,'2 h 20',''],['London',145,2.5,'2 h 30',''],['Cardiff',248,2.85,'2 h 50',''],['Bournemouth',195,3.5,'3 h 30','bournemouth'],['Newcastle',3,3.6,'3 h 35',''],['Glasgow',340,5,'5 h','glasgow'],['Paris',150,7,'7 h','paris']];
+const FAR=['Bournemouth','Glasgow','Paris'];
+const rings=()=>{const cx=280,cy=290,k=92,R=h=>k*Math.sqrt(h);let o=`<svg viewBox="0 0 560 580" role="img" aria-labelledby="rings-t"><title id="rings-t">Approximate drive times from our Swadlincote base</title>`;
+ [1,3,5,7].forEach(h=>{o+=`<circle cx="${cx}" cy="${cy}" r="${R(h).toFixed(1)}" class="ring"/><text x="${cx+4}" y="${(cy+R(h)+14).toFixed(1)}" class="ringlbl">${h} hr</text>`;});
+ DESTS.forEach(([n,b,h,t])=>{const a=b*Math.PI/180,d=R(h),x=cx+Math.sin(a)*d,y=cy-Math.cos(a)*d,end=x<cx-10,dx=end?-9:9,anc=end?'end':'start';
+  o+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${FAR.includes(n)?5.5:4.5}" class="dot${FAR.includes(n)?' far':''}"/><text x="${(x+dx).toFixed(1)}" y="${(y-1).toFixed(1)}" text-anchor="${anc}" class="city">${n}</text><text x="${(x+dx).toFixed(1)}" y="${(y+13).toFixed(1)}" text-anchor="${anc}" class="time">${t}</text>`;});
+ return o+`<circle cx="${cx}" cy="${cy}" r="16" fill="none" stroke="#A41919" stroke-width="1.5" opacity=".5"/><circle cx="${cx}" cy="${cy}" r="9" class="base"/><text x="${cx-16}" y="${cy-14}" text-anchor="end" class="baselbl">Swadlincote</text></svg>`;};
+const coverage=(intro=true)=>`<section class="sec"><div class="wrap cover">
+ <div>${intro?`<p class="eyebrow">Areas we cover</p><h2 class="hd h2">Central base. Nationwide reach.</h2>`:`<p class="eyebrow">Travel times</p><h2 class="hd h2">How far we travel</h2>`}
+  <p class="lede" style="margin-top:20px">Swadlincote sits where Derbyshire, Staffordshire and Leicestershire meet, close to the M42, A38 and M1. We cover events across the UK, from Bournemouth to Glasgow, and abroad in Paris. Travel, accommodation and crew rest are planned into your quote.</p>
+  <div class="regions">${AREAS.map(a=>`<a${a[4]?' class="home"':''} href="#${a[0]}">${a[1]}${a[4]?' (base)':''}</a>`).join('')}</div>
+ </div>
+ <figure style="margin:0">${rings()}<figcaption>Approximate drive times from our Swadlincote base, placed by compass direction; distance from the centre is not to scale. Paris is by road via the Channel Tunnel. Times vary with traffic.</figcaption></figure>
+</div></section>`;
+
 /* ---------- data ---------- */
+const COG_TYPE={'festivals':'Festival / concert','sporting-events':'Sporting event','dance-and-cheer':'Sporting event','film-and-tv':'Film / TV / media production','corporate-events':'Corporate event','venues-and-conferences':'Corporate event','community-and-charity-events':'Charity or community event'};
 const EVENTS=[
  {key:'festivals',name:'Festivals and concerts',short:'Festivals',image:'evt_fest',pos:'center 30%',kw:'festival medical cover',
   title:'Festival and concert medical cover',lede:'Crowd-sized medical teams for festivals, gigs and outdoor concerts, from a single stage to multi-day camping events.',
@@ -327,7 +535,7 @@ const EVENTS=[
   title:'Medical cover for corporate events',lede:'Discreet, professional cover for staff days, product launches, awards nights and outdoor activity days.',
   risks:[['Outdoor activities','Team-building, sports and adventure activities.'],['Evening events','Alcohol, late finishes and busy venues.'],['Guests with health conditions','Calm, private care when someone feels unwell.'],['Your duty of care','A written plan to show the event was properly covered.']],
   provide:[['Uniformed clinicians','Professional and approachable for your guests.'],['Medical plan','For your venue and insurers.'],['First aid point','A clear place for guests to find help.'],['Post-event report','A summary of any patient contacts.']],
-  faq:[['Can your team be discreet?','Yes. We agree positions and dress with you so we are easy to find but not intrusive.'],['Do you cover events outside the Midlands?','Yes, UK-wide on request.']]},
+  faq:[['Can your team be discreet?','Yes. We agree positions and dress with you so we are easy to find but not intrusive.'],['Do you cover events outside the Midlands?','Yes, across the UK and abroad in Paris. Travel and crew rest are planned into your quote.']]},
  {key:'venues-and-conferences',name:'Venues and conferences',short:'Venues',image:'athletics',pos:'center',kw:'venue medical cover',
   title:'Medical cover for venues and conferences',lede:'Regular cover for arenas, halls, conference centres and attractions, on a booking-by-booking basis or an ongoing contract.',
   risks:[['High footfall','Large numbers moving through entrances, stairs and concourses.'],['Mixed audiences','Children, older visitors and people with existing conditions.'],['Repeat events','Consistency from one show or day to the next.'],['Incident records','Data you can use to improve the venue.']],
@@ -339,13 +547,14 @@ const EVENTS=[
   provide:[['First aid point','Clearly signed and easy to find.'],['Response vehicle','Branded and visible at the heart of the event.'],['Medical plan','For your council or Safety Advisory Group.'],['Community pricing','Ask about rates for charities and community groups.']],
   faq:[['Do you offer charity rates?','Yes. Tell us about your event and organisation and we will quote accordingly.'],['Do we need a medical plan for a village fete?','Often the council will ask for one. We can write it for you.']]},
 ];
+const EVX={'festivals':{worked:null,faq:[["Can you cover overnight and camping events?", "Yes. We plan shift patterns, rest breaks and handovers so the site is covered around the clock, and we brief welfare and security on how to reach us."], ["Will you write the medical plan for our licence or Safety Advisory Group?", "Yes. Every booking includes a risk-assessed medical plan you can submit with your event management plan."]]},'sporting-events':{worked:"The Banbury Triathlon and the Ministry of Defence Equestrian Trials at Melton Mowbray, both three years running. Our sporting clients also include England Athletics and Northamptonshire County Cricket, and we have provided pitchside cover at Stamford Bridge.",faq:[["What happens if an athlete needs hospital?", "We treat on site. When someone needs hospital, we call NHS ambulance services and hand over with a full digital record of care."]]},'dance-and-cheer':{worked:"Competition cover for Future Cheer UK, who said we were “the most professional” and took time to tailor our service to their needs.",faq:[["How do you keep parents and coaches informed?", "We agree with you beforehand how parents and coaches are told about an injury, and every patient contact is recorded."]]},'film-and-tv':{worked:null,faq:[["Can you base a vehicle at unit base?", "Yes. A Fast Response Vehicle or Dual Crewed Ambulance can be based at unit base, depending on the location and the work being filmed."], ["Will you work with our health and safety advisor?", "Yes. We review the risk assessment for each scene with your safety team and position the medic accordingly."]]},'corporate-events':{worked:null,faq:[["Can you cover an activity or team-building day?", "Yes. We look at the planned activities in the risk assessment and position clinicians where injuries are most likely."]]},'venues-and-conferences':{worked:"Our venue clients include the Bournemouth International Centre.",faq:[["Can you advise on our first aid room?", "Yes. We can advise on layout, equipment and signage, and how our crew will use the room on event days."]]},'community-and-charity-events':{worked:"A charity sleep out in Birmingham city centre, community events for the Rotary Club and Miles for Smiles, and village events in Staffordshire and Derbyshire.",faq:[["Can you cover a fun run or charity walk?", "Yes. Long routes are covered with response vehicles and spaced teams, the same way we cover the Banbury Triathlon."]]}};
 const COURSES=[
  {key:'basic-first-aid-cpr',name:'First Aid and CPR',image:'training',kw:'first aid and CPR course',who:'Anyone',lede:'A practical course for anyone who wants the confidence to help in an emergency, taught by clinicians who use these skills at work every week.',
   learn:[['Assessing a casualty','Checking for danger, response, airway and breathing.'],['CPR and using a defibrillator','Hands-on practice on adult manikins and a training AED.'],['Choking and the recovery position','What to do when someone can\'t breathe or is unresponsive.'],['Bleeding, burns and fractures','Controlling bleeding and caring for common injuries.'],['Seizures, shock and medical emergencies','Recognising when it\'s serious and calling for help.']],
   faq:[['Does this meet First Aid at Work rules?','This course isn\'t a regulated Emergency First Aid at Work or First Aid at Work qualification. If your workplace needs one of those, tell us and we\'ll talk through your options.'],['Do I need any experience?','No. The course starts from the basics and most of the time is spent practising.']]},
  {key:'paediatric-first-aid',name:'Paediatric First Aid',image:'teamselfie',kw:'paediatric first aid course',who:'Parents, carers and anyone who looks after children',lede:'First aid for babies and children, for parents, grandparents, nannies, sports coaches and anyone who looks after young people.',
   learn:[['Baby and child CPR','How resuscitation differs for infants and children.'],['Choking','Back blows and thrusts for babies and children.'],['Head injuries and falls','When to watch and when to call for help.'],['Fever, seizures and meningitis','Recognising serious illness early.'],['Allergic reactions and asthma','Using auto-injectors and inhalers.']],
-  faq:[['Does this meet Ofsted EYFS requirements?','No. This course isn\'t the regulated Paediatric First Aid qualification required in Early Years settings. Talk to us if you need that.'],['Can you run it for a parent group or nursery staff?','Yes, at your venue for groups of up to '+'[number]'+'.']]},
+  faq:[['Does this meet Ofsted EYFS requirements?','No. This course isn\'t the regulated Paediatric First Aid qualification required in Early Years settings. Talk to us if you need that.'],['Can you run it for a parent group or nursery staff?','Yes, at your venue. Tell us how many people and we will plan the session around your group.']]},
  {key:'aed-cpr',name:'AED and CPR',image:'nightcrowd',kw:'AED training',who:'Workplaces, clubs and community groups with a defibrillator',lede:'A short, hands-on session for anyone who may need to use a defibrillator, ideal for clubs and workplaces that have just installed one.',
   learn:[['Recognising cardiac arrest','Spotting the signs and calling 999 quickly.'],['Effective CPR','Rate, depth and swapping rescuers.'],['Using a defibrillator','Pad placement and following the prompts.'],['After the shock','The recovery position and handing over to paramedics.']],
   faq:[['We have just bought a defibrillator. Is this the right course?','Yes. We can run it on site using a training unit that matches your model.'],['How long does it take?',T('[Length]')+'.']]},
@@ -356,50 +565,76 @@ const COURSES=[
   learn:[['ABCDE assessment','Spotting deterioration before cardiac arrest.'],['Rhythm recognition','Shockable and non-shockable rhythms.'],['Manual and AED defibrillation','Safe delivery of shocks.'],['Reversible causes','Thinking through the 4 Hs and 4 Ts.'],['Post-resuscitation care','What happens after return of circulation.']],
   faq:[['Is it a Resuscitation Council UK ILS course?','No. It follows current UK guidelines but isn\'t the Resuscitation Council UK certified ILS course. Check what your employer requires.'],['Who teaches it?','Paramedics and senior clinicians from our team.']]},
 ];
+// [key, name, wave, places, our base, {to, time} approximate drive from Swadlincote, further afield]
 const AREAS=[
- ['derbyshire','Derbyshire',1,['Derby','Chesterfield','Swadlincote','Burton upon Trent (nearby)','Buxton','Matlock'],true],
- ['staffordshire','Staffordshire',1,['Stoke-on-Trent','Stafford','Burton upon Trent','Lichfield','Tamworth']],
- ['leicestershire','Leicestershire',1,['Leicester','Loughborough','Coalville','Ashby-de-la-Zouch','Hinckley']],
- ['birmingham','Birmingham',1,['City centre','Edgbaston','Sutton Coldfield','Erdington','Digbeth']],
- ['west-midlands','West Midlands',2,['Coventry','Wolverhampton','Solihull','Walsall','Dudley']],
- ['nottinghamshire','Nottinghamshire',2,['Nottingham','Mansfield','Newark','Worksop']],
- ['northamptonshire','Northamptonshire',2,['Northampton','Kettering','Corby','Wellingborough','Daventry']],
- ['warwickshire','Warwickshire',2,['Warwick','Leamington Spa','Rugby','Nuneaton','Stratford-upon-Avon']],
- ['oxfordshire','Oxfordshire',3,['Oxford','Banbury','Bicester','Abingdon','Witney']],
- ['worcestershire','Worcestershire',3,['Worcester','Redditch','Kidderminster','Malvern','Evesham']],
- ['shropshire','Shropshire',3,['Shrewsbury','Telford','Oswestry','Ludlow','Bridgnorth']],
- ['herefordshire','Herefordshire',3,['Hereford','Leominster','Ross-on-Wye','Ledbury']],
+ ['derbyshire','Derbyshire',1,['Derby','Chesterfield','Swadlincote','Burton upon Trent (nearby)','Buxton','Matlock'],true,{to:'Derby',t:'25 min'}],
+ ['staffordshire','Staffordshire',1,['Stoke-on-Trent','Stafford','Burton upon Trent','Lichfield','Tamworth'],false,{to:'Stafford',t:'45 min'}],
+ ['leicestershire','Leicestershire',1,['Leicester','Loughborough','Coalville','Ashby-de-la-Zouch','Hinckley'],false,{to:'Leicester',t:'35 min'}],
+ ['birmingham','Birmingham',1,['City centre','Edgbaston','Sutton Coldfield','Erdington','Digbeth'],false,{to:'Birmingham city centre',t:'45 min'}],
+ ['west-midlands','West Midlands',2,['Coventry','Wolverhampton','Solihull','Walsall','Dudley'],false,{to:'Coventry',t:'45 min'}],
+ ['nottinghamshire','Nottinghamshire',2,['Nottingham','Mansfield','Newark','Worksop'],false,{to:'Nottingham',t:'40 min'}],
+ ['northamptonshire','Northamptonshire',2,['Northampton','Kettering','Corby','Wellingborough','Daventry'],false,{to:'Northampton',t:'1 h 10'}],
+ ['warwickshire','Warwickshire',2,['Warwick','Leamington Spa','Rugby','Nuneaton','Stratford-upon-Avon'],false,{to:'Warwick',t:'55 min'}],
+ ['oxfordshire','Oxfordshire',3,['Oxford','Banbury','Bicester','Abingdon','Witney'],false,{to:'Oxford',t:'1 h 40'}],
+ ['worcestershire','Worcestershire',3,['Worcester','Redditch','Kidderminster','Malvern','Evesham'],false,{to:'Worcester',t:'1 h 10'}],
+ ['shropshire','Shropshire',3,['Shrewsbury','Telford','Oswestry','Ludlow','Bridgnorth'],false,{to:'Shrewsbury',t:'1 h 20'}],
+ ['herefordshire','Herefordshire',3,['Hereford','Leominster','Ross-on-Wye','Ledbury'],false,{to:'Hereford',t:'1 h 45'}],
+ ['bournemouth','Bournemouth',4,['Bournemouth','Poole','Christchurch','Boscombe'],false,{to:'Bournemouth',t:'3 h 30'},true],
+ ['glasgow','Glasgow',4,['City centre','West End','Southside','East End'],false,{to:'Glasgow',t:'5 h'},true],
+ ['paris','Paris',4,['Central Paris','La Défense','Saint-Denis','Versailles'],false,{to:'Paris',t:'7 h by road via the Channel Tunnel'},true],
 ];
-const AREA_IMG=['evt_comm','frvflag','areas','frvstreet','dragon','fireworks','athletics','evt_run','case','nightcrowd','evt_sport','frv'];
+const AREA_NOTE={"derbyshire": "Derbyshire is home. We have covered charity and community events across the county, and our crews know the venues, roads and hospitals from the Peak District to the Trent valley.", "staffordshire": "We have covered village and community events across Staffordshire, and Burton upon Trent is only a few minutes from our base.", "leicestershire": "For three years running we have provided medical cover for the Ministry of Defence Equestrian Trials at the Defence Animal Training Regiment, Melton Mowbray.", "birmingham": "In October 2026 we covered a charity sleep out in Birmingham city centre, with frontline ambulance clinicians and a response car on site through the night.", "northamptonshire": "Our clients in the county include Northamptonshire County Cricket.", "oxfordshire": "We have covered the Banbury Triathlon three years running, from the swim exit and transition to the cycle course and the finish line.", "bournemouth": "Our clients include the Bournemouth International Centre, and our crews have worked events across the town.", "glasgow": "Members of our team live and work in Scotland, including clinicians in our Scotland division, so Glasgow events can be covered by people who know the local NHS.", "paris": "For events in France we plan the crossing, accommodation, rest breaks and local hospital arrangements as part of your medical plan."};
+const AREA_IMG=['evt_comm','frvflag','areas','frvstreet','dragon','fireworks','athletics','evt_run','case','nightcrowd','evt_sport','frv','nightcrowd','hero','evt_arena'];
 const GUIDES=[
- {key:'how-many-first-aiders',cat:'Planning',title:'How many first aiders do I need at my event?',sum:'The factors that decide the size of your medical team, and why there is no single number.',
-  body:`<p>There is no fixed ratio that works for every event. The right number depends on who is coming, what they will be doing and how quickly help can reach them.</p>
-  <h2>What decides the numbers</h2><ul><li><b>Attendance</b>, including peak numbers on site at once.</li><li><b>The activity</b>. A motorsport day carries different risks to a craft fair.</li><li><b>The audience</b>. Age, alcohol and the likely mood of the crowd.</li><li><b>The site</b>. Size, terrain, stages and how spread out it is.</li><li><b>Duration and weather</b>. Long, hot or overnight events need more.</li><li><b>Distance to hospital</b> and how busy local NHS services are.</li></ul>
-  <h2>How organisers usually work it out</h2><p>Most organisers use a risk-based approach set out in the Purple Guide, the industry guidance for outdoor events. It scores the event and suggests the level of cover, which is then adjusted for local factors.</p>
-  <h2>Getting it right</h2><p>Your Safety Advisory Group may ask to see how you reached your numbers. We write that reasoning into your medical plan, so you have something clear to show them.</p>`},
+ {key:'how-many-first-aiders',cat:'Planning',title:'How many first aiders do I need at my event?',sum:'The factors that decide the size of your medical team, and how the Purple Guide, the Event Safety Guide and health and safety law shape the answer.',
+  body:`<p>There is no single ratio that works for every event. The right level of cover depends on who is coming, what they will be doing and how quickly help can reach them.</p>
+  <h2>What the law says</h2><p>The Health and Safety at Work etc. Act 1974 and the Management of Health and Safety at Work Regulations 1999 require event organisers to carry out a suitable and sufficient risk assessment, and to put the right measures in place. Medical and first aid cover is part of that. The Health and Safety (First-Aid) Regulations 1981 also apply to your own staff and crew.</p>
+  <h2>What the guidance says</h2><p>The HSE's Event Safety Guide (HSG195) gave suggested first aid numbers based on attendance. Its successor, the Purple Guide, takes a risk-based approach instead: organisers assess the event and plan medical, ambulance and first aid resources to match. Councils and Safety Advisory Groups usually expect to see that reasoning written down.</p>
+  <h2>What decides the level of cover</h2><ul><li><b>Attendance</b>, including peak numbers on site at once.</li><li><b>The activity</b>. A motorsport day carries different risks to a craft fair.</li><li><b>The audience</b>. Age, vulnerability, alcohol and the likely mood of the crowd.</li><li><b>The site</b>. Size, terrain, stages and how spread out it is.</li><li><b>Duration and weather</b>. Long, hot or overnight events need more.</li><li><b>Distance to hospital</b> and how busy local NHS services are.</li></ul>
+  <h2>Try our medical cover guide</h2><p>The guide below gives an indicative level of cover from your crowd size and risk factors.</p>
+  <p class="note">${GUIDE_ONLY}</p>`},
  {key:'purple-guide-explained',cat:'Compliance',title:'The Purple Guide explained for event organisers',sum:'What the Purple Guide is, who uses it and what it means for your medical cover.',
   body:`<p>The Purple Guide is the UK events industry's guidance on health, safety and welfare at music and other outdoor events. Councils and Safety Advisory Groups often use it as their reference point.</p>
   <h2>What it covers</h2><p>Planning, crowd management, welfare, and the medical, ambulance and first aid section that most organisers ask us about.</p>
-  <h2>What it means for medical cover</h2><p>It sets out a risk-based way to decide what medical resources an event needs, and expects organisers to plan and record that decision.</p>
-  <h2>Do I have to follow it?</h2><p>It is guidance rather than law, but it describes what good practice looks like. If something goes wrong, following it helps show you took reasonable steps.</p>`},
+  <h2>What it means for medical cover</h2><p>It sets out a risk-based way to decide what medical resources an event needs, and expects organisers to plan and record that decision. Attendance matters, but so do the type of event, the audience, the site, the duration and how far the nearest hospital is.</p><h2>What organisers need to do</h2><ul><li>Carry out a medical needs assessment as part of your event risk assessment.</li><li>Book a competent medical provider with the right grades of staff.</li><li>Write down your medical arrangements in a medical plan.</li><li>Agree how the medical team links with event control, security and welfare.</li><li>Plan for a major incident at larger events.</li></ul>
+  <h2>Where it came from</h2><p>It replaced the HSE's Event Safety Guide (HSG195), which was first published as the original "Purple Guide". The newer guide moved away from fixed numbers towards planning medical cover from a risk assessment.</p><h2>Do I have to follow it?</h2><p>It is guidance rather than law, but it describes what good practice looks like. The law itself, the Health and Safety at Work etc. Act 1974 and its regulations, requires a suitable and sufficient risk assessment. Following the Purple Guide helps show you took reasonable steps.</p>`},
  {key:'medical-grades-explained',cat:'Clinical',title:'Medical grades explained, from first aider to paramedic',sum:'What each clinical grade can do, and when you need them at your event.',
   body:`<p>Event medical providers use a range of clinical grades. Knowing the difference helps you understand a quote and compare like with like.</p>
   <h2>First aider</h2><p>Trained to treat minor injuries and illness and to recognise when someone needs more help.</p>
   <h2>Emergency Medical Technician</h2><p>Assesses and treats a wide range of injuries and medical emergencies, often working alongside paramedics.</p>
   <h2>Paramedic</h2><p>A registered clinician with advanced assessment skills and a wider range of medicines, able to lead care for serious illness and trauma.</p>
-  <h2>Nurses and doctors</h2><p>Used at larger and higher-risk events to run treatment areas and provide senior clinical leadership.</p>`},
+  <h2>Nurses and doctors</h2><p>Used at larger and higher-risk events to run treatment areas and provide senior clinical leadership.</p>
+  <h2>Comparing quotes</h2><p>Two quotes with the same number of staff can mean very different cover. Ask each provider:</p><ul><li>What grade is each member of the team, and are they registered with the HCPC, NMC or GMC where that applies?</li><li>Who is the clinical lead on the day?</li><li>What equipment and vehicles are included?</li><li>Will you receive a written medical plan and a report afterwards?</li></ul>
+  <h2>How we decide the mix</h2><p>We set the grades in your medical plan from the risks of your event, not from a fixed formula. A village fete may need first aiders with clinical support close by. A motorsport day or festival needs technicians and paramedics, and sometimes nurses and doctors.</p>`},
  {key:'event-medical-plan',cat:'Planning',title:'What goes in an event medical plan?',sum:'The sections a Safety Advisory Group expects to see, in plain English.',
   body:`<p>A medical plan explains how injured or unwell people at your event will be found, treated and, if needed, handed over to the NHS.</p>
   <h2>What it usually includes</h2><ul><li>Event details, timings and expected attendance.</li><li>The risk assessment behind your medical resources.</li><li>Staff numbers, grades and positions.</li><li>Vehicles, equipment and the treatment area.</li><li>Communication with event control.</li><li>Arrangements with local NHS services and hospitals.</li><li>Major incident procedures.</li></ul>
-  <h2>Who writes it</h2><p>We write the plan for every booking, so you can share it with your Safety Advisory Group and insurers.</p>`},
+  <h2>Who writes it</h2><p>We write the plan for every booking, so you can share it with your Safety Advisory Group and insurers.</p>
+  <h2>Who reads it</h2><p>Your Safety Advisory Group, licensing authority, venue and insurer may all ask for it. The local NHS ambulance service may also want to know your arrangements for larger events.</p>
+  <h2>When to start</h2><p>As early as you can. Many Safety Advisory Groups want your event management plan, including the medical plan, weeks before the event. Tell us your deadline when you ask for a quote.</p>
+  <h2>Common gaps</h2><ul><li>No clear access route for an ambulance to reach the treatment area.</li><li>No plan for what happens if a patient needs hospital.</li><li>Staff numbers with no explanation of how they were decided.</li><li>No link between the medical team and event control.</li></ul>`},
  {key:'first-aid-cover-for-fetes',cat:'Community',title:'First aid cover for a village fete or school fair',sum:'A practical checklist for community organisers planning their first event.',
   body:`<p>Most community events are low risk, but a little planning makes a big difference when someone does get hurt.</p>
   <h2>A simple checklist</h2><ul><li>Book cover early, especially for summer weekends.</li><li>Agree where the first aid point will be and sign it clearly.</li><li>Tell stewards and volunteers how to call for help.</li><li>Plan for hot weather, with shade and water.</li><li>Check whether your council wants a medical plan.</li></ul>
-  <h2>How much will it cost?</h2><p>It depends on the length of the day and the cover needed. Ask about our community and charity rates.</p>`},
+  <h2>How much will it cost?</h2><p>It depends on the length of the day and the cover needed. Ask about our community and charity rates.</p>
+  <h2>On the day</h2><ul><li>Show the medical team round the site when they arrive.</li><li>Give them a radio or a mobile number for the event organiser.</li><li>Make sure stewards know where the first aid point is.</li><li>Keep a vehicle route clear in case an ambulance is needed.</li></ul>
+  <h2>Have a defibrillator to hand</h2><p>Find out where the nearest public access defibrillator is, or ask your medical team to bring one. Early CPR and defibrillation give the best chance of survival from cardiac arrest.</p>`},
  {key:'hot-weather-events',cat:'Clinical',title:'Keeping people safe at events in hot weather',sum:'How to spot heat illness and what to put in place before a heatwave weekend.',
   body:`<p>Heat illness is one of the most common reasons people need medical help at summer events, and much of it can be prevented.</p>
   <h2>What to put in place</h2><ul><li>Free drinking water and plenty of shade.</li><li>Announcements reminding people to drink and cover up.</li><li>Extra medical cover when temperatures are forecast to be high.</li></ul>
-  <h2>Signs to watch for</h2><p>Headache, dizziness, cramps, confusion and hot, dry skin. Anyone who is confused or has stopped sweating needs urgent medical help.</p>`},
+  <h2>Signs to watch for</h2><p>Headache, dizziness, cramps, confusion and hot, dry skin. Anyone who is confused or has stopped sweating needs urgent medical help.</p>
+  <h2>Who is most at risk</h2><p>Older people, young children, people with long-term health conditions, and anyone who has been drinking alcohol or exercising hard. Performers, stewards and crew working long shifts in the sun are at risk too.</p>
+  <h2>Plan ahead</h2><p>Check the forecast in the week before the event and talk to your medical provider if a heatwave is likely. A hot day can mean more patients, so your medical plan may need extra staff, more shade at the treatment area or roaming teams near water points.</p>`},
+ {key:'ten-second-triage',cat:'Clinical',title:'Ten Second Triage: what it means for your event',sum:'The national triage standard for major incidents, and why your medical provider should be using it.',
+  body:`<p>Triage is how responders decide who needs help first when there are more casualties than clinicians. Ten Second Triage (TST) is the national standard for this in the UK, rolled out by NHS ambulance services from 2024.</p>
+  <h2>Why it matters at events</h2><p>Crowds bring a small but real risk of a major incident. The Manchester Arena Inquiry showed how much the first minutes matter. A shared triage system means everyone treating casualties works the same way, and patients reach the right care faster.</p>
+  <h2>What organisers should do</h2><ul><li>Ask your medical provider whether their staff are trained in TST and how they would use it at your event.</li><li>Make sure your medical plan includes major incident procedures, especially for larger events.</li><li>Brief security and stewards on how to raise the alarm and where to direct casualties.</li><li>Involve your Safety Advisory Group early so your plans fit with local NHS services.</li></ul>
+  <h2>How we use it</h2><p>Our clinicians use Ten Second Triage, and our event leads are trained in major incident management (MIMMS). Major incident procedures are part of every medical plan we write.</p>`},
+ {key:'event-healthcare-standard',cat:'Compliance',title:'Preparing for the Event Healthcare Standard',sum:'What organisers can do now, ahead of a new standard for healthcare at events.',
+  body:`<p>A new Event Healthcare Standard is being developed for the UK events industry. It hadn't been published at the time of writing, but it is expected to set clearer expectations for medical cover at events.</p>
+  <h2>What it is likely to focus on</h2><ul><li><b>Risk-based planning.</b> Medical cover decided from a proper assessment of each event.</li><li><b>Clinical governance.</b> Clear clinical leadership, records and review.</li><li><b>Major incident readiness.</b> Plans and training for when something serious happens.</li><li><b>Competent leadership.</b> Experienced leads on the day.</li><li><b>Working with the NHS.</b> Arrangements that fit with local ambulance and hospital services.</li></ul>
+  <h2>What you can do now</h2><p>Most of this is already good practice under the Purple Guide and health and safety law. Choose a provider who writes a risk-assessed medical plan, keeps proper patient records and can show who leads their clinical governance.</p>
+  <h2>Where we stand</h2><p>Every booking already comes with a risk-assessed medical plan, digital patient records and a post-event report. Clinical governance is led by our Paramedic Clinical Lead and Medical Director, and our event leads are trained in major incident management.</p>`},
 ];
 
 /* ---------- pages ---------- */
@@ -407,37 +642,47 @@ const P={};
 const add=(key,path,group,label,render,sec)=>{P[key]={key,path,group,label,render,sec}};
 
 add('home','/','Main pages','Home',()=>`
-<section class="hero big ph" style="background-image:url(${img('hero')});background-position:70% 60%"><div class="wrap">
-  <p class="eyebrow">Est. 2019 · NHS-trained clinicians</p>
-  <h1 class="hd">Medical cover <em>your event</em> can count on</h1>
-  <p class="lede">Paramedics, technicians, nurses and doctors on site with Dual Crewed Ambulances and Fast Response Vehicles, planned around the risks of your event.</p>
-  <div class="ctas"><a class="btn btn-red" href="#get-a-quote">Get an event quote <span class="arrow">→</span></a><a class="btn btn-ghost" href="#training">Book a course</a></div>
-  <div class="facts"><div><b>50+ years</b><span>combined NHS and frontline experience</span></div><div><b>Medical plan</b><span>and risk assessment with every booking</span></div><div><b>Purple Guide</b><span>ready paperwork for your Safety Advisory Group</span></div><div><b>Midlands-wide</b><span>from our Derbyshire base, UK-wide on request</span></div></div>
-</div></section>
+<section class="hero big ph" style="background-image:url(${img('evt_fest')});background-position:center 35%"><div class="wrap hero-grid">
+  <div><p class="eyebrow">Event medical cover · UK-wide from our Midlands base</p>
+  <h1 class="hd">Medical cover for <em>every crowd</em>, anywhere in the UK</h1>
+  <p class="lede">Paramedics, technicians, nurses and doctors with Dual Crewed Ambulances and Fast Response Vehicles. We write the medical plan, brief the crew and stay until the last guest leaves.</p>
+  ${proof(PROOF)}<p class="alt-cta">Rather talk it through? Call <a href="tel:03333358999">${PHONE}</a></p></div>
+  ${ticket()}
+</div><div class="chequer" aria-hidden="true"></div></section>
 ${clients}
-<section class="sec" style="padding-bottom:0"><div class="wrap split" style="align-items:end;padding-bottom:64px">
-  <div><p class="eyebrow">Event medical cover</p><h2 class="hd h2">The right clinicians for every kind of crowd</h2></div>
-  <p class="lede">From village fetes to city-centre festivals, we size the team and vehicles to your attendance, venue and activity, then stay on site until the last guest leaves.</p>
+<section class="sec"><div class="wrap">
+  <div class="head-row"><div><p class="eyebrow">Where we've worked</p><h2 class="hd h2">From Swadlincote to Stamford Bridge</h2></div><p class="lede" style="max-width:44ch">Our crews already travel well beyond the Midlands. Multi-day and overnight cover is planned the same way wherever your event is.</p></div>
+  <div class="mosaic">
+    <figure class="w2 t2"><div class="ph" style="background-image:url(${img('frv')})" role="img" aria-label="Our Fast Response Vehicle outside Buckingham Palace"></div><figcaption><b>London</b>Fast Response Vehicle on standby in the city</figcaption></figure>
+    <figure><div class="ph" style="background-image:url(${img('dragon')})" role="img" aria-label="Our ambulance under a red dragon sculpture at night"></div><figcaption><b>Wales</b>Night event cover</figcaption></figure>
+    <figure class="t2"><div class="ph" style="background-image:url(${img('evt_sport')});background-position:center 30%" role="img" aria-label="Our clinician pitchside at Stamford Bridge"></div><figcaption><b>Stamford Bridge</b>Pitchside medical cover</figcaption></figure>
+    <figure><div class="ph" style="background-image:url(${img('case')});background-position:center 20%" role="img" aria-label="Our crew at the Banbury Triathlon"></div><figcaption><b>Banbury</b>Triathlon, swim to finish</figcaption></figure>
+    <figure class="w2"><div class="ph" style="background-image:url(${img('evt_arena')});background-position:center 30%" role="img" aria-label="Our clinician watching over an arena event"></div><figcaption><b>Arenas</b>Boxing and indoor events</figcaption></figure>
+    <figure class="w2"><div class="ph" style="background-image:url(${img('evt_run')})" role="img" aria-label="Start line of a running event"></div><figcaption><b>The Midlands</b>Runs, fetes and community days on our doorstep</figcaption></figure>
+  </div>
 </div></section>
-<div class="tiles">${['festivals','sporting-events','dance-and-cheer','film-and-tv','corporate-events','community-and-charity-events'].map(k=>{const e=EVENTS.find(x=>x.key===k);return tile(k,e.image,e.name,e.lede.split(',')[0].split('.')[0]+'.')}).join('')}</div>
-${vehicles}${stepsBlock}
+<section class="sec mist"><div class="wrap">
+  <div class="head-row"><div><p class="eyebrow">Event medical cover</p><h2 class="hd h2">Cover planned around your event</h2></div><a class="btn btn-line" href="#event-medical-cover">All event types</a></div>
+  <div class="svc">${['festivals','sporting-events','film-and-tv','corporate-events','community-and-charity-events','dance-and-cheer'].map(k=>{const e=EVENTS.find(x=>x.key===k);return `<a href="#${k}"><div class="ph" style="background-image:url(${img(e.image)});background-position:${e.pos}"></div><div class="txt"><h3 class="h3">${e.name}</h3><p>${e.lede.split('.')[0]}.</p></div></a>`}).join('')}</div>
+</div></section>
+${estimator()}
+${coverage()}
+${vehicles.replace('class="sec"','class="sec mist"')}${stepsBlock}
+${testimonial}
 <section class="train" id="training-teaser"><div class="ph" style="background-image:url(${img('training')})"></div><div class="body">
   <p class="eyebrow">First aid training</p><h2 class="hd h2">Learn from clinicians who use it every week</h2>
   <div class="rows">${COURSES.slice(0,4).map(c=>`<a class="row" href="#${c.key}"><b>${c.name}</b><span>${T('[Length]')} <span class="arrow">→</span></span></a>`).join('')}</div>
-  <a class="btn btn-red" href="#onsite-training">Train your team on site</a>
+  <div class="ctas"><a class="btn btn-red" href="#training">See courses</a><a class="btn btn-line" href="#onsite-training">Train your team on site</a></div>
 </div></section>
-<section class="sec"><div class="wrap split mid">
-  <div class="ph" style="background-image:url(${img('areas')});aspect-ratio:5/4"></div>
-  <div><p class="eyebrow">Areas we cover</p><h2 class="hd h2">From Swadlincote, across the Midlands</h2><p class="lede" style="margin-top:20px">Our base sits where Derbyshire, Staffordshire and Leicestershire meet, so crews reach most Midlands events quickly.</p>
-  <div class="counties">${AREAS.slice(0,8).map(a=>`<a href="#${a[0]}">${a[1]}${a[4]?' <em>Our base</em>':''}</a>`).join('')}</div></div>
-</div></section>
-${testimonial}
-<section class="sec"><div class="wrap"><div class="head-row"><div><p class="eyebrow">Guides for organisers</p><h2 class="hd h2">Plan a safer event</h2></div><a class="btn btn-line" href="#guides">All guides</a></div>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">Before you book</h2><p class="lede" style="margin-top:20px">Can't see your question? Call <b style="color:var(--ink);font-family:var(--mono)">${PHONE}</b>.</p></div>
+${faq([['Do you cover events outside the Midlands?','Yes. We are based in Swadlincote, Derbyshire and cover events across the UK, including Bournemouth and Glasgow, and abroad in Paris. Travel, accommodation and crew rest are planned into your quote.'],['How many medics will my event need?','It depends on attendance, the activity, the audience, the site and how far the nearest hospital is. Try our medical cover guide for an indication. Your actual cover is discussed and confirmed in your event medical plan.'],['Do you write the event medical plan?','Yes. Every booking includes a medical plan and risk assessment, written to support your Safety Advisory Group and licensing conditions.'],['Which vehicles can you provide?','Dual Crewed Ambulances and Fast Response Vehicles, each crewed by our own clinicians.'],['How far ahead should I book?',T('[Recommended notice period, for example 6 to 8 weeks for large events and peak summer weekends.]')]])}</div></section>
+<section class="sec tight"><div class="wrap"><div class="head-row"><div><p class="eyebrow">Guides for organisers</p><h2 class="hd h2">Plan a safer event</h2></div><a class="btn btn-line" href="#guides">All guides</a></div>
 <div class="cards">${GUIDES.slice(0,3).map(g=>`<a class="card" href="#${g.key}"><small>${g.cat}</small><b>${g.title}</b></a>`).join('')}</div></div></section>
-<section class="sec mist" id="quote"><div class="wrap split"><div><p class="eyebrow">Get a quote</p><h2 class="hd h2">Tell us about your event</h2><p class="lede" style="margin:20px 0 36px">Share the basics and we'll come back with a medical plan and a clear price.</p><span class="kicker">Prefer to talk?</span><a class="big-phone" href="tel:03333358999">${PHONE}</a></div>${quoteForm()}</div></section>`,'home');
+<section class="sec mist" id="quote"><div class="wrap split"><div><p class="eyebrow">Get a quote</p><h2 class="hd h2">Tell us about your event</h2><p class="lede" style="margin:20px 0 36px">Share the basics and we'll come back with a medical plan and a clear price, usually within one working day.</p><span class="kicker">Prefer to talk?</span><a class="big-phone" href="tel:03333358999">${PHONE}</a></div>${quoteForm()}</div></section>
+${band('Planning an event? Let\'s get it covered.')}`,'home');
 
 add('event-medical-cover','/event-medical-cover','Event medical cover','Event medical cover',()=>`
-${subHero({image:'nightcrowd',pos:'center 40%',crumb:[['Event medical cover']],eyebrow:'Event medical cover',title:'Event medical cover across the Midlands',lede:'A medical team sized to your crowd, venue and activity, with a written medical plan your Safety Advisory Group will recognise.'})}
+${subHero({image:'nightcrowd',pos:'center 40%',crumb:[['Event medical cover']],eyebrow:'Event medical cover',title:'Event medical cover across the UK',lede:'A medical team sized to your crowd, venue and activity, with a written medical plan your Safety Advisory Group will recognise. From our Midlands base to Glasgow, Bournemouth and Paris.'})}
 <section class="sec"><div class="wrap split"><div><p class="eyebrow">What's included</p><h2 class="hd h2">Everything your event needs on the medical side</h2><p class="lede" style="margin-top:20px">Every booking starts with a risk assessment. We then send the right mix of clinicians and vehicles, and stay until the site is clear.</p></div>
 ${ticks([['Medical plan and resource assessment','Written for your event and ready for your Safety Advisory Group.'],['Clinicians matched to your risk','From first aiders to paramedics, nurses and doctors.'],['Dual Crewed Ambulances and Fast Response Vehicles','A treatment base on site and rapid reach across large areas.'],['Treatment area and equipment','Defibrillators, oxygen, trauma and medical kits on every deployment.'],['Radio contact with your control','We work alongside your security, stewards and event control.'],['Post-event report','A summary of every patient contact for your records.']])}</div></section>
 <div class="tiles">${EVENTS.filter(e=>e.key!=='venues-and-conferences').map(e=>tile(e.key,e.image,e.name,e.lede.split(',')[0].split('.')[0]+'.')).join('')}</div>
@@ -451,17 +696,20 @@ ${ticks([['Medical plan and resource assessment','Written for your event and rea
 </tbody></table></div><p style="margin-top:28px"><a class="linky" href="#medical-grades-explained">Read: medical grades explained</a></p></div></section>
 ${vehicles}${stepsBlock}
 <section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions organisers ask</p><h2 class="hd h2">Planning your cover</h2><p class="lede" style="margin-top:20px">Not sure what you need? Call <b style="color:var(--ink)">${PHONE}</b> and we'll talk it through.</p></div>
-${faq([['How many medics do I need?','It depends on attendance, the activity, the venue and how far the nearest hospital is. We work it out in your medical plan using the Purple Guide approach.'],['How far ahead should I book?',T('[Recommended notice period, for example 6 to 8 weeks for large events and peak summer weekends.]')],['What happens if someone needs hospital?','Our crew treats the patient on site, calls NHS ambulance services when needed and hands over with a full record of care.'],['Do you cover events outside the Midlands?','Yes. We\'re based in Swadlincote, Derbyshire and cover events across the UK on request.']])}</div></section>
+${faq([['How many medics do I need?','It depends on attendance, the activity, the venue and how far the nearest hospital is. Our medical cover guide below gives an indication; your actual cover is confirmed in your medical plan, using the Purple Guide approach.'],['How far ahead should I book?',T('[Recommended notice period, for example 6 to 8 weeks for large events and peak summer weekends.]')],['What happens if someone needs hospital?','Our crew treats the patient on site, calls NHS ambulance services when needed and hands over with a full record of care.'],['Do you cover events outside the Midlands?','Yes. We\'re based in Swadlincote, Derbyshire and cover events across the UK, and abroad in Paris.']])}</div></section>
+${estimator()}
 ${band('Get a medical plan and price for your event')}`,'event');
 
 EVENTS.forEach(e=>add(e.key,'/event-medical-cover/'+e.key,'Event medical cover',e.name,()=>`
-${subHero({image:e.image,pos:e.pos,crumb:[['Event medical cover','event-medical-cover'],[e.name]],eyebrow:'Event medical cover',title:e.title,lede:e.lede})}
+${subHero({image:e.image,pos:e.pos,crumb:[['Event medical cover','event-medical-cover'],[e.name]],eyebrow:'Event medical cover · UK-wide',title:e.title,lede:e.lede,type:COG_TYPE[e.key]})}
 ${clients}
 <section class="sec"><div class="wrap split"><div><p class="eyebrow">What we plan for</p><h2 class="hd h2">The risks at ${e.short.toLowerCase()==='sport'?'sporting events':e.name.toLowerCase()}</h2><p class="lede" style="margin-top:20px">Every plan starts with the risks particular to your event. These are the ones we see most often.</p></div>${ticks(e.risks)}</div></section>
 <section class="sec dark"><div class="wrap split"><div><p class="eyebrow">What we provide</p><h2 class="hd h2">Your medical team on the day</h2><p class="lede" style="margin:20px 0 32px">Sized in your medical plan and confirmed before the event.</p><a class="btn btn-red" href="#get-a-quote">Get a quote <span class="arrow">→</span></a></div>${ticks(e.provide)}</div></section>
-<section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">Before you book</h2></div>${faq(e.faq)}</div></section>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">Before you book</h2></div>${faq(e.faq.concat(EVX[e.key].faq))}</div></section>
+${howWeWork}
+${EVX[e.key].worked?`<section class="sec tight"><div class="wrap split mid"><div><p class="eyebrow">Experience</p><h2 class="hd" style="font-size:40px">Where we've done it</h2></div><p class="lede">${EVX[e.key].worked}</p></div></section>`:''}
 <section class="sec mist tight"><div class="wrap"><p class="eyebrow">Other events we cover</p><div class="cards" style="margin-top:28px">${EVENTS.filter(x=>x.key!==e.key).slice(0,3).map(x=>`<a class="card" href="#${x.key}"><small>Event cover</small><b>${x.name}</b></a>`).join('')}</div></div></section>
-${band('Get a quote for your '+(e.short==='Sport'?'sporting event':e.short.toLowerCase()+' event').replace('film and tv event','production'))}`,'event'));
+${band('Get a quote for your '+(e.short==='Sport'?'sporting event':e.short.toLowerCase()+' event').replace('film and tv event','production').replace('festivals event','festival'))}`,'event'));
 
 add('ambulance-hire','/event-medical-cover/ambulance-hire','Event medical cover','Ambulances and response vehicles',()=>`
 ${subHero({image:'dca',pos:'center',crumb:[['Event medical cover','event-medical-cover'],['Ambulances and response vehicles']],eyebrow:'Our vehicles',title:'Event ambulances and response vehicles',lede:'Dual Crewed Ambulances and Fast Response Vehicles for event medical cover, crewed by our own clinicians.'})}
@@ -470,12 +718,18 @@ ${subHero({image:'dca',pos:'center',crumb:[['Event medical cover','event-medical
   <article class="veh"><div class="ph" style="background-image:url(${img('frv')})"></div><div class="tag">Fast Response Vehicle</div><h2 class="h3" style="font-size:38px">Speed across large sites</h2><p style="margin-bottom:24px">A single clinician in a fully equipped car, ideal for long courses, showgrounds and spread-out festival sites.</p>${ticks([['One clinician, fully equipped'],['Quick to reach patients on roads and tracks'],['A visible, branded first aid point'],['Works alongside a DCA or on its own']])}</article>
 </div></section>
 <section class="sec mist tight"><div class="wrap split mid"><div><p class="eyebrow">If a patient needs hospital</p><h2 class="hd" style="font-size:40px">We treat on site and hand over to the NHS</h2></div><p class="lede">Our crews assess and treat on site. When someone needs hospital, we call NHS ambulance services and hand over with a full record of care.</p></div></section>
-${band('Book a vehicle and crew for your event')}`,'event');
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">Choosing a vehicle</h2></div>${faq([['Which vehicle does my event need?','It depends on the size of the site, the crowd and the activities. Your medical plan sets out which vehicles you need and where they go. Many events use one of each.'],['Do your vehicles come with a crew?','Always. Every vehicle is crewed by our own clinicians and run under the same medical plan as the rest of your team.'],['Can a vehicle act as the first aid point?','Yes. A branded vehicle is easy for guests to find, and a Dual Crewed Ambulance gives patients somewhere warm and private to be treated.'],['Can you bring vehicles to events outside the Midlands?','Yes. Our vehicles have worked in London, Wales and on the south coast, and travel is planned into your quote.']])}</div></section>
+${howWeWork}
+${band('Book a vehicle and crew for your event')}`,'hire');
 
 add('medical-planning','/event-medical-cover/medical-planning','Event medical cover','Medical plans and risk assessments',()=>`
 ${darkHero({image:'evt_run',crumb:[['Event medical cover','event-medical-cover'],['Medical plans']],eyebrow:'Medical planning',title:'Event medical plans and risk assessments',lede:'A clear, written plan for your Safety Advisory Group, council and insurers, included with every booking.',ctas:`<a class="btn btn-red" href="#get-a-quote">Start your plan <span class="arrow">→</span></a><a class="btn btn-ghost" href="#event-medical-plan">What goes in a plan</a>`})}
-<section class="sec"><div class="wrap split"><div><p class="eyebrow">What you get</p><h2 class="hd h2">A plan built around your event</h2></div>${ticks([['Medical risk assessment','Based on the Purple Guide approach.'],['Resource plan','Staff grades, numbers, positions and vehicles.'],['Site and communications','Treatment areas, access routes and radio procedures.'],['NHS liaison','Local hospitals and ambulance service arrangements.'],['Major incident procedures','What happens if something serious occurs.']])}</div></section>
-${stepsBlock}${band('Need a medical plan for your event?')}`,'event');
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">What you get</p><h2 class="hd h2">A plan built around your event</h2></div>${ticks([['Medical risk assessment','Based on the Purple Guide and Event Safety Guide approach, and your duties under health and safety law.'],['Resource plan','Staff grades, numbers, positions and vehicles.'],['Site and communications','Treatment areas, access routes and radio procedures.'],['NHS liaison','Local hospitals and ambulance service arrangements.'],['Major incident procedures','What happens if something serious occurs.']])}</div></section>
+<section class="sec mist"><div class="wrap split"><div><p class="eyebrow">What we need from you</p><h2 class="hd h2">The details that shape your plan</h2><p class="lede" style="margin-top:20px">The more we know, the better the plan. If you don't have everything yet, we'll fill the gaps on a short call.</p></div>${ticks([['The event','Dates, opening times, expected attendance and how many people will be on site at the peak.'],['The site','A site plan or map, entrances, access routes for vehicles and where the stages or activities are.'],['The audience and activities','Who is coming, whether alcohol is served, and anything higher risk such as motorsport, water or stunts.'],['What others have asked for','Any requirements from your council, Safety Advisory Group, venue, governing body or insurer.'],['Your own paperwork','Your event risk assessment or event management plan, if you have one.']])}</div></section>
+${stepsBlock}
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">What you receive</p><h2 class="hd h2">Paperwork you can hand straight on</h2></div>${ticks([['Medical plan','How patients will be found, treated and handed over to the NHS, with timings, positions and communications.'],['Medical risk assessment','The reasoning behind the cover, so your Safety Advisory Group can see how it was decided.'],['Staffing and vehicle schedule','Who is on site, at what grade, and when.'],['Post-event report','A summary of patient contacts and anything to improve for next time, drawn from our digital patient records.']])}</div></section>
+<section class="sec mist"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">About medical plans</h2></div>${faq([['Is the medical plan included in the price?','Yes. A risk assessment and medical plan come with every booking.'],['When will I get it?','Once you confirm your booking we write the plan and send it to you. Tell us your Safety Advisory Group or licensing deadline and we will work to it.'],['Do you follow the Purple Guide?','Yes. Our plans use the risk-based approach of the Purple Guide and the HSE Event Safety Guide (HSG195), and support your duty to carry out a suitable and sufficient risk assessment.'],['What about a major incident?','Every plan includes major incident procedures. Our event leads are trained in major incident management (MIMMS), and our clinicians use Ten Second Triage, the national triage standard.'],['We already have a medical needs assessment. Can you work from it?','Yes. We review it, raise anything we think is missing and build our plan around it.']])}</div></section>
+${band('Need a medical plan for your event?')}`,'event');
 
 add('training','/training','Training','Training',()=>`
 ${darkHero({image:'training',crumb:[['Training']],eyebrow:'First aid training',title:'First aid training from working clinicians',lede:'Practical courses at our Swadlincote venue or at your workplace, taught by people who use these skills every week.',ctas:`<a class="btn btn-red" href="#courses">See courses <span class="arrow">→</span></a><a class="btn btn-ghost" href="#onsite-training">Train your team on site</a>`})}
@@ -489,38 +743,55 @@ COURSES.forEach(c=>add(c.key,'/training/'+c.key,'Training',c.name,()=>`
 ${darkHero({image:c.image,crumb:[['Training','training'],[c.name]],eyebrow:'Training course',title:c.name,lede:c.lede,ctas:`<a class="btn btn-red" href="#book">Book a place <span class="arrow">→</span></a><a class="btn btn-ghost" href="#onsite-training">Book for your team</a>`})}
 <section class="sec"><div class="wrap split"><div><p class="eyebrow">What you'll learn</p><h2 class="hd h2" style="margin-bottom:32px">Skills you can use straight away</h2>${ticks(c.learn)}</div>
 <dl class="fcard"><div><dt>Length</dt><dd>${T('[Hours]')}</dd></div><div><dt>Price</dt><dd>From ${T('[£price]')} per person</dd></div><div><dt>Group size</dt><dd>Up to ${T('[number]')}</dd></div><div><dt>Where</dt><dd>Swadlincote, or at your workplace</dd></div><div><dt>You receive</dt><dd>Certificate of attendance</dd></div><div style="border:0"><dt>Who it's for</dt><dd>${c.who}</dd></div><a class="btn btn-red" href="#book">Book a place</a></dl></div></section>
+<section class="sec dark"><div class="wrap split"><div><p class="eyebrow">On the day</p><h2 class="hd h2">What to expect</h2></div>${ticks([['Taught by working clinicians','Our trainers come from nursing, the armed forces, emergency services and frontline ambulance work.'],['Mostly practical','Most of the session is spent practising on manikins and training defibrillators, not watching slides.'],['Wear something comfortable','You will kneel on the floor to practise CPR.'],['Tell us about any needs','If anything might make the practical parts difficult, let us know and we will adapt.']])}</div></section>
 <section class="sec mist"><div class="wrap"><p class="eyebrow">Upcoming dates</p><h2 class="hd h2">Book a public course</h2>
 <div class="tblwrap"><table class="t"><tbody>${[1,2,3].map(()=>`<tr><td>${T('[Date]')}</td><td>Swadlincote, Derbyshire</td><td style="color:var(--red);font-weight:700;font-size:14px;letter-spacing:1px;text-transform:uppercase">${T('[Places left]')}</td><td style="text-align:right"><a class="btn btn-line" href="#book" style="min-height:44px;padding:0 20px">Book</a></td></tr>`).join('')}</tbody></table></div></div></section>
-<section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">Before you book</h2></div>${faq([['Can you run this at our workplace?','Yes. We bring the manikins, defibrillator and kit to your site anywhere in the Midlands.'],...c.faq])}</div></section>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">Before you book</h2></div>${faq([['Can you run this at our workplace?','Yes. We bring the manikins, defibrillator and kit to your site anywhere in the Midlands.'],...c.faq,['Will I get a certificate?','Yes, a certificate of attendance. Our courses aren\'t regulated qualifications, so check what your employer or insurer needs.']])}</div></section>
 <section class="sec mist" id="book"><div class="wrap split"><div><p class="eyebrow">Book</p><h2 class="hd h2">Book or ask a question</h2><p class="lede" style="margin:20px 0 32px">Tell us how many people and when suits you, and we'll confirm a date.</p><span class="kicker">Or call</span><a class="big-phone" href="tel:03333358999">${PHONE}</a></div>${courseForm(c.key)}</div></section>`,'training'));
 
 add('onsite-training','/training/onsite-training-for-businesses','Training','On-site group training',()=>`
 ${darkHero({image:'teamselfie',crumb:[['Training','training'],['On-site training']],eyebrow:'On-site training',title:'First aid training at your workplace',lede:'Any of our courses, delivered at your site for your team, anywhere in the Midlands.',ctas:`<a class="btn btn-red" href="#book">Get a training quote <span class="arrow">→</span></a>`})}
-<section class="sec"><div class="wrap split"><div><p class="eyebrow">How it works</p><h2 class="hd h2">We bring everything</h2></div>${ticks([['Pick a course','Or ask us to tailor one to your workplace.'],['Choose a date','Including evenings and weekends.'],['We bring the kit','Manikins, training defibrillators and dressings.'],['Your team trains together','Up to '+'[number]'+' people per session.']])}</div></section>
-<section class="sec mist"><div class="wrap"><p class="eyebrow">Courses we can run on site</p><div class="cards" style="margin-top:28px">${COURSES.slice(0,3).map(c=>`<a class="card" href="#${c.key}"><small>Course</small><b>${c.name}</b><p>${c.who}</p></a>`).join('')}</div></div></section>
-<section class="sec" id="book"><div class="wrap split"><div><p class="eyebrow">Get a quote</p><h2 class="hd h2">Training for your team</h2></div>${courseForm('onsite-training')}</div></section>`,'training');
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">How it works</p><h2 class="hd h2">We bring everything</h2></div>${ticks([['Pick a course','Or ask us to tailor one to your workplace.'],['Choose a date','Including evenings and weekends.'],['We bring the kit','Manikins, training defibrillators and dressings.'],['Your team trains together','In sessions sized so everyone gets hands-on practice.']])}</div></section>
+<section class="sec dark"><div class="wrap split"><div><p class="eyebrow">Who it suits</p><h2 class="hd h2">Training built around your workplace</h2><p class="lede" style="margin-top:20px">We use scenarios that match your setting, so your team practises on the kind of emergency they could actually face.</p></div>${ticks([['Offices and businesses','CPR, defibrillator use and common workplace emergencies.'],['Sports clubs and gyms','Collapse, head injuries and using the club defibrillator.'],['Schools, nurseries and youth groups','Paediatric first aid for staff and volunteers.'],['Care and healthcare teams','Basic and Intermediate Life Support for clinical staff.'],['Community groups and charities','Practical first aid for volunteers who run events.']])}</div></section>
+<section class="sec mist"><div class="wrap"><p class="eyebrow">Courses we can run on site</p><div class="cards" style="margin-top:28px">${COURSES.map(c=>`<a class="card" href="#${c.key}"><small>Course</small><b>${c.name}</b><p>${c.who}</p></a>`).join('')}</div></div></section>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">Before you book</h2></div>${faq([['What do we need to provide?','A room big enough for everyone to kneel on the floor, and a table. We bring the manikins, training defibrillators and dressings.'],['Can you train evening or weekend shifts?','Yes. We can run sessions at times that suit your rota.'],['Can you tailor the content?','Yes. Tell us about your workplace and any incidents you have had, and we will build them into the scenarios.'],['Is this a First Aid at Work qualification?','No. Our courses aren\'t regulated qualifications. If you need First Aid at Work or Emergency First Aid at Work, tell us and we\'ll talk through your options.']])}</div></section>
+<section class="sec mist" id="book"><div class="wrap split"><div><p class="eyebrow">Get a quote</p><h2 class="hd h2">Training for your team</h2></div>${courseForm('onsite-training')}</div></section>`,'training');
 
 add('areas','/areas','Areas we cover','Areas we cover',()=>`
-${subHero({image:'areas',pos:'center',crumb:[['Areas we cover']],eyebrow:'Areas we cover',title:'Event medical cover across the Midlands',lede:'Based in Swadlincote, Derbyshire, where Derbyshire, Staffordshire and Leicestershire meet. We cover the whole Midlands and UK-wide on request.'})}
-<section class="sec"><div class="wrap"><p class="eyebrow">Counties</p><h2 class="hd h2" style="margin-bottom:44px">Find your area</h2>
-<div class="ccgrid">${AREAS.map(a=>`<a class="ccard" href="#${a[0]}"><b>${a[1]}</b><p>${a[3].slice(0,4).join(', ')}</p><span class="meta">${a[4]?'Our base · ':''}Event cover in ${a[1]} →</span></a>`).join('')}</div></div></section>
-${band('Planning an event in the Midlands?')}`,'areas');
+${subHero({image:'areas',pos:'center',crumb:[['Areas we cover']],eyebrow:'Areas we cover',title:'Event medical cover across the UK',lede:'Based in Swadlincote, Derbyshire, where Derbyshire, Staffordshire and Leicestershire meet. We cover the whole Midlands, events across the UK from Bournemouth to Glasgow, and abroad in Paris.'})}
+<section class="sec"><div class="wrap"><p class="eyebrow">The Midlands</p><h2 class="hd h2" style="margin-bottom:44px">Find your area</h2>
+<div class="ccgrid">${AREAS.filter(a=>!a[6]).map(a=>`<a class="ccard" href="#${a[0]}"><b>${a[1]}</b><p>${a[3].slice(0,4).join(', ')}</p><span class="meta">${a[4]?'Our base':'About '+a[5].t+' to '+a[5].to} →</span></a>`).join('')}</div></div></section>
+<section class="sec black"><div class="wrap"><p class="eyebrow">Further afield</p><h2 class="hd h2" style="margin-bottom:44px">Beyond the Midlands</h2>
+<div class="ccgrid">${AREAS.filter(a=>a[6]).map(a=>`<a class="ccard" href="#${a[0]}" style="background:var(--night-2);border-color:var(--night-line)"><b style="color:#FFFFFF">${a[1]}</b><p style="color:var(--soft)">${a[3].join(', ')}</p><span class="meta" style="color:#FFFFFF;border-color:var(--night-line)">About ${a[5].t} from our base →</span></a>`).join('')}</div></div></section>
+${coverage(false)}
+<section class="sec mist tight"><div class="wrap split"><div><p class="eyebrow">Drive times</p><h2 class="hd h2">From Swadlincote</h2><p class="lede" style="margin-top:20px">Approximate drive times from our base, before traffic. For events far from base we plan travel, accommodation and rest breaks so crews arrive fresh.</p></div>
+<table class="traveltbl"><tbody>${AREAS.filter(a=>!a[4]).map(a=>`<tr><td><a href="#${a[0]}" style="text-decoration:none;font-weight:600">${a[5].to}</a></td><td>${a[5].t.replace(' by road via the Channel Tunnel','')}</td></tr>`).join('')}</tbody></table></div></section>
+${band('Planning an event anywhere in the UK?')}`,'areas');
 
-AREAS.forEach((a,i)=>add(a[0],'/areas/'+a[0],'Areas we cover',a[1],()=>`
-${subHero({image:AREA_IMG[i],pos:'center',crumb:[['Areas','areas'],[a[1]]],eyebrow:'Areas we cover',title:'Event medical cover in '+a[1],lede:a[4]?'Our home county. Our base is in Swadlincote, so Derbyshire events get our quickest response and most local knowledge.':`Professional event medical cover and first aid training across ${a[1]}, from our base in Swadlincote, Derbyshire.`})}
-<section class="sec"><div class="wrap split"><div><p class="eyebrow">Where we work</p><h2 class="hd h2">Covering all of ${a[1]}</h2><p class="lede" style="margin-top:20px">Including ${a[3].join(', ')}. ${T('[Add venues and events you have covered in '+a[1]+'.]')}</p></div>
-${ticks([['Event medical cover','Festivals, sport, community events and more.'],['Dual Crewed Ambulances and Fast Response Vehicles','Crewed by our own clinicians.'],['Medical plans','For your local council and Safety Advisory Group.'],['First aid training','At your workplace in '+a[1]+'.']])}</div></section>
+AREAS.forEach((a,i)=>add(a[0],'/areas/'+a[0],'Areas we cover',a[1],()=>{const far=a[6],tr=a[5];return `
+${subHero({image:AREA_IMG[i],pos:'center',crumb:[['Areas','areas'],[a[1]]],eyebrow:far?'Areas we cover · further afield':'Areas we cover',title:'Event medical cover in '+a[1],
+  lede:a[4]?'Our home county. Our base is in Swadlincote, so Derbyshire events get our quickest response and most local knowledge.':far?`Medical cover for festivals, sport and events in ${a[1]}, about ${tr.t} from our base in Swadlincote, Derbyshire. Travel, accommodation and crew rest are planned into your quote.`:`Professional event medical cover and first aid training across ${a[1]}, about ${tr.t} from our base in Swadlincote, Derbyshire.`,
+  points:far?['About '+tr.t+' from our base','Same crew, kit and standards as at home','Medical plan with every booking']:null})}
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Where we work</p><h2 class="hd h2">${far?'Covering events in '+a[1]:'Covering all of '+a[1]}</h2><p class="lede" style="margin-top:20px">Including ${a[3].join(', ')}. ${AREA_NOTE[a[0]]||'Every plan we write for '+a[1]+' is built around the venue, the crowd and the distance to the nearest emergency department, with local NHS ambulance arrangements included.'}</p></div>
+${ticks([['Travel time',a[4]?'Our base. About '+tr.t+' to '+tr.to+'.':'About '+tr.t+(tr.to===a[1]?'':' to '+tr.to)+' from Swadlincote, depending on traffic.'],['Event medical cover','Festivals, sport, community events and more.'],['Dual Crewed Ambulances and Fast Response Vehicles','Crewed by our own clinicians.'],far?['Planned for distance','Travel, accommodation and rest breaks built into the plan and the quote.']:['First aid training','At your workplace in '+a[1]+'.']])}</div></section>
 <div class="tiles four">${EVENTS.slice(0,4).map(e=>tile(e.key,e.image,e.short,'In '+a[1])).join('')}</div>
-<section class="sec mist tight"><div class="wrap"><p class="eyebrow">Nearby areas</p><div class="cards" style="margin-top:28px">${AREAS.filter(x=>x[0]!==a[0]).slice(i%3,i%3+3).map(x=>`<a class="card" href="#${x[0]}"><small>Area</small><b>${x[1]}</b></a>`).join('')}</div></div></section>
-${band('Get a quote for your event in '+a[1])}`,'areas'));
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Questions</p><h2 class="hd h2">Events in ${a[1]}</h2></div>${faq([
+  ['Do you charge for travel to '+a[1]+'?',far?'Travel, accommodation and crew rest are priced into your quote, so you see the full cost before you book.':'Any travel costs are shown in your quote, so you see the full price before you book.'],
+  ['Can you write a medical plan for '+(a[0]==='paris'?'the local authorities':'our Safety Advisory Group')+'?','Yes. Every booking includes a risk-assessed medical plan, with the local hospitals and '+(a[0]==='paris'?'emergency services':'NHS ambulance arrangements')+' for your venue.'],
+  ['What happens if someone needs hospital?','We treat on site. When someone needs hospital, we call '+(a[0]==='paris'?'the local emergency services':'NHS ambulance services')+' and hand over with a full digital patient record.'],
+  far?['Is it the same team as in the Midlands?','Yes. The same clinicians, vehicles, kit and standards, with travel and rest planned so crews arrive fresh.']:['Do you run first aid training in '+a[1]+'?','Yes. Any of our courses can be run at your workplace in '+a[1]+'.']])}</div></section>
+<section class="sec mist tight"><div class="wrap"><p class="eyebrow">${far?'Other areas':'Nearby areas'}</p><div class="cards" style="margin-top:28px">${(far?AREAS.filter(x=>x[6]&&x[0]!==a[0]).concat([AREAS[0]]):AREAS.filter(x=>x[0]!==a[0]&&!x[6]).slice(i%3,i%3+3)).map(x=>`<a class="card" href="#${x[0]}"><small>${x[4]?'Our base':'About '+x[5].t.replace(' by road via the Channel Tunnel','')}</small><b>${x[1]}</b></a>`).join('')}</div></div></section>
+${band('Get a quote for your event in '+a[1])}`},'areas'));
 
 add('about','/about','About','About us',()=>`
 ${darkHero({image:'case',crumb:[['About']],eyebrow:'About us',title:'Clinicians first, since 2019',lede:'Midlands Ambulance Group was set up by NHS-trained clinicians to bring the standards of frontline care to events across the Midlands.',ctas:`<a class="btn btn-red" href="#team">Meet the team <span class="arrow">→</span></a><a class="btn btn-ghost" href="#case-studies">Case studies</a>`})}
-<section class="sec"><div class="wrap split"><div><p class="eyebrow">Our story</p><h2 class="hd h2">From one crew to a Midlands-wide service</h2></div><div class="prose"><p>We started covering events in 2019 and began teaching first aid in 2020. Today our team covers festivals, sport, film sets and community events across the Midlands and beyond, from our base in Swadlincote, Derbyshire.</p><p>${T('[A few lines in your own words: why you started, what you are proud of, where you are heading.]')}</p></div></div></section>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Our story</p><h2 class="hd h2">Built on real emergency experience</h2></div><div class="prose"><p>We started covering events in 2019 and began teaching first aid in 2020. Today our team covers festivals, sport, film sets and community events across the Midlands and beyond, from our base in Swadlincote, Derbyshire.</p><blockquote class="mdnote"><p>I started Midlands Ambulance Group because I wanted to build something different: a medical provider that understands real emergencies, not just first aid scenarios. My background is in frontline ambulance work, and it taught me that effective event medical cover is about more than having a team and a first aid kit on site. It is about clinical judgement, preparedness, strong leadership and the ability to respond when the unexpected happens.</p><p>I am proud of the time, commitment and determination that have gone into building MAG from the ground up, developing the right relationships and creating a business built on professionalism, integrity and patient-centred care. What sets us apart is that we bring real-world emergency care experience into the events industry. We combine appropriately skilled clinicians, robust planning and a collaborative approach to deliver medical provision tailored to each event's own risks.</p><p>My ambition is for Midlands Ambulance Group to become a trusted, nationally recognised provider operating throughout the UK. I want us to be known not simply for turning up, but for giving clients confidence that their medical provision has been carefully considered, professionally delivered and built around the safety of the people attending their events. For me, MAG is about raising expectations of what event medical cover should be, one event, one partnership and one patient at a time.</p><footer><span class="mdph" role="img" aria-label="John Blake" style="background:url(${img('john-blake')}) center/cover"></span><span><strong>John Blake</strong>Managing Director, Midlands Ambulance Group</span></footer></blockquote></div></div></section>
 <section class="sec dark"><div class="wrap"><p class="eyebrow">What we stand for</p><div class="steps" style="margin-top:28px">
 <div class="step"><h3 class="h3">Clinical standards</h3><p>NHS-trained clinicians and current UK guidance in everything we do.</p></div>
 <div class="step"><h3 class="h3">Planned, not guessed</h3><p>Every booking starts with a written risk assessment and medical plan.</p></div>
 <div class="step"><h3 class="h3">Part of your team</h3><p>We work alongside your control, stewards and security on the day.</p></div></div></div></section>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Our journey</p><h2 class="hd h2">From community responder to UK-wide cover</h2><p class="lede" style="margin-top:20px">Our team brings over 50 years' combined experience from the NHS, frontline ambulance services and the wider medical sector.</p></div>${ticks([['2012','John starts in healthcare as a volunteer community first responder.'],['2019','Midlands Ambulance Group is founded in Swadlincote, Derbyshire.'],['2020','We start teaching first aid, with trainers from nursing, the armed forces and the emergency services.'],['Three years running','Rebooked year after year by the Banbury Triathlon and the Ministry of Defence Equestrian Trials.'],['Today','A team from Scotland to the south coast, with clinical governance led by our Paramedic Clinical Lead and Medical Director.']])}</div></section>
+${howWeWork}
 <section class="sec tight"><div class="wrap cards">
 <a class="card" href="#team"><small>About</small><b>Our team</b><p>The people behind Midlands Ambulance Group.</p></a>
 <a class="card" href="#case-studies"><small>About</small><b>Case studies</b><p>Events we have covered.</p></a>
@@ -529,24 +800,29 @@ ${clients}`,'about');
 
 add('team','/about/team','About','Our team',()=>`
 ${plainHero({crumb:[['About','about'],['Our team']],eyebrow:'Our team',title:'The people behind the uniform',lede:'Paramedics, technicians, nurses and trainers who cover your events and teach our courses.'})}
-<section class="sec"><div class="wrap people">
-<div class="person"><div class="ph" role="img" aria-label="John Blake" style="background:url(${img('john-blake')}) center/cover"></div><div class="role">Managing Director</div><h3 class="h3">John Blake</h3><p>Ambulance Technician and Associate Member of the Royal College of Paramedics. Striving for excellence in emergency care: every event, every time.</p></div>
+<section class="sec"><div class="wrap"><p class="eyebrow">Leadership and clinical governance</p><h2 class="hd h2" style="margin-bottom:44px">Who leads the team</h2><div class="people">
+<div class="person"><div class="ph" role="img" aria-label="John Blake" style="background:url(${img('john-blake')}) center/cover"></div><div class="role">Managing Director</div><h3 class="h3">John Blake</h3><p>Ambulance Technician and Associate Member of the Royal College of Paramedics. John started in healthcare in 2012 as a volunteer community first responder, and still works operationally in the NHS alongside running MAG.</p></div>
 <div class="person"><div class="ph">MD</div><div class="role">Medical Director</div><h3 class="h3">Mark</h3><p>${T('[Surname, short bio and clinical background]')}</p></div>
 <div class="person"><div class="ph" role="img" aria-label="Karl Stanfield" style="background:url(${img('karl-stanfield')}) center/cover"></div><div class="role">Paramedic Clinical Lead</div><h3 class="h3">Karl Stanfield</h3><p><b>MSc, PGPHCC, BSc, MCPara, ICSm</b><br>HCPC-registered paramedic (PA052742) with an MSc in Critical Care, a PG Cert in Pre-Hospital Critical Care and a BSc in Paramedic Science. Member of the Royal College of Paramedics, the Intensive Care Society and the Faculty of Pre-Hospital Care.</p></div>
-</div></section>
+</div></div></section>
+<section class="sec mist"><div class="wrap"><p class="eyebrow">Event team</p><h2 class="hd h2" style="margin-bottom:44px">On the ground at your event</h2><div class="cards crewlist" style="row-gap:44px"><div class="card"><small>Director of Human Resources</small><b>Sarah Buxton</b><p>Medically qualified and with us since the early days. Sarah runs HR and administration and still works as a responder at events.</p></div><div class="card"><small>Paramedic</small><b>Lucy Irons</b><p>Our first paramedic. Lucy joined while studying for her degree and now works full time for an NHS ambulance service on the south coast.</p></div><div class="card"><small>Technician and Event Team Lead</small><b>Jamie Anderson</b><p>A former soldier with ambulance experience across the UK. Jamie leads event teams nationwide and worked alongside John on emergency ambulances.</p></div><div class="card"><small>Technician</small><b>Gemma Luxton</b><p>After military service, Gemma works operationally in the NHS. She holds a teaching qualification and helps new team members build their skills.</p></div><div class="card"><small>Technician</small><b>James O’Neill</b><p>A background in emergency planning and close protection, and experience as a medic overseas. James writes medical needs and risk assessments for events.</p></div><div class="card"><small>Paramedic, Scotland</small><b>Bryan Mckeown</b><p>A paramedic with the Scottish Ambulance Service and part of our Scotland division. Bryan has covered events as far south as Bournemouth.</p></div><div class="card"><small>Student Paramedic, Scotland</small><b>Matthew McKenna</b><p>Studying for his paramedic degree with the Scottish Ambulance Service, Matthew is known for keeping patients calm in distressing situations.</p></div><div class="card"><small>Event Responder</small><b>Lele Lau</b><p>Multilingual and an experienced close protection officer, Lele joined us after an event near her home in the North West.</p></div><div class="card"><small>Event Responder</small><b>Jayne Buxton</b><p>Works in GP surgery medical services and as a phlebotomist. Known to the team as “Mumma B”, she looks after everyone’s welfare on shift.</p></div></div></div></section>
 <section class="ph" style="background-image:url(${img('teamselfie')});aspect-ratio:21/8;min-height:280px"></section>
 ${band('Want to join the team?','See careers','careers')}`,'about');
 
 add('case-studies','/case-studies','About','Case studies',()=>`
 ${plainHero({crumb:[['About','about'],['Case studies']],eyebrow:'Case studies',title:'Events we have covered',lede:'How we planned and delivered medical cover for organisers across the UK.'})}
-<section class="sec"><div class="wrap split mid"><div class="ph" style="background-image:url(${img('case')});aspect-ratio:1/1"></div><div><p class="eyebrow">Triathlon</p><h2 class="hd h2">Banbury Triathlon</h2><div class="prose" style="margin-top:20px"><p><b>The brief:</b> ${T('[What the organiser needed]')}</p><p><b>What we provided:</b> ${T('[Team, grades and vehicles]')}</p><p><b>The outcome:</b> ${T('[Patients seen, feedback, rebooked?]')}</p></div></div></div></section>
-<section class="sec mist"><div class="wrap split mid"><div><p class="eyebrow">Cheer competition</p><h2 class="hd h2">Future Cheer UK</h2><p class="lede" style="margin-top:20px">“The most professional… they have taken time to tailor their service to our needs.”</p><p style="margin-top:20px">${T('[Add the brief, team and outcome]')}</p></div><div class="ph" style="background-image:url(${img('evt_arena')});aspect-ratio:1/1"></div></div></section>
+<section class="sec"><div class="wrap split mid"><div class="ph" style="background-image:url(${img('case')});aspect-ratio:1/1" role="img" aria-label="Our crew at the Banbury Triathlon"></div><div><p class="eyebrow">Triathlon · Oxfordshire</p><h2 class="hd h2">Banbury Triathlon</h2><div class="prose" style="margin-top:20px"><p><b>The brief:</b> Medical cover for a triathlon lasting several hours, with risks spread across the swim exit, transition, a road cycle course and the finish line. These range from cramp and dehydration to collisions on the bike leg and cardiac emergencies.</p><p><b>What we provided:</b> Clinicians at the swim exit, transition and finish, with mobile cover along the course, all set out in a written medical plan.</p><p><b>The outcome:</b> Rebooked for a third year running. The organiser, Sarah Shepherd, said: “If I could give more than five stars, I would – Midlands Ambulance Group saved my event!”</p></div></div></div></section>
+<section class="sec mist"><div class="wrap split mid"><div><p class="eyebrow">Equestrian · Leicestershire</p><h2 class="hd h2">Ministry of Defence Equestrian Trials</h2><div class="prose" style="margin-top:20px"><p><b>The brief:</b> Medical cover for the MoD's Equestrian Trials at the Defence Animal Training Regiment, Melton Mowbray, where falls, kicks and collisions between riders, horses and obstacles can happen suddenly.</p><p><b>What we provided:</b> A medical team working within MoD protocols and standards, alongside MoD personnel and the event organisers.</p><p><b>The outcome:</b> Renewed for a third year running.</p></div></div><div class="ph" style="background-image:url(${img('frv')});aspect-ratio:1/1"></div></div></section>
+<section class="sec"><div class="wrap split mid"><div class="ph" style="background-image:url(${img('frvstreet')});aspect-ratio:1/1" role="img" aria-label="Our response car in Birmingham city centre"></div><div><p class="eyebrow">Charity · Birmingham</p><h2 class="hd h2">Charity sleep out, Birmingham city centre</h2><div class="prose" style="margin-top:20px"><p><b>The brief:</b> Overnight cover in October 2026 for people sleeping outdoors in the city centre to raise funds and awareness to end homelessness, with cold weather the main risk.</p><p><b>What we provided:</b> Frontline ambulance clinicians and a response car on site through the night.</p><p><b>The outcome:</b> The event raised funds and awareness, and we look forward to working with the organisers again.</p></div></div></div></section>
+<section class="sec mist"><div class="wrap split mid"><div><p class="eyebrow">Cheer competition</p><h2 class="hd h2">Future Cheer UK</h2><p class="lede" style="margin-top:20px">“The most professional… they have taken time to tailor their service to our needs.”</p><p style="margin-top:12px;color:var(--mute)">Ian Crow, Future Cheer UK</p><p style="margin-top:20px"><a class="btn btn-line" href="#dance-and-cheer">Dance and cheer cover</a></p></div><div class="ph" style="background-image:url(${img('evt_arena')});aspect-ratio:1/1"></div></div></section>
 ${band('Have an event like these?')}`,'about');
 
 add('reviews','/reviews','About','Reviews',()=>`
 ${plainHero({crumb:[['About','about'],['Reviews']],eyebrow:'Reviews',title:'What organisers say about us',lede:'We are building up our Google reviews. If we have covered your event or trained your team, we would be grateful for yours.'})}
 ${testimonial}
-<section class="sec"><div class="wrap split mid"><div><p class="eyebrow">Leave a review</p><h2 class="hd h2">It takes a minute</h2><p class="lede" style="margin:20px 0 32px">Your review helps other organisers choose the right medical provider.</p><a class="btn btn-red" href="${REVIEW}">Review us on Google <span class="arrow">→</span></a></div><div class="prose"><p>${T('[More testimonials go here once clients agree to be quoted.]')}</p><p style="color:var(--mute)">We will add a star rating to the site once real Google reviews are in.</p></div></div></section>`,'about');
+<section class="sec"><div class="wrap split mid"><div><p class="eyebrow">Leave a review</p><h2 class="hd h2">It takes a minute</h2><p class="lede" style="margin:20px 0 32px">Your review helps other organisers choose the right medical provider.</p><a class="btn btn-red" href="${REVIEW}">Review us on Google <span class="arrow">→</span></a></div><div class="prose"><p>Reviews help other organisers choose the right medical provider, and they help us reach more events. If we have covered your event or trained your team, a few lines about your experience would mean a lot.</p><p style="color:var(--mute)">We will add a star rating to the site once real Google reviews are in.</p></div></div></section>
+<section class="sec mist"><div class="wrap"><p class="eyebrow">Feedback from organisers</p><h2 class="hd h2" style="margin-bottom:44px">In their words</h2><div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">${REVIEWS.map(r=>quote(...r)).join('')}</div><p style="margin-top:32px;color:var(--mute);font-size:15px">From post-event feedback and online reviews.</p></div></section>
+${band('Want results like these at your event?')}`,'about');
 
 add('guides','/guides','Guides','Guides',()=>`
 ${plainHero({crumb:[['Guides']],eyebrow:'Guides for organisers',title:'Plan a safer event',lede:'Plain-English guides on medical cover, the Purple Guide and keeping your audience safe.'})}
@@ -556,7 +832,8 @@ ${band('Need help with your event?')}`,'guides');
 GUIDES.forEach(g=>add(g.key,'/guides/'+g.key,'Guides',g.title,()=>`
 ${plainHero({crumb:[['Guides','guides'],[g.cat]],eyebrow:g.cat,title:g.title,lede:g.sum})}
 <section class="sec"><div class="wrap split"><article class="prose">${g.body}</article>
-<aside style="position:sticky;top:120px"><div class="fcard" style="padding:32px"><p class="eyebrow" style="color:#FFFFFF">Need cover?</p><h3 class="h3" style="font-size:32px">We'll write your medical plan</h3><p style="color:var(--soft);margin:10px 0 0">Every booking includes a risk assessment and medical plan.</p><a class="btn btn-red" href="#get-a-quote">Get a quote</a></div></aside></div></section>
+<aside style="position:sticky;top:120px"><div class="fcard" style="padding:32px"><p class="eyebrow" style="color:var(--red-lt)">Need cover?</p><h3 class="h3" style="font-size:32px">We'll write your medical plan</h3><p style="color:var(--soft);margin:10px 0 0">Every booking includes a risk assessment and medical plan.</p><a class="btn btn-red" href="#get-a-quote">Get a quote</a></div></aside></div></section>
+${g.key==='how-many-first-aiders'?estimator():''}
 <section class="sec mist tight"><div class="wrap"><p class="eyebrow">More guides</p><div class="cards" style="margin-top:28px">${GUIDES.filter(x=>x.key!==g.key).slice(0,3).map(x=>`<a class="card" href="#${x.key}"><small>${x.cat}</small><b>${x.title}</b></a>`).join('')}</div></div></section>`,'guides'));
 
 add('get-a-quote','/get-a-quote','Contact','Get a quote',()=>`
@@ -578,11 +855,18 @@ ${plainHero({crumb:[['Contact']],eyebrow:'Contact',title:'Talk to the team',lede
 <div><span class="kicker">Email</span><p style="font-size:22px;font-weight:600;margin:6px 0 0">info@midlandsambulance.co.uk</p></div>
 <div><span class="kicker">Base</span><p style="font-size:22px;font-weight:600;margin:6px 0 0">Swadlincote, Derbyshire DE11 9ED</p><p style="color:var(--mute);margin:4px 0 0">Covering the Midlands and UK-wide</p></div>
 <div><a class="btn btn-red" href="#get-a-quote">Get an event quote <span class="arrow">→</span></a></div></div>
-<div class="cog-wrap"><h3 class="h3" style="font-size:32px;margin:0 0 12px">Send us a message</h3><p style="margin:0 0 24px">Email us and the team will get back to you. For an event quote, the quote form gets you a price fastest.</p><p><a class="btn btn-red" href="mailto:info@midlandsambulance.co.uk">Email info@midlandsambulance.co.uk <span class="arrow">→</span></a></p></div></div></section>`,'contact');
+<div class="cog-wrap"><h3 class="h3" style="font-size:32px;margin:0 0 12px">Send us a message</h3><p style="margin:0 0 24px">Email us and the team will get back to you. For an event quote, the quote form gets you a price fastest.</p><p><a class="btn btn-red" href="mailto:info@midlandsambulance.co.uk">Email info@midlandsambulance.co.uk <span class="arrow">→</span></a></p></div></div></section>
+<section class="sec mist"><div class="wrap"><p class="eyebrow">The quickest route</p><h2 class="hd h2" style="margin-bottom:44px">What do you need?</h2><div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+<a class="card" href="#get-a-quote"><small>Event cover</small><b>Get an event quote</b><p>Two short steps. We reply within 1 working day.</p></a>
+<a class="card" href="#training"><small>Training</small><b>Book a course</b><p>Public courses in Swadlincote, or training at your workplace.</p></a>
+<a class="card" href="#careers"><small>Careers</small><b>Join the team</b><p>Clinicians and first aiders, apply or register your interest.</p></a>
+<a class="card" href="${REVIEW}"><small>Feedback</small><b>Review us on Google</b><p>Tell other organisers how we did.</p></a></div></div></section>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Company details</p><h2 class="hd h2">Midlands Ambulance Group Ltd</h2></div><dl class="fcard"><div><dt>Company number</dt><dd>13035386</dd></div><div><dt>Registered office</dt><dd>19 Chiltern Road, Swadlincote, Derbyshire DE11 9ED</dd></div><div><dt>ICO registration</dt><dd>ZB254961</dd></div><div style="border:0"><dt>Follow us</dt><dd><a href="https://www.facebook.com/midlandsambulancegroup" style="color:inherit">Facebook</a> · <a href="https://www.instagram.com/midlandsambulancegroup" style="color:inherit">Instagram</a> · <a href="https://www.linkedin.com/company/midlands-ambulance-group-ltd" style="color:inherit">LinkedIn</a></dd></div></dl></div></section>`,'contact');
 
 add('careers','/careers','Company','Careers',()=>`
 ${darkHero({image:'nightcrowd',crumb:[['Careers']],eyebrow:'Careers',title:'Join our event medical team',lede:'We are always looking for first aiders, technicians, paramedics, nurses and doctors to join our event team.',ctas:`<a class="btn btn-red" href="#apply">Apply to join <span class="arrow">→</span></a><a class="btn btn-ghost" href="#interest">Register your interest</a>`})}
-<section class="sec"><div class="wrap split"><div><p class="eyebrow">Why join us</p><h2 class="hd h2">Varied work, good people</h2></div>${ticks([['Festivals, sport, film and more','No two shifts the same.'],['Flexible work','Pick shifts around your other commitments.'],['Supportive clinical team','Briefings, kit and senior support on every event.'],['Training opportunities',T('[What you offer staff]')]])}</div></section>
+<section class="sec"><div class="wrap split"><div><p class="eyebrow">Why join us</p><h2 class="hd h2">Varied work, good people</h2></div>${ticks([['Festivals, sport, film and more','No two shifts the same.'],['Flexible work','Pick shifts around your other commitments.'],['Supportive clinical team','Briefings, kit and senior support on every event.'],['Learn from senior clinicians','Work alongside our Paramedic Clinical Lead and experienced event team leads, with briefings before and debriefs after each event.'],['Travel if you want to','Events from Scotland to the south coast, as well as across the Midlands.'],['Everything in one place','Shifts, briefings and documents through TeamMAG, our staff portal.']])}</div></section>
+<section class="sec dark"><div class="wrap split"><div><p class="eyebrow">Who we're looking for</p><h2 class="hd h2">Roles on our event team</h2><p class="lede" style="margin-top:20px">We look for people who are calm under pressure, kind to patients and proud of doing things properly.</p></div>${ticks([['Doctors and nurses','Registered with the GMC or NMC, for senior clinical roles at larger events.'],['Paramedics','HCPC-registered, to lead care on site.'],['Technicians','Ambulance technicians and emergency care staff.'],['Event responders and first aiders','Qualified first aiders who want to work at events.'],['Student paramedics','Gain event experience alongside qualified clinicians.']])}</div></section>
 <section class="sec mist" id="apply"><div class="wrap split"><div><p class="eyebrow">Apply</p><h2 class="hd h2">Join the event team</h2><p class="lede" style="margin-top:20px">Already registered with the HCPC, NMC or GMC, or a qualified first aider? Apply here and we'll be in touch.</p></div>${cog(7)}</div></section>
 <section class="sec" id="interest"><div class="wrap split"><div><p class="eyebrow">Not ready yet?</p><h2 class="hd h2">Register your interest</h2><p class="lede" style="margin-top:20px">Tell us about yourself and we'll let you know when roles come up.</p></div>${cog(9)}</div></section>`,'about');
 
@@ -691,6 +975,7 @@ function render(){
   document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on',a.dataset.sec===p.sec));
   document.querySelectorAll('#idxList a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+key));
   window.scrollTo(0,0);
+  if(window.MAGinit)window.MAGinit();
   current=key;
 }
 let current='home';
