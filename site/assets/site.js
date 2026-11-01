@@ -21,3 +21,33 @@ window.MAGinit=function(){
   });
 };
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.MAGinit);else window.MAGinit();
+// Google Analytics (G-HR5SEVPPY7), loaded only after the visitor accepts cookies, and only on the live domain.
+(function(){
+  var ID='G-HR5SEVPPY7',K='mag-consent',live=/(^|\.)midlandsambulance\.co\.uk$/.test(location.hostname);
+  function get(){try{return localStorage.getItem(K);}catch(e){return null;}}
+  function set(v){try{localStorage.setItem(K,v);}catch(e){}}
+  function load(){
+    window['ga-disable-'+ID]=false;
+    if(!live||window.gtag)return;
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date());gtag('config',ID);
+    var m=location.pathname.match(/thank-you-(quote|training)/);if(m)gtag('event','generate_lead',{form_name:m[1]});
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);
+  }
+  function clear(){
+    window['ga-disable-'+ID]=true;
+    document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(/^_ga/.test(n)){['',';domain=.midlandsambulance.co.uk',';domain=midlandsambulance.co.uk'].forEach(function(d){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d;});}});
+  }
+  function banner(){
+    if(document.getElementById('ck'))return;
+    var d=document.createElement('div');d.id='ck';d.className='ck';d.setAttribute('role','region');d.setAttribute('aria-label','Cookie choice');
+    d.innerHTML='<p>We would like to use Google Analytics cookies to see how people use our website, so we can improve it. They are only set if you accept. <a href="/privacy-policy.html#cookies">Privacy policy</a></p><div class="ck-b"><button type="button" class="btn btn-red" data-ck="granted">Accept</button><button type="button" class="btn btn-ghost" data-ck="denied">Reject</button></div>';
+    d.addEventListener('click',function(e){var v=e.target.getAttribute('data-ck');if(!v)return;set(v);d.parentNode.removeChild(d);if(v==='granted')load();else clear();});
+    document.body.appendChild(d);
+  }
+  function init(){
+    var c=get();if(c==='granted')load();else if(c!=='denied')banner();
+    document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-cookies]'))banner();});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();

@@ -274,6 +274,9 @@ table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
 .ftr .base{border-top:1px solid var(--night-line);font-size:13px}
 .ftr .base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px}
 .ftr .base a{display:inline}
+.linkbtn{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+.ck{position:fixed;left:16px;bottom:16px;z-index:70;width:calc(100% - 32px);max-width:520px;background:#000000;color:#FFFFFF;border:1px solid var(--night-line);border-top:3px solid var(--red);padding:20px;display:grid;gap:14px;box-shadow:0 10px 30px rgba(0,0,0,.45);font-size:15px;line-height:1.5}
+.ck p{margin:0}.ck a{color:#FFFFFF}.ck .ck-b{display:flex;gap:10px}.ck .btn{min-height:44px;flex:1;font-size:15px}
 .mbar{display:none}
 @media (max-width:1100px){.hdr-phone{display:none}}
 /* page index */
@@ -307,7 +310,7 @@ table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
 .mbar{display:grid;grid-template-columns:1fr 1.3fr;position:fixed;left:0;right:0;bottom:0;z-index:55;background:var(--night);border-top:1px solid var(--night-line);gap:10px;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
 .mbar a{display:flex;justify-content:center;align-items:center;text-decoration:none;font-weight:700;min-height:48px;border-radius:2px;color:#FFFFFF}
 .mbar .c{box-shadow:inset 0 0 0 2px #FFFFFF}.mbar .q{background:var(--red)}
-body{padding-bottom:78px}}
+body{padding-bottom:78px}.ck{bottom:calc(86px + env(safe-area-inset-bottom,0px))}}
 @media (max-width:560px){.svc,.tiles.four{grid-template-columns:1fr}.ticket .row2{grid-template-columns:1fr}.ftr .wrap.cols{grid-template-columns:1fr}.cog-wrap{padding:20px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -337,7 +340,7 @@ body{padding-bottom:78px}}
     <div><h2 class="fh">Areas</h2><a href="#derbyshire">Derbyshire</a><a href="#birmingham">Birmingham</a><a href="#london">London</a><a href="#manchester">Manchester</a><a href="#bournemouth">Bournemouth</a><a href="#glasgow">Glasgow</a><a href="#paris">Paris</a><a href="#areas">All areas</a></div>
     <div><h2 class="fh">Company</h2><a href="#about">About us</a><a href="#team">Our team</a><a href="#training">Training</a><a href="#case-studies">Case studies</a><a href="#reviews">Reviews</a><a href="#careers">Careers</a><a href="#contact">Contact</a></div>
   </div>
-  <div class="base"><div class="wrap"><span>© 2026 Midlands Ambulance Group Ltd · Company no. 13035386 · Registered office 19 Chiltern Road, Swadlincote, Derbyshire DE11 9ED</span><span><a href="#privacy-policy">Privacy policy</a> &nbsp;·&nbsp; <a href="https://g.page/r/CTwPSa1lclRPEBM/review">Review us on Google</a></span></div></div>
+  <div class="base"><div class="wrap"><span>© 2026 Midlands Ambulance Group Ltd · Company no. 13035386 · Registered office 19 Chiltern Road, Swadlincote, Derbyshire DE11 9ED</span><span><a href="#privacy-policy">Privacy policy</a> &nbsp;·&nbsp; <button type="button" class="linkbtn" data-cookies>Cookie settings</button> &nbsp;·&nbsp; <a href="https://g.page/r/CTwPSa1lclRPEBM/review">Review us on Google</a></span></div></div>
   <nav class="mbar" aria-label="Quick actions"><a class="c" href="tel:03333358999">Call us</a><a class="q" href="#get-a-quote">Get a quote</a></nav>
 </footer>
 
@@ -373,6 +376,36 @@ window.MAGinit=function(){
   });
 };
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',window.MAGinit);else window.MAGinit();
+// Google Analytics (G-HR5SEVPPY7), loaded only after the visitor accepts cookies, and only on the live domain.
+(function(){
+  var ID='G-HR5SEVPPY7',K='mag-consent',live=/(^|\.)midlandsambulance\.co\.uk$/.test(location.hostname);
+  function get(){try{return localStorage.getItem(K);}catch(e){return null;}}
+  function set(v){try{localStorage.setItem(K,v);}catch(e){}}
+  function load(){
+    window['ga-disable-'+ID]=false;
+    if(!live||window.gtag)return;
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date());gtag('config',ID);
+    var m=location.pathname.match(/thank-you-(quote|training)/);if(m)gtag('event','generate_lead',{form_name:m[1]});
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ID;document.head.appendChild(s);
+  }
+  function clear(){
+    window['ga-disable-'+ID]=true;
+    document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(/^_ga/.test(n)){['',';domain=.midlandsambulance.co.uk',';domain=midlandsambulance.co.uk'].forEach(function(d){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+d;});}});
+  }
+  function banner(){
+    if(document.getElementById('ck'))return;
+    var d=document.createElement('div');d.id='ck';d.className='ck';d.setAttribute('role','region');d.setAttribute('aria-label','Cookie choice');
+    d.innerHTML='<p>We would like to use Google Analytics cookies to see how people use our website, so we can improve it. They are only set if you accept. <a href="/privacy-policy.html#cookies">Privacy policy</a></p><div class="ck-b"><button type="button" class="btn btn-red" data-ck="granted">Accept</button><button type="button" class="btn btn-ghost" data-ck="denied">Reject</button></div>';
+    d.addEventListener('click',function(e){var v=e.target.getAttribute('data-ck');if(!v)return;set(v);d.parentNode.removeChild(d);if(v==='granted')load();else clear();});
+    document.body.appendChild(d);
+  }
+  function init(){
+    var c=get();if(c==='granted')load();else if(c!=='denied')banner();
+    document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-cookies]'))banner();});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
 </script>
 <script>
 (function(){
@@ -925,10 +958,10 @@ ${plainHero({crumb:[['Privacy policy']],eyebrow:'Legal',title:'Privacy policy'})
 <p><b>Marketing.</b> We only send marketing emails if you have opted in, or if you are an existing client and we are telling you about similar services. Every email lets you unsubscribe, and you can opt out at any time.</p>
 <p><b>Website visits.</b> Our web host automatically records technical information when you visit, such as your IP address, browser type and the pages you view. This keeps the site secure and working. Our lawful basis is legitimate interests.</p>
 
-<h2>Cookies</h2>
-<p>Our website only uses cookies and similar technologies that are strictly necessary to deliver the site and the forms you choose to fill in. We do not use advertising or tracking cookies.</p>
-<p>The website loads its fonts from Google Fonts. This means your browser shares your IP address with Google when a page loads.</p>
-<p>If we add website analytics in future, we will update this policy and give you a way to opt out before any analytics run.</p>
+<h2 id="cookies">Cookies and analytics</h2>
+<p>Some cookies and browser storage are strictly necessary to deliver the site and the forms you choose to fill in. We also store your cookie choice in your browser so we don't ask again on every page.</p>
+<p><b>Google Analytics.</b> With your consent, we use Google Analytics to understand how visitors find and use our website, such as which pages are viewed and whether an enquiry form was sent. Google Analytics sets cookies named _ga and _ga_ followed by an ID, which last up to two years. Google processes this information for us and may transfer it outside the UK under the safeguards described below. Our lawful basis is your consent. Analytics only run if you click Accept, and you can change your choice at any time using the Cookie settings link at the bottom of every page.</p>
+<p>We do not use advertising cookies.</p>
 
 <h2>Who we share it with</h2>
 <p>We do not sell your personal information. We only share it when we need to:</p>
@@ -938,7 +971,7 @@ ${plainHero({crumb:[['Privacy policy']],eyebrow:'Legal',title:'Privacy policy'})
 <li><b>Regulators, the police, coroners, courts and safeguarding teams</b> where the law requires it, or where someone is at risk of harm.</li>
 <li><b>Your employer</b>, if they booked and paid for your training, so they can see your attendance and certificate.</li>
 <li><b>Our insurers and professional advisers</b>, such as accountants and solicitors.</li>
-<li><b>Service providers who handle data for us</b> under contract and only on our instructions. This includes our website host (Wix), our online forms provider (Cognito Forms), our email and file storage provider (Google Workspace) and our accounting software (QuickBooks).</li>
+<li><b>Service providers who handle data for us</b> under contract and only on our instructions. This includes our website host (Wix), our online forms provider (Cognito Forms), our email and file storage provider (Google Workspace), our website analytics provider (Google Analytics, only if you consent to analytics cookies) and our accounting software (QuickBooks).</li>
 </ul>
 
 <h2>Transfers outside the UK</h2>
