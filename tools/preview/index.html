@@ -400,6 +400,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     d.addEventListener('click',function(e){var v=e.target.getAttribute('data-ck');if(!v)return;set(v);d.parentNode.removeChild(d);if(v==='granted')load();else clear();});
     document.body.appendChild(d);
   }
+  // Phone calls are leads too: record clicks on any phone link (only sent when analytics are running).
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a&&window.gtag&&!window['ga-disable-'+ID])gtag('event','phone_call_click',{link_url:a.getAttribute('href'),page_path:location.pathname});});
   function init(){
     var c=get();if(c==='granted')load();else if(c!=='denied')banner();
     document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-cookies]'))banner();});
@@ -756,6 +758,7 @@ ${clients}
 ${EVX[e.key].trust?`<section class="sec mist"><div class="wrap"><p class="eyebrow">Trust</p><h2 class="hd h2">Looking after your venue and the people on a night out</h2><p class="lede" style="margin:20px 0 44px;max-width:760px">Our job is to support you as the client and to look after everyone out for the night, from your customers to passers-by in the street.</p><div class="split"><div><h3 class="hd" style="font-size:28px;margin-bottom:12px">For you, the client</h3>${ticks(EVX[e.key].trust.client)}</div><div><h3 class="hd" style="font-size:28px;margin-bottom:12px">For the public</h3>${ticks(EVX[e.key].trust.public)}</div></div></div></section>`:''}
 ${howWeWork}
 ${EVX[e.key].worked?`<section class="sec tight"><div class="wrap split mid"><div><p class="eyebrow">Experience</p><h2 class="hd" style="font-size:40px">Where we've done it</h2></div><p class="lede">${EVX[e.key].worked}</p></div></section>`:''}
+<section class="sec tight"><div class="wrap"><p class="eyebrow">Where we work</p><h2 class="hd" style="font-size:40px;margin-bottom:24px">${e.title} near you</h2><div class="regions">${AREAS.map(a=>`<a${a[4]?' class="home"':''} href="#${a[0]}">${a[1]}</a>`).join('')}</div></div></section>
 <section class="sec mist tight"><div class="wrap"><p class="eyebrow">Other events we cover</p><div class="cards" style="margin-top:28px">${EVENTS.filter(x=>x.key!==e.key).slice(0,3).map(x=>`<a class="card" href="#${x.key}"><small>Event cover</small><b>${x.name}</b></a>`).join('')}</div></div></section>
 ${band('Get a quote for your '+(e.short==='Sport'?'sporting event':e.short.toLowerCase()+' event').replace('film and tv event','production').replace('festivals event','festival').replace('night-time economy event','venue or town centre'))}`,'event'));
 

@@ -45,6 +45,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     d.addEventListener('click',function(e){var v=e.target.getAttribute('data-ck');if(!v)return;set(v);d.parentNode.removeChild(d);if(v==='granted')load();else clear();});
     document.body.appendChild(d);
   }
+  // Phone calls are leads too: record clicks on any phone link (only sent when analytics are running).
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a&&window.gtag&&!window['ga-disable-'+ID])gtag('event','phone_call_click',{link_url:a.getAttribute('href'),page_path:location.pathname});});
   function init(){
     var c=get();if(c==='granted')load();else if(c!=='denied')banner();
     document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-cookies]'))banner();});
