@@ -3,7 +3,9 @@
 The new www.midlandsambulance.co.uk: a static site hosted on Wix (Wix Headless).
 
 - `site/` is the finished website, one `.html` file per page (for example `site/training/basic-first-aid-cpr.html`). Wix Headless only serves files at their exact path and does not open a folder's `index.html`, so pages are not built as folders. This folder is what gets uploaded to Wix.
-- `site/assets/site.css` holds every style and `site/assets/site.js` the page behaviour (form thank-you redirect, medical cover guide); `site/img/` holds the photos (`.webp` for pages, `.jpg` kept for link previews) and logos.
+- Every page carries its styles inline (`site/assets/site.css` is the same CSS for reference) and loads `site/assets/site.js` for the page behaviour (form thank-you redirect, medical cover guide). Fonts are self-hosted in `site/fonts/` (copied from `tools/fonts/`, SIL Open Font Licence).
+- `site/img/` holds the web images: `name.webp` (up to 1400px) and `name-800.webp` for phones, plus `hero.jpg` for link previews. The prerender turns each photo panel into a lazy-loaded `<img>` with both sizes; the first one on a page loads with high priority.
+- `tools/photos/` holds the JPEG masters. After adding or changing a photo there, run `tools/images.sh` to rebuild the WebP files, then the prerender.
 - `tools/preview/index.html` is the single-page preview the site was built from. `tools/prerender.mjs` turns it into the pages in `site/`:
 
   ```bash
