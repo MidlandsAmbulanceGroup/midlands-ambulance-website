@@ -170,6 +170,14 @@ table.t{width:100%;border-collapse:collapse;font-size:16px;min-width:640px}
 .ftr h4{margin:0 0 14px;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#FFFFFF;font-weight:600}
 .ftr a{text-decoration:none;display:block;padding:3px 0}.ftr a:hover{color:#FFFFFF}
 .ftr .base{border-top:1px solid #222;font-size:13px}
+.ftr .group{border-top:1px solid #222}
+.ftr .group .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:14px 40px;padding-block:26px}
+.ftr .group .lbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#FFFFFF;font-weight:600}
+.ftr .group .lbl b{display:block;font-family:var(--display);font-size:24px;letter-spacing:.6px;font-weight:800;margin-top:4px}
+.ftr .group .cos{display:flex;flex-wrap:wrap;gap:10px 28px;margin-left:auto}
+.ftr .group .co{display:inline-flex;align-items:center;gap:10px;font-weight:600;color:#FFFFFF}
+.ftr .group .co span{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#A8A5A3;font-weight:600}
+.ftr .group .co i{width:10px;height:10px;border-radius:50%;flex:none}
 .ftr .base .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:20px}
 .ftr .base a{display:inline}
 @media (max-width:900px){
