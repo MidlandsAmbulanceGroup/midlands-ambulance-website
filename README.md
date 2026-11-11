@@ -15,7 +15,7 @@ The new www.midlandsambulance.co.uk: a static site hosted on Wix (Wix Headless).
 ## Before going live
 
 - Replace the text highlighted in yellow (`class="tbc"`): prices, course lengths, dates, bios, company number.
-- Connect the quote and training forms to the Cognito forms (they currently go straight to the thank-you pages).
+- The quote, training and contact forms send to the UKMRG Control Centre (Client Hub pipeline) at `/api/intake?key=mag-website` (see `site/assets/site.js`), then show the thank-you page.
 - Rebuild without `noindex`, then point the domain at the Wix Headless site and add the 301 redirects from the site plan.
 
 Rules for content: never call courses "accredited"; no CQC registration claims or patient conveyance until CQC registration is granted; no FREC pages until delivered through an approved centre; no star rating until real Google reviews exist.
