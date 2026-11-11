@@ -301,7 +301,7 @@ const quoteForm=(pre={})=>`<form class="form" data-form="quote">
   <label>Your name<input id="q-name" type="text" autocomplete="name" required></label>
   <label>Email or phone<input id="q-contact" type="text" autocomplete="email" required></label>
   <button type="submit" class="btn btn-red">Send my quote request <span class="arrow">→</span></button>
-  <p class="note">In the live site this form sends straight to your Cognito quote form. In this preview it just shows the thank-you page.</p>
+  <p class="note">Your details go straight to our team.</p>
 </form>`;
 const courseForm=course=>`<form class="form" data-form="training">
   <label class="full">Course<select id="t-course">${COURSES.map(c=>`<option${c.key===course?' selected':''}>${c.name}</option>`).concat(`<option${course==='onsite-training'?' selected':''}>On-site group training</option>`).join('')}</select></label>
@@ -310,7 +310,7 @@ const courseForm=course=>`<form class="form" data-form="training">
   <label>Your name<input id="t-name" type="text" autocomplete="name" required></label>
   <label>Email or phone<input id="t-contact" type="text" autocomplete="email" required></label>
   <button type="submit" class="btn btn-red">Send booking enquiry <span class="arrow">→</span></button>
-  <p class="note">In the live site this sends to your Cognito training form, with the course already filled in.</p>
+  <p class="note">Your request goes straight to our training team.</p>
 </form>`;
 
 /* ---------- data ---------- */
